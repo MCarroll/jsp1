@@ -3,7 +3,7 @@ module AnnouncementsHelper
   ANNOUNCEMENT_COLORS = {
     "new" => "announcement-new",
     "update" => "announcement-update",
-    "improvement" => "announcement-update",
+    "improvement" => "announcement-improvement",
     "fix" => "announcement-fix"
   }
 

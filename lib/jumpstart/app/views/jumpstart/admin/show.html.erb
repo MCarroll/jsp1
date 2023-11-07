@@ -1,25 +1,27 @@
 <%= form_with model: @config, url: config_path do |f| %>
-  <div data-controller="tabs" class="flex">
+  <div data-controller="tabs" data-tabs-update-anchor-value="true" class="flex">
     <div class="sticky top-0 w-full px-4 pt-4 md:w-1/5 md:max-w-[300px] lg:px-8">
       <%= link_to root_path, class: "block" do %>
-        <%= inline_svg_tag "jumpstart.svg", title: "Logo", aria: true, class: "fill-current text-gray-500 dark:text-gray-200" %>
+        <%= inline_svg_tag "jumpstart.svg", title: "Logo", aria: true, class: "fill-current text-gray-800 dark:text-gray-200" %>
       <% end %>
 
-      <%= link_to "Back to the app", main_app.root_path, class: "block text-sm mt-4 py-1 text-gray-900 dark:text-gray-50" %>
-      <%= link_to "Documentation", docs_path, class: "block text-sm py-1 text-gray-900 dark:text-gray-50", target: :_blank %>
+      <div class="mt-4 flex flex-col gap-2">
+        <%= link_to "← Back", main_app.root_path, class: "btn btn-white btn-small" %>
+        <%= link_to "Documentation", docs_path, class: "btn btn-white btn-small", target: :_blank %>
+      </div>
 
-      <h4 class="mt-4 font-semibold mb-1 text-gray-800 dark:text-gray-100">Configuration</h4>
-      <div>
-        <a class="block py-1 text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="application">Application</a>
-        <a class="block py-1 text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="dependencies">Dependencies</a>
-        <a class="block py-1 text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="accounts">Accounts</a>
-        <a class="block py-1 text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="workers">Background Workers</a>
-        <a class="block py-1 text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="integrations">Integrations</a>
-        <a class="block py-1 text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="oauth">Login & OAuth</a>
-        <a class="block py-1 text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="payments">Payments</a>
-        <a class="block py-1 text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="email">Transactional Email</a>
-        <a class="block py-1 text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="turbo-native">Turbo Native</a>
-        <a class="block py-1 text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="users">Admin Users</a>
+      <h4 class="h5 mt-4 font-semibold text-gray-800 dark:text-gray-100">Configuration</h4>
+      <div class="ml-2">
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="application">Application</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="dependencies">Dependencies</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="accounts">Accounts</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="workers">Background Workers</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="integrations">Integrations</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="oauth">OAuth</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="payments">Payments</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="email">Transactional Email</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="turbo-native">Turbo Native</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="users">Admin Users</a>
       </div>
 
       <div class="mt-4">

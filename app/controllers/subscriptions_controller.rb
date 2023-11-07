@@ -107,10 +107,14 @@ class SubscriptionsController < ApplicationController
 
   def set_checkout_session
     payment_processor = current_account.set_payment_processor(:stripe)
+
+    # Only allow trials on the account's first subscription
+    trial_allowed = current_account.subscriptions.none?
+
     subscription_data = {
       metadata: params.fetch(:metadata, {}).permit!.to_h,
       trial_settings: {end_behavior: {missing_payment_method: "pause"}},
-      trial_period_days: ((@plan.trial_period_days.to_i > 1) ? @plan.trial_period_days : nil)
+      trial_period_days: ((@plan.trial_period_days.to_i > 1 && trial_allowed) ? @plan.trial_period_days : nil)
     }.compact
     args = {
       allow_promotion_codes: true,

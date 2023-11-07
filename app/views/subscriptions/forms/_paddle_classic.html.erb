@@ -1,0 +1,9 @@
+<%= tag.div data: {
+  controller: "paddle--classic",
+  paddle__classic_environment_value: Pay::PaddleClassic.environment,
+  paddle__classic_vendor_id_value: Pay::PaddleClassic.vendor_id,
+  paddle__classic_email_value: current_account.billing_email,
+  paddle__classic_product_value: @plan.try(:paddle_classic_id),
+  paddle__classic_passthrough_value: Pay::PaddleClassic.passthrough(owner: current_account),
+  paddle__classic_redirect_url_value: subscriptions_paddle_classic_url
+} %>

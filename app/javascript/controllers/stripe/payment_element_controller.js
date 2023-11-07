@@ -1,19 +1,25 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["addressElement", "paymentElement", "error", "form"]
+  static targets = ["addressElement", "paymentElement", "error", "form", "default"]
   static values = {
+    default: {type: Boolean, default: true},
+    publicKey: String,
     clientSecret: String,
     returnUrl: String,
     name: String
   }
 
   connect() {
-    this.stripe = Stripe(this.stripeKey)
-    let theme = document.documentElement.classList.contains("dark") ? "night" : "stripe";
+    console.log(this.returnUrl)
+    this.initializePaymentElement()
+  }
+
+  initializePaymentElement() {
+    this.stripe = Stripe(this.publicKeyValue)
     this.elements = this.stripe.elements({
       appearance: {
-        theme: theme,
+        theme: this.theme,
         variables: {
           fontSizeBase: "14px"
         }
@@ -36,34 +42,28 @@ export default class extends Controller {
   }
 
   changed(event) {
-    if (event.error) {
-      this.errorTarget.textContent = event.error.message
-    } else {
-      this.errorTarget.textContent = ""
-    }
+    this.errorTarget.textContent = event.error?.message || ""
+  }
+
+  defaultChanged(event) {
+    this.defaultValue = event.currentTarget.checked
   }
 
   async submit(event) {
     event.preventDefault()
 
+    let args = {
+      elements: this.elements,
+      confirmParams: { return_url: this.returnUrlValue },
+    }
+
     // Payment Intents
     if (this.clientSecretValue.startsWith("pi_")) {
-      const { error } = await this.stripe.confirmPayment({
-        elements: this.elements,
-        confirmParams: {
-          return_url: this.returnUrlValue,
-        },
-      });
+      const { error } = await this.stripe.confirmPayment(args)
       this.showError(error)
-
     // Setup Intents
     } else {
-      const { error } = await this.stripe.confirmSetup({
-        elements: this.elements,
-        confirmParams: {
-          return_url: this.returnUrlValue,
-        },
-      });
+      const { error } = await this.stripe.confirmSetup(args)
       this.showError(error)
     }
   }
@@ -72,7 +72,8 @@ export default class extends Controller {
     this.errorTarget.textContent = error.message
   }
 
-  get stripeKey() {
-    return document.querySelector('meta[name="stripe-key"]').getAttribute("content")
+  get theme() {
+    return document.documentElement.classList.contains("dark") ? "night" : "stripe";
   }
 }
+

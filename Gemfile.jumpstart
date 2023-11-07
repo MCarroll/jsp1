@@ -15,7 +15,7 @@ gem "local_time", "~> 2.1"
 gem "name_of_person", "~> 1.0"
 gem "noticed", "~> 1.5"
 gem "pagy", "~> 6.0"
-gem "pay", "~> 6.2"
+gem "pay", github: "pay-rails/pay" # "~> 6.2"
 gem "prawn", github: "prawnpdf/prawn"
 gem "prefixed_ids", "~> 1.2"
 gem "pretender", "~> 0.4"
@@ -65,9 +65,9 @@ gem "sucker_punch" if Jumpstart.config.background_job_processor == "sucker_punch
 gem "good_job" if Jumpstart.config.background_job_processor == "good_job"
 
 # Payment processors
-gem "stripe", "~> 9.2" if Jumpstart.config.stripe?
-gem "braintree" if Jumpstart.config.braintree? || Jumpstart.config.paypal?
-gem "paddle_pay" if Jumpstart.config.paddle?
+gem "stripe", "~> 10.0" if Jumpstart.config.stripe?
+gem "paddle", "~> 2.1" if Jumpstart.config.paddle_billing? || Jumpstart.config.paddle_classic?
+gem "braintree", "~> 4.15" if Jumpstart.config.braintree? || Jumpstart.config.paypal?
 
 # Notifications
 gem "apnotic" if Jumpstart.config.apns?

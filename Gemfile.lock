@@ -22,6 +22,13 @@ GIT
       activesupport (>= 5.0.0)
 
 GIT
+  remote: https://github.com/pay-rails/pay.git
+  revision: 5831d3e82b72524af2a4020d33284e44e0492581
+  specs:
+    pay (6.8.1)
+      rails (>= 6.0.0)
+
+GIT
   remote: https://github.com/prawnpdf/prawn.git
   revision: 8ceaa105f3e6038fac2eb4b84355d71b00d895f3
   specs:
@@ -157,7 +164,7 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.3.3)
       railties (>= 6.0.0)
-    date (3.3.3)
+    date (3.3.4)
     debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
@@ -171,7 +178,7 @@ GEM
       devise (>= 4.9.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    drb (2.1.1)
+    drb (2.2.0)
       ruby2_keywords
     erb_lint (0.5.0)
       activesupport
@@ -261,15 +268,15 @@ GEM
     mini_mime (1.1.5)
     minitest (5.20.0)
     msgpack (1.7.2)
-    mutex_m (0.1.2)
+    mutex_m (0.2.0)
     name_of_person (1.1.2)
       activesupport (>= 5.2.0)
-    net-imap (0.4.3)
+    net-imap (0.4.4)
       date
       net-protocol
     net-pop (0.1.2)
       net-protocol
-    net-protocol (0.2.1)
+    net-protocol (0.2.2)
       timeout
     net-smtp (0.4.0)
       net-protocol
@@ -295,8 +302,6 @@ GEM
     parser (3.2.2.4)
       ast (~> 2.4.1)
       racc
-    pay (6.8.1)
-      rails (>= 6.0.0)
     pdf-core (0.9.0)
     pg (1.5.4)
     prawn-table (0.2.2)
@@ -313,7 +318,7 @@ GEM
       nio4r (~> 2.0)
     pundit (2.3.1)
       activesupport (>= 3.0.0)
-    racc (1.7.2)
+    racc (1.7.3)
     rack (3.0.8)
     rack-session (2.0.0)
       rack (>= 3.0.0)
@@ -353,7 +358,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.1.0)
-    rdoc (6.5.0)
+    rdoc (6.6.0)
       psych (>= 4.0.0)
     receipts (2.2.0)
       prawn (>= 1.3.0, < 3.0.0)
@@ -435,7 +440,7 @@ GEM
     stringio (3.0.8)
     thor (1.3.0)
     tilt (2.3.0)
-    timeout (0.4.0)
+    timeout (0.4.1)
     ttfunk (1.7.0)
     turbo-rails (1.5.0)
       actionpack (>= 6.0.0)
@@ -503,7 +508,7 @@ DEPENDENCIES
   noticed (~> 1.5)
   overcommit
   pagy (~> 6.0)
-  pay (~> 6.2)
+  pay!
   pg
   prawn!
   prefixed_ids (~> 1.2)

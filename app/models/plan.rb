@@ -23,7 +23,7 @@ class Plan < ApplicationRecord
   # https://github.com/excid3/prefixed_ids
   has_prefix_id :plan
 
-  store_accessor :details, :features, :stripe_id, :braintree_id, :paddle_id, :jumpstart_id, :fake_processor_id, :stripe_tax
+  store_accessor :details, :features, :stripe_id, :braintree_id, :paddle_billing_id, :paddle_classic_id, :jumpstart_id, :fake_processor_id, :stripe_tax
   attribute :features, :string, array: true
   attribute :currency, default: "usd"
   normalizes :currency, with: ->(currency) { currency.downcase }

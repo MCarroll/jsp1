@@ -31,9 +31,9 @@
 
               <td class="hidden sm:table-cell text-sm text-center">
                 <% if current_account != account %>
-                  <%= switch_account_button account, label: t(".switch"), class: "btn btn-light-gray" %>
+                  <%= switch_account_button account, label: t(".switch"), class: "btn btn-white" %>
                 <% else %>
-                  <span class="font-medium text-gray-600 dark:text-gray-300"><%= t(".current") %></span>
+                  <%= badge t(".current") %>
                 <% end %>
               </td>
 

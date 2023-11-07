@@ -76,30 +76,20 @@ Rails.application.routes.draw do
   resources :account_invitations
 
   # Payments
-  resource :billing_address
-  namespace :payment_methods do
-    resource :stripe, controller: :stripe, only: [:show]
-  end
-  resources :payment_methods
   namespace :subscriptions do
-    resource :billing_address
-    namespace :stripe do
-      resource :trial, only: [:show]
-    end
+    resource :stripe, controller: :stripe, only: [:show]
+    resource :paddle_billing, controller: :paddle_billing, only: [:show, :edit]
+    resource :paddle_classic, controller: :paddle_classic, only: [:show]
   end
   resources :subscriptions do
+    collection do
+      patch :billing_settings
+    end
+    resource :payment_method, module: :subscriptions
     resource :cancel, module: :subscriptions
     resource :pause, module: :subscriptions
     resource :resume, module: :subscriptions
     resource :upcoming, module: :subscriptions
-
-    collection do
-      patch :billing_settings
-    end
-
-    scope module: :subscriptions do
-      resource :stripe, controller: :stripe, only: [:show]
-    end
   end
   resources :charges do
     member do

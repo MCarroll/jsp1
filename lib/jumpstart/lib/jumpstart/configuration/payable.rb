@@ -6,28 +6,32 @@ module Jumpstart
       attr_writer :monthly_plans
       attr_writer :yearly_plans
 
-      def braintree?
-        payment_processors.include? :braintree
-      end
-
-      def paypal?
-        payment_processors.include? :paypal
-      end
-
-      def stripe?
-        payment_processors.include? :stripe
-      end
-
-      def paddle?
-        payment_processors.include? :paddle
+      def payment_processors
+        Array(@payment_processors)
       end
 
       def payments_enabled?
         payment_processors.any?
       end
 
-      def payment_processors
-        Array(@payment_processors).map(&:to_sym)
+      def stripe?
+        payment_processors.include? "stripe"
+      end
+
+      def braintree?
+        payment_processors.include? "braintree"
+      end
+
+      def paypal?
+        payment_processors.include? "paypal"
+      end
+
+      def paddle_billing?
+        payment_processors.include? "paddle_billing"
+      end
+
+      def paddle_classic?
+        payment_processors.include? "paddle_classic"
       end
 
       def plans

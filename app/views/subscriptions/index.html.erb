@@ -9,6 +9,7 @@
 
       <% if account_admin?(current_account, current_user) %>
         <h5 class="text-gray-700 dark:text-gray-300 font-semibold my-4 border-b border-gray-200 dark:border-gray-700 pb-2"><%= t(".subscriptions") %></h5>
+
         <% if @subscriptions.any? %>
           <%= render partial: "subscriptions/subscription", collection: @subscriptions %>
         <% else %>
@@ -18,20 +19,8 @@
           </div>
         <% end %>
 
-        <% if @payment_processor %>
-          <%= render "subscriptions/payment_method", payment_processor: @payment_processor %>
-        <% end %>
-
-        <% if Jumpstart.config.collect_billing_address? %>
-          <%= render "subscriptions/billing_address", billing_address: @billing_address %>
-        <% end %>
-
-        <%# Paddle: Extra payment details live in Paddle, not our app %>
-        <% unless @payment_processor&.paddle? %>
-          <%= render partial: "subscriptions/billing_info" %>
-          <%= render partial: "subscriptions/billing_email" %>
-        <% end %>
-
+        <%= render partial: "subscriptions/billing_email" %>
+        <%= render partial: "subscriptions/billing_info" %>
         <%= render partial: "subscriptions/charges" %>
       <% else %>
         <p class="text-black dark:text-white"><%= t(".contact_admin", account: current_account.name) %></p>

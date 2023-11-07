@@ -5,111 +5,117 @@
   <% end %>
 </nav>
 
-<div class="p-4 max-w-6xl mx-auto grid lg:grid-cols-2 lg:gap-48 lg:py-24">
-  <div>
-    <div class="flex justify-center mb-4 lg:justify-start">
-      <% if @plan.has_trial? %>
-        <div>
-          <h1 class="font-semibold text-lg text-gray-500 dark:text-gray-200">Try <%= @plan.name %></h1>
-          <h3 class="my-1 font-bold text-3xl"><%= @plan.trial_period_days %> days free</h3>
-          <p class="font-medium text-gray-500 dark:text-gray-200">Then <span id="recurringTotal"><%= @plan.amount_with_currency %></span> per <%= @plan.interval %></p>
-        </div>
+<% if Jumpstart.config.stripe? %>
+  <div class="my-10">
+    <h1 class="mb-4 lg:mb-8 text-center"><%= t(".title") %></h1>
+    <%= render "subscriptions/forms/stripe", client_secret: @checkout_session.client_secret %>
+    <%= render "subscriptions/new/testimonial" %>
+  </div>
+<% else %>
+  <div class="p-4 max-w-6xl mx-auto grid lg:grid-cols-2 lg:gap-48 lg:py-24">
+    <div>
+      <div class="flex justify-center mb-4 lg:justify-start">
+        <% if @plan.has_trial? %>
+          <div>
+            <h1 class="font-semibold text-lg text-gray-500 dark:text-gray-200">Try <%= @plan.name %></h1>
+            <h3 class="my-1 font-bold text-3xl"><%= @plan.trial_period_days %> days free</h3>
+            <p class="font-medium text-gray-500 dark:text-gray-200">Then <span id="recurringTotal"><%= @plan.amount_with_currency %></span> per <%= @plan.interval %></p>
+          </div>
 
-      <% else %>
-        <div>
-          <h1 class="font-semibold text-lg text-gray-500 dark:text-gray-200">Subscribe to <%= @plan.name %></h1>
+        <% else %>
+          <div>
+            <h1 class="font-semibold text-lg text-gray-500 dark:text-gray-200">Subscribe to <%= @plan.name %></h1>
 
-          <div class="flex items-center">
-            <h3 id="recurringTotal" class="my-1 font-bold text-4xl"><%= @plan.amount_with_currency %></h3>
+            <div class="flex items-center">
+              <h3 id="recurringTotal" class="my-1 font-bold text-4xl"><%= @plan.amount_with_currency %></h3>
 
-            <div class="ml-2 font-medium text-sm text-gray-500 dark:text-gray-200 leading-none">
-              <% if @plan.unit_label? %>
-                <div>per <%= @plan.unit_label %></div>
-                <div>per <%= @plan.interval %></div>
-              <% else %>
-                <div>per</div>
-                <div><%= @plan.interval %></div>
-              <% end %>
+              <div class="ml-2 font-medium text-sm text-gray-500 dark:text-gray-200 leading-none">
+                <% if @plan.unit_label? %>
+                  <div>per <%= @plan.unit_label %></div>
+                  <div>per <%= @plan.interval %></div>
+                <% else %>
+                  <div>per</div>
+                  <div><%= @plan.interval %></div>
+                <% end %>
+              </div>
             </div>
           </div>
+        <% end %>
+      </div>
+
+      <% if @plan.taxed? && @stripe_invoice %>
+        <div class="flex justify-between mb-4 text-sm font-medium">
+          <div><%= t(".subtotal") %></div>
+          <div><%= Pay::Currency.format(@stripe_invoice.subtotal, currency: @stripe_invoice.currency) %></div>
+        </div>
+
+        <hr class="mb-4" />
+
+        <div class="flex justify-between mb-4 text-sm text-gray-700 dark:text-gray-300">
+          <% @stripe_invoice.total_tax_amounts.each do |tax| %>
+            <div>
+              <%= tax.tax_rate.jurisdiction %>
+              <%= tax.tax_rate.display_name %>
+              (<%= tax.tax_rate.percentage %>%)
+            </div>
+            <div><%= Pay::Currency.format(tax.amount, currency: @stripe_invoice.currency) %></div>
+          <% end %>
+        </div>
+
+        <hr class="mb-4" />
+
+        <div class="flex justify-between mb-4 text-sm font-medium">
+          <div><%= t(".total") %></div>
+          <div><%= Pay::Currency.format(@stripe_invoice.total, currency: @stripe_invoice.currency) %></div>
         </div>
       <% end %>
-    </div>
 
-    <% if @plan.taxed? && @stripe_invoice %>
-      <div class="flex justify-between mb-4 text-sm font-medium">
-        <div><%= t(".subtotal") %></div>
-        <div><%= Pay::Currency.format(@stripe_invoice.subtotal, currency: @stripe_invoice.currency) %></div>
-      </div>
-
-      <hr class="mb-4" />
-
-      <div class="flex justify-between mb-4 text-sm text-gray-700 dark:text-gray-300">
-        <% @stripe_invoice.total_tax_amounts.each do |tax| %>
-          <div>
-            <%= tax.tax_rate.jurisdiction %>
-            <%= tax.tax_rate.display_name %>
-            (<%= tax.tax_rate.percentage %>%)
-          </div>
-          <div><%= Pay::Currency.format(tax.amount, currency: @stripe_invoice.currency) %></div>
-        <% end %>
-      </div>
-
-      <hr class="mb-4" />
-
-      <div class="flex justify-between mb-4 text-sm font-medium">
-        <div><%= t(".total") %></div>
-        <div><%= Pay::Currency.format(@stripe_invoice.total, currency: @stripe_invoice.currency) %></div>
-      </div>
-    <% end %>
-
-    <div class="hidden flex justify-center mb-4 lg:block">
-      <div>
-        <% @plan.features.each do |plan_feature| %>
-          <div class="flex mb-2 text-gray-500">
-            <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 mr-2 text-blue-500 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-            </svg>
-            <div><%= plan_feature %></div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="flex justify-center mb-4">
-      <div class="hidden lg:block">
-        <hr class="my-8 border-b border-gray-300" />
-
-        <blockquote class="sm:flex lg:block">
-          <p class="text-lg text-gray-600 dark:text-gray-400"><%= t(".testimonial", product: Jumpstart.config.application_name) %></p>
-          <cite class="mt-4 block font-semibold not-italic text-gray-900 dark:text-gray-200">
-            <div class="flex items-center">
-              <img class="block h-8 rounded-full mx-auto mb-4 sm:mb-0 sm:mr-4 sm:ml-0" src="https://avatars1.githubusercontent.com/u/67093?s=40&v=4" alt="">
-              <p class="font-medium leading-tight">Chris Oliver</p>
+      <div class="hidden flex justify-center mb-4 lg:block">
+        <div>
+          <% @plan.features.each do |plan_feature| %>
+            <div class="flex mb-2 text-gray-500">
+              <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 mr-2 text-blue-500 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <div><%= plan_feature %></div>
             </div>
-          </cite>
-        </blockquote>
+          <% end %>
+        </div>
+      </div>
+
+      <%= render "subscriptions/new/testimonial" %>
+    </div>
+
+    <div>
+      <h1 class="hidden h3 mb-4 lg:block"><%= t(".title") %></h1>
+
+      <h5 id="billing-address" class="text-gray-700 dark:text-gray-300 font-semibold my-4 border-b border-gray-200 pb-2"><%= t(".account") %></h5>
+      <div class="flex items-center mb-8">
+        <%= account_avatar current_account, class: "h-10 w-10 rounded-full mr-4" %>
+        <h4><%= current_account.name %></h4>
+      </div>
+
+      <h5 class="text-gray-700 dark:text-gray-300 font-semibold my-4 border-b border-gray-200 pb-2"><%= t("subscriptions.new.payment_method") %></h5>
+      <div>
+        <%= render 'subscriptions/forms/paddle_billing' if Jumpstart.config.paddle_billing? %>
+        <%= render 'subscriptions/forms/paddle_classic' if Jumpstart.config.paddle_classic? %>
+        <%= render 'subscriptions/forms/braintree' if Jumpstart.config.braintree? %>
+        <%= render 'subscriptions/forms/paypal' if Jumpstart.config.paypal? %>
+
+        <% if @plan.has_trial? %>
+          <p class="mt-4 text-center text-sm text-gray-500 dark:text-gray-300">After your trial ends, you will be charged <%= @plan.amount_with_currency %> per <%= @plan.interval %> starting <%= l @plan.trial_period_days.days.from_now.to_date, format: :long %>. You can always cancel before then.</p>
+        <% else %>
+          <p class="mt-4 text-center text-sm text-gray-500 dark:text-gray-300">By confirming your subscription, you allow <%= Jumpstart.config.application_name %> to charge your payment method for this payment and future payments in accorandce with our terms.</p>
+        <% end %>
+      </div>
+
+      <div class="text-sm text-center mt-8">
+        <%= render_svg "icons/question", styles: "fill-current text-gray-500 w-4 h-4 inline-block" %>
+        <%= t(".help") %>
+        <span class="text-gray-600 dark:text-gray-300">
+          <%= t(".contact_html", link: mail_to(Jumpstart.config.support_email, t(".contact_support"), subject: t(".contact_subject", product: Jumpstart.config.application_name), class: "text-gray-800 dark:text-gray-200 dark:hover:text-gray-50 underline")) %>
+        </span>
       </div>
     </div>
   </div>
-
-  <div>
-    <h1 class="hidden h3 mb-4 lg:block"><%= t(".title") %></h1>
-
-    <h5 id="billing-address" class="text-gray-700 dark:text-gray-300 font-semibold my-4 border-b border-gray-200 pb-2"><%= t(".account") %></h5>
-    <div class="flex items-center mb-8">
-      <%= account_avatar current_account, class: "h-10 w-10 rounded-full mr-4" %>
-      <h4><%= current_account.name %></h4>
-    </div>
-
-    <%= render partial: "subscriptions/payment_form" %>
-
-    <div class="text-sm text-center mt-8">
-      <%= render_svg "icons/question", styles: "fill-current text-gray-500 w-4 h-4 inline-block" %>
-      <%= t(".help") %>
-      <span class="text-gray-600 dark:text-gray-300">
-        <%= t(".contact_html", link: mail_to(Jumpstart.config.support_email, t(".contact_support"), subject: t(".contact_subject", product: Jumpstart.config.application_name), class: "text-gray-800 dark:text-gray-200 dark:hover:text-gray-50 underline")) %>
-      </span>
-    </div>
-  </div>
-</div>
+<% end %>

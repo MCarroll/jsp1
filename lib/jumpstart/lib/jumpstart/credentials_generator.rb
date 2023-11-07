@@ -152,15 +152,26 @@ module Jumpstart
           # Webhooks should be pointed to https://domain.com/webhooks/stripe
           signing_secret: ''
 
-        # Paddle Payments
+        # Paddle Billing
         # https://vendors.paddle.com/authentication
-        paddle:
+        paddle_billing:
+          environment: 'sandbox'
+          seller_id: ''
+          api_key: ''
+
+          # For processing webhooks
+          # Webhooks should be pointed to https://domain.com/webhooks/paddle_billing
+          signing_secret: ''
+
+        # Paddle Classic
+        # https://vendors.paddle.com/authentication
+        paddle_classic:
           vendor_id: ''
           vendor_auth_code: ''
 
-          # For processing Paddle webhooks
+          # For processing webhooks
           # https://vendors.paddle.com/public-key (only base64: MII...==)
-          # Webhooks should be pointed to https://domain.com/webhooks/paddle
+          # Webhooks should be pointed to https://domain.com/webhooks/paddle_classic
           public_key_base64: ''
 
         ###  Integrations

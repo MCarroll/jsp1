@@ -1,0 +1,10 @@
+<%= tag.div data: {
+  controller: "paddle--billing",
+  paddle__billing_environment_value: Pay::PaddleBilling.environment,
+  paddle__billing_client_token_value: Pay::PaddleBilling.client_token,
+  paddle__billing_target: "form",
+  paddle__billing_email_value: current_account.email,
+  paddle__billing_items_value: [price_id: @plan.paddle_billing_id].to_json,
+  paddle__billing_success_url_value: subscriptions_path,
+  paddle__billing_custom_data: {account: current_account.id}.to_json
+} %>

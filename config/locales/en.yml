@@ -153,24 +153,6 @@ en:
       confirm: "Are you sure you want to revoke this API token?"
       auth_header: "Authenticate using Header"
 
-  payment_methods:
-    new:
-      billing: "Billing"
-      payment_details: "Payment Details"
-      past_due: "Your payment method was declined. Please add another payment method to continue."
-
-    create:
-      updated: "Your payment method was updated successfully."
-
-    forms:
-      braintree:
-        button: "Update Card"
-      fake_processor:
-        message: "You have free access and don't need to add a payment method."
-      stripe:
-        credit_or_debit_card: "Credit or Debit Card"
-        button: "Update Card"
-
   dashboard:
     show:
       title: "Dashboard"
@@ -323,10 +305,23 @@ en:
       update_payment_method: "Update payment method"
       failed_payment: "Your latest payment has failed. Update your payment method to continue this plan."
 
-    payment_method:
-      payment_method: "Payment Method"
-      no_payment_method: "You have no payment method on file."
-      update_payment_method: "Update payment method"
+    payment_methods:
+      new:
+        billing: "Billing"
+        payment_details: "Payment Details"
+        past_due: "Your payment method was declined. Please add another payment method to continue."
+
+      create:
+        updated: "Your payment method was updated successfully."
+
+      forms:
+        braintree:
+          button: "Update Card"
+        fake_processor:
+          message: "You have free access and don't need to add a payment method."
+        stripe:
+          credit_or_debit_card: "Credit or Debit Card"
+          button: "Update Card"
 
     billing_address:
       billing_address: "Billing Address"
@@ -359,7 +354,7 @@ en:
       title: "Billing History"
       date: "Date"
       amount: "Amount"
-      payment_method: "Payment Method"
+      invoice: "Invoice"
       receipt: "Receipt"
       view: "View"
       empty: "No billing history."

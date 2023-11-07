@@ -1,10 +1,10 @@
 <%= form_with url: local_assigns.fetch(:url, subscriptions_path),
   method: local_assigns.fetch(:method, :post),
   data: {
-    controller: "braintree",
-    braintree_target: "form",
-    braintree_env: braintree_env,
-    braintree_client_token: Pay.braintree_gateway.client_token.generate,
+    controller: "braintree--dropin",
+    braintree__dropin_target: "form",
+    braintree__dropin_env: Pay::Braintree.environment,
+    braintree__dropin_client_token: Pay.braintree_gateway.client_token.generate,
   } do |f| %>
 
   <%= tag.div nil, data: { braintree_target: "dropin" } %>

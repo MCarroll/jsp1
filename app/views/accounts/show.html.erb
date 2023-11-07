@@ -13,8 +13,8 @@
         </div>
 
         <div class="flex-shrink-0 mt-3 sm:mt-0 sm:text-right">
-          <%= switch_account_button @account, label: t(".switch"), class: "btn btn-light-gray", form_class: "inline-block" unless current_account == @account %>
-          <%= link_to t(".edit_account"), edit_account_path(@account), class: "btn btn-light-gray" if !@account.personal? && account_admin?(@account, current_user) %>
+          <%= switch_account_button @account, label: t(".switch"), class: "btn btn-white", form_class: "inline-block" unless current_account == @account %>
+          <%= link_to t(".edit_account"), edit_account_path(@account), class: "btn btn-white" if !@account.personal? && account_admin?(@account, current_user) %>
         </div>
       </div>
 
@@ -67,7 +67,7 @@
           </tbody>
         </table>
 
-        <%= link_to t(".invite"), new_account_account_invitation_path(@account), class: "mt-2 btn btn-light-gray" if !@account.personal? && account_admin?(@account, current_user) %>
+        <%= link_to t(".invite"), new_account_account_invitation_path(@account), class: "mt-2 btn btn-white" if !@account.personal? && account_admin?(@account, current_user) %>
       <% end %>
     </div>
   </div>

@@ -46,24 +46,25 @@
     </div>
 
     <div class="mt-2 flex flex-col gap-2 text-center">
-      <% if subscription.on_grace_period? && !subscription.paddle? %>
-        <%# Cancelled paddle subscriptions cannot be resumed %>
-        <%= link_to t(".resume"), subscription_resume_path(subscription), class: "btn btn-primary" %>
-      <% elsif subscription.paused? %>
-        <%= link_to t(".resume"), subscription_resume_path(subscription), class: "btn btn-primary" %>
-        <%= link_to t(".cancel_plan"), subscription_cancel_path(subscription), class: "btn btn-light-gray" %>
+      <% if subscription.on_grace_period? %>
+        <%= link_to t(".resume"), subscription_resume_path(subscription), class: "btn btn-primary" if subscription.resumable?%>
       <% elsif subscription.active? %>
         <%= link_to t(".change_plan"), edit_subscription_path(subscription), class: "btn btn-primary" %>
-        <%= link_to t(".pause"), subscription_pause_path(subscription), class: "btn btn-light-gray" if subscription.paddle? || subscription.fake_processor? %>
-        <%= link_to t(".cancel_plan"), subscription_cancel_path(subscription), class: "btn btn-light-gray" %>
+        <%# Only show pausing for Paddle customers because their subscription cancellations can be permanent %>
+        <%= link_to t(".pause"), subscription_pause_path(subscription), class: "btn btn-white" if subscription.paddle_classic? %>
+        <%= link_to t(".update_payment_method"), new_subscription_payment_method_path(subscription), class: "btn btn-white" %>
+        <%= link_to t(".cancel_plan"), subscription_cancel_path(subscription), class: "btn btn-white" %>
+      <% elsif subscription.paused? %>
+        <%= link_to t(".resume"), subscription_resume_path(subscription), class: "btn btn-primary" %>
+        <%= link_to t(".cancel_plan"), subscription_cancel_path(subscription), class: "btn btn-white" %>
       <% elsif subscription.incomplete? %>
         <%= link_to t(".confirm_payment"), pay.payment_path(subscription.latest_payment.id), class: "btn btn-primary" %>
       <% elsif subscription.past_due? %>
-        <%= link_to t(".update_payment_method"), new_payment_method_path, class: "btn btn-primary" %>
-        <%= link_to t(".cancel_plan"), subscription_cancel_path(subscription), class: "btn btn-light-gray" %>
+        <%= link_to t(".update_payment_method"), new_subscription_payment_method_path(subscription), class: "btn btn-primary" %>
+        <%= link_to t(".cancel_plan"), subscription_cancel_path(subscription), class: "btn btn-white" %>
       <% elsif subscription.unpaid? %>
-        <%= link_to t(".update_payment_method"), new_payment_method_path, class: "btn btn-primary" %>
-        <%= link_to t(".cancel_plan"), subscription_cancel_path(subscription), class: "btn btn-light-gray" %>
+        <%= link_to t(".update_payment_method"), new_subscription_payment_method_path(subscription), class: "btn btn-primary" %>
+        <%= link_to t(".cancel_plan"), subscription_cancel_path(subscription), class: "btn btn-white" %>
       <% end %>
     </div>
   <% end %>

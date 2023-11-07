@@ -1,10 +1,6 @@
 <div class="form-group">
-  <h5>Pay Gem</h5>
-  <p>Payments are implemented using <%= link_to "the Pay gem", "https://github.com/pay-rails/pay", target: :_blank %>. Check out the readme to learn how to customize your payments.</p>
-
-  <hr class="my-4" />
-
-  <h5 class="mb-3">Payment Processors</h5>
+  <h3>Payment Processors</h3>
+  <p class="mt-1 mb-4 text-sm text-gray-700">Only enable one payment processor at a time.</p>
 
   <div class="mb-4 flex items-center flex items-center toggle">
     <%= check_box_tag "configuration[payment_processors][]", :stripe, @config.stripe?, class: "form-checkbox", id: :stripe %>
@@ -12,6 +8,22 @@
       Stripe
     </label>
     <small class="ml-2 text-gray-600 dark:text-gray-300/75">SCA payments supported</small>
+  </div>
+
+  <div class="mb-4 flex items-center toggle">
+    <%= check_box_tag "configuration[payment_processors][]", :paddle_billing, @config.paddle_billing?, class: "form-checkbox", id: :paddle_billing %>
+    <label for="paddle_billing" class="mb-0">
+      Paddle Billing
+    </label>
+    <small class="ml-2 text-gray-600 dark:text-gray-300/75">SCA supported, Merchant of Record, accepts both credit cards and PayPal</small>
+  </div>
+
+  <div class="mb-4 flex items-center toggle">
+    <%= check_box_tag "configuration[payment_processors][]", :paddle_classic, @config.paddle_classic?, class: "form-checkbox", id: :paddle_classic %>
+    <label for="paddle_classic" class="mb-0">
+      Paddle Classic
+    </label>
+    <small class="ml-2 text-gray-600 dark:text-gray-300/75">SCA supported, Merchant of Record, accepts both credit cards and PayPal</small>
   </div>
 
   <div class="mb-4 flex items-center toggle">
@@ -29,44 +41,10 @@
     </label>
     <small class="ml-2 text-gray-600 dark:text-gray-300/75">Accepts both credit cards and PayPal</small>
   </div>
-
-  <div class="mb-4 flex items-center toggle">
-    <%= check_box_tag "configuration[payment_processors][]", :paddle, @config.paddle?, class: "form-checkbox", id: :paddle %>
-    <label for="paddle" class="mb-0">
-      Paddle
-    </label>
-    <small class="ml-2 text-gray-600 dark:text-gray-300/75">SCA supported, Merchant of Record, accepts both credit cards and PayPal</small>
-  </div>
 </div>
-
-<hr class="my-4" />
-<h5>Billing Address</h5>
-<p class="text-sm text-gray-700 dark:text-gray-200/75">Enable this to collect a billing address during checkout. You might need this for Stripe Tax or other features.</p>
-
-<div class="toggle">
-  <%= f.check_box :collect_billing_address, checked: @config.collect_billing_address? %>
-  <label for="configuration_collect_billing_address" class="mt-2">
-    Collect billing address during checkout
-  </label>
-</div>
-
-<hr class="my-4" />
-
-<p class="mb-2">You'll also need to add your API keys to the Rails credentials for each environment.</p>
-<pre><code class="bash rounded">rails credentials:edit --environment development
-rails credentials:edit --environment test
-rails credentials:edit --environment staging
-rails credentials:edit --environment production</code></pre>
 
 <hr class="my-4" />
 
 <h5>Plans</h5>
-<p>To add plans, visit <%= link_to "the Plans page", main_app.admin_plans_path, target: :blank %> in the admin.</p>
-<p class="small text-gray-600 dark:text-gray-300/75"><strong>Don't forget!</strong> You need to be <%= link_to "signed in", main_app.new_user_session_path %> as an admin to view the Plans page in the admin area. <%= link_to "Create an admin user.", "#users", data: { toggle: "pill" } %></p>
-
-<hr class="my-4" />
-
-<h5>Stripe CLI</h5>
-<p>To properly generate charges and subscription updates for SCA payments, you'll need to install and run the Stripe CLI in development to forward these webhooks to the local server.</p>
-
-<pre class="mb-24"><code>stripe listen --forward-to localhost:3000/webhooks/stripe</code></pre>
+<p class="text-sm">Visit <%= link_to "the Plans page", main_app.admin_plans_path, target: :blank %> in the admin to add plans.</p>
+<p class="mt-2 alert text-sm"><strong>Don't forget!</strong> You need to be <%= link_to "signed in", main_app.new_user_session_path %> as an admin to view the Plans page in the admin area. <%= link_to "Create an admin user.", "#users", data: { toggle: "pill" } %></p>

@@ -39,7 +39,10 @@ module Jumpstart
       if File.exist?(config_path)
         config_yaml = ERB.new(File.read(config_path)).result
         config = Psych.safe_load(config_yaml, permitted_classes: [Hash, Jumpstart::Configuration])
-        return config if config.is_a?(Jumpstart::Configuration)
+        if config.is_a?(Jumpstart::Configuration)
+          config.apply_upgrades
+          return config
+        end
         new(config)
       else
         new
@@ -79,10 +82,21 @@ module Jumpstart
       @gems = options["gems"]
     end
 
-    def save
+    def apply_upgrades
+      if @payment_processors.include? "paddle"
+        @payment_processors.delete "paddle"
+        @payment_processors << "paddle_classic"
+        write_config
+      end
+    end
+
+    def write_config
       # Creates config/jumpstart.yml
       File.write(self.class.config_path, to_yaml)
+    end
 
+    def save
+      write_config
       update_procfiles
       copy_configs
       generate_credentials

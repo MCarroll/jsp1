@@ -3,16 +3,14 @@ class SubscriptionsController < ApplicationController
   before_action :authenticate_user_with_sign_up!
   before_action :require_account
   before_action :require_current_account_admin, except: [:show]
-  before_action :set_plan, only: [:new, :payment, :create, :update]
+  before_action :set_plan, only: [:new, :create, :update]
   before_action :set_subscription, only: [:show, :edit, :update]
   before_action :redirect_if_already_subscribed, only: [:new]
-  before_action :redirect_to_billing_address, only: [:new]
   before_action :handle_past_due_or_unpaid, only: [:new]
 
   layout "checkout", only: [:new, :payment, :create]
 
   def index
-    @billing_address = current_account.billing_address
     @payment_processor = current_account.payment_processor
     @subscriptions = current_account.subscriptions.active.or(current_account.subscriptions.past_due).or(current_account.subscriptions.unpaid).order(created_at: :asc).includes([:customer])
   end
@@ -24,28 +22,8 @@ class SubscriptionsController < ApplicationController
   # Stripe subscriptions are handled entirely client side
   # We need to create a subscription to render the PaymentElement
   def new
-    if Jumpstart.config.stripe?
-      payment_processor = current_account.add_payment_processor(:stripe)
-      if @plan.trial_period_days?
-        @client_secret = payment_processor.create_setup_intent.client_secret
-
-      else
-        args = {
-          plan: @plan.id_for_processor(:stripe),
-          trial_period_days: @plan.trial_period_days,
-          payment_behavior: :default_incomplete,
-          automatic_tax: {
-            enabled: @plan.taxed?
-          },
-          promotion_code: params[:promo_code]
-        }
-        args[:quantity] = current_account.per_unit_quantity if @plan.charge_per_unit?
-        @pay_subscription = payment_processor.subscribe(**args)
-        @stripe_invoice = @pay_subscription.subscription.latest_invoice
-        @client_secret = @pay_subscription.client_secret
-      end
-    end
-  rescue Pay::Stripe::Error => e
+    set_checkout_session if Jumpstart.config.stripe?
+  rescue Pay::Error => e
     flash[:alert] = e.message
     redirect_to pricing_path
   end
@@ -101,8 +79,7 @@ class SubscriptionsController < ApplicationController
 
   def require_payments_enabled
     return if Jumpstart.config.payments_enabled?
-    flash[:alert] = "Jumpstart must be configured for payments before you can manage subscriptions."
-    redirect_back(fallback_location: root_path)
+    redirect_back_or_to root_path, alert: "Jumpstart must be configured for payments before you can manage subscriptions."
   end
 
   def set_plan
@@ -122,15 +99,32 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  def redirect_to_billing_address
-    if Jumpstart.config.collect_billing_address? && current_account.billing_address.nil?
-      redirect_to subscriptions_billing_address_path(plan: params[:plan], promo_code: params[:promo_code])
-    end
-  end
-
   def handle_past_due_or_unpaid
     if (subscription = current_account.payment_processor&.subscription) && (subscription.past_due? || subscription.unpaid?)
       redirect_to new_payment_method_path
     end
+  end
+
+  def set_checkout_session
+    payment_processor = current_account.set_payment_processor(:stripe)
+    subscription_data = {
+      metadata: params.fetch(:metadata, {}).permit!.to_h,
+      trial_settings: {end_behavior: {missing_payment_method: "pause"}},
+      trial_period_days: ((@plan.trial_period_days.to_i > 1) ? @plan.trial_period_days : nil)
+    }.compact
+    args = {
+      allow_promotion_codes: true,
+      automatic_tax: {enabled: @plan.taxed?},
+      consent_collection: {terms_of_service: :required},
+      customer_update: {address: :auto},
+      mode: :subscription,
+      line_items: @plan.id_for_processor(:stripe),
+      payment_method_collection: :if_required,
+      return_url: subscriptions_stripe_url(return_to: params[:return_to]),
+      subscription_data: subscription_data,
+      ui_mode: :embedded
+    }
+    args[:quantity] = current_account.per_unit_quantity if @plan.charge_per_unit?
+    @checkout_session = payment_processor.checkout(**args)
   end
 end

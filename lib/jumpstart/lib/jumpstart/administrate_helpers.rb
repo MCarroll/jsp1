@@ -29,7 +29,7 @@ module Jumpstart
 
     def stripe_base_url
       url = "https://dashboard.stripe.com"
-      url += "/test" if Pay::Stripe.public_key.start_with?("pk_test")
+      url += "/test" if Pay::Stripe.public_key&.start_with?("pk_test")
       url
     end
 

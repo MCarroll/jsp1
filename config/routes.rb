@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   devise_for :users,
     controllers: {
       omniauth_callbacks: ("users/omniauth_callbacks" if defined? OmniAuth),
+      passwords: "users/passwords",
       registrations: "users/registrations",
       sessions: "users/sessions"
     }.compact

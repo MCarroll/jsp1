@@ -75,15 +75,15 @@ module Jumpstart
 
       @apns = cast_to_boolean(options["apns"])
       @fcm = cast_to_boolean(options["fcm"])
-      @integrations = options["integrations"]
-      @omniauth_providers = options["omniauth_providers"]
-      @payment_processors = options["payment_processors"]
+      @integrations = options.fetch("integrations", [])
+      @omniauth_providers = options.fetch("omniauth_providers", [])
+      @payment_processors = options.fetch("payment_processors", [])
       @multitenancy = options["multitenancy"]
-      @gems = options["gems"]
+      @gems = options.fetch("gems", [])
     end
 
     def apply_upgrades
-      if @payment_processors.include? "paddle"
+      if @payment_processors&.include? "paddle"
         @payment_processors.delete "paddle"
         @payment_processors << "paddle_classic"
         write_config

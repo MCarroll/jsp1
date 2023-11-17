@@ -16,7 +16,8 @@
     "RAILS_ENV": {
       "description": "The Rails environment to run: production or staging",
       "value": "production"
-    }
+    },
+    "SENSIBLE_DEFAULTS": "enabled"
   },
   "formation": {
     "web": {

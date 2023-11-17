@@ -52,8 +52,8 @@ class Plan < ApplicationRecord
     Array.wrap(super)
   end
 
-  def amount_with_currency(**options)
-    Pay::Currency.format(amount, **{currency: currency}.merge(options))
+  def amount_with_currency(**)
+    Pay::Currency.format(amount, currency: currency, **)
   end
 
   def dollar_amount

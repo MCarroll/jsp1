@@ -90,8 +90,7 @@ class UserDashboard < Administrate::BaseDashboard
     :name,
     :email,
     :password,
-    :terms_of_service,
-    :admin
+    :terms_of_service
   ].freeze
 
   # Overwrite this method to customize how users are displayed

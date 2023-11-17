@@ -58,12 +58,12 @@ module Jumpstart
     end
 
     def initialize(options = {})
-      @application_name = options["application_name"] || "Jumpstart"
-      @business_name = options["business_name"] || "Jumpstart Company, LLC"
+      @application_name = options["application_name"] || "My App"
+      @business_name = options["business_name"] || "My Company, LLC"
       @business_address = options["business_address"] || ""
       @domain = options["domain"] || "example.com"
       @support_email = options["support_email"] || "support@example.com"
-      @default_from_email = options["default_from_email"] || "Jumpstart <support@example.com>"
+      @default_from_email = options["default_from_email"] || "My App <no-reply@example.com>"
       @background_job_processor = options["background_job_processor"] || "async"
       @email_provider = options["email_provider"]
 

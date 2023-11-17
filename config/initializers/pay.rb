@@ -33,9 +33,9 @@ module SubscriptionExtensions
     plan.interval
   end
 
-  def amount_with_currency(**options)
+  def amount_with_currency(**)
     total = (quantity == 0) ? plan.amount : plan.amount * quantity
-    Pay::Currency.format(total, **{currency: plan.currency}.merge(options))
+    Pay::Currency.format(total, currency: plan.currency, **)
   end
 end
 

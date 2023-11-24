@@ -37,7 +37,7 @@ class Account < ApplicationRecord
   has_one :shipping_address, -> { where(address_type: :shipping) }, class_name: "Address", as: :addressable
 
   scope :personal, -> { where(personal: true) }
-  scope :impersonal, -> { where(personal: false) }
+  scope :team, -> { where(personal: false) }
   scope :sorted, -> { order(personal: :desc, name: :asc) }
 
   has_noticed_notifications
@@ -61,7 +61,7 @@ class Account < ApplicationRecord
     billing_email? ? billing_email : owner.email
   end
 
-  def impersonal?
+  def team?
     !personal?
   end
 
@@ -77,7 +77,7 @@ class Account < ApplicationRecord
   # * Isn't a personal account
   # * Has more than one user in it
   def can_transfer?(user)
-    impersonal? && owner?(user) && users.size >= 2
+    team? && owner?(user) && users.size >= 2
   end
 
   # Transfers ownership of the account to a user

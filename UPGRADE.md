@@ -2,6 +2,10 @@
 
 This file includes notes on major changes that might affect your application and require changes from you to update.
 
+### November 22, 2023
+
+The following methods have been renamed - `Account#impersonal?` has been renamed to `Account#team?` and `scope :impersonal` has been renamed to `scope :team`. You will need to update any references to these methods in your application.
+
 ### October 11, 2023
 
 `config/puma.rb` has been [updated](https://github.com/rails/rails/pull/46838) to use the full processor count in production. You can customize this by setting `WEB_CONCURRENCY` env var. Heroku provides a `SENSIBLE_DEFAULTS=enabled` env var that will set `WEB_CONCURRENCY` based upon dyno size. Other hosts may need an explicit value set if they do not return the correct processor count.

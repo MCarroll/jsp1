@@ -26,7 +26,7 @@ module SubscriptionExtensions
   end
 
   def plan
-    @plan ||= Plan.where("details @> ?", {"#{customer.processor}_id": processor_plan}.to_json).first
+    @plan ||= Plan.where("#{customer.processor}_id": processor_plan).first
   end
 
   def plan_interval

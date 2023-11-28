@@ -16,6 +16,13 @@
 #  unit_label        :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  braintree_id      :string
+#  fake_processor_id :string
+#  jumpstart_id      :string
+#  lemon_squeezy_id  :string
+#  paddle_billing_id :string
+#  paddle_classic_id :string
+#  stripe_id         :string
 #
 
 require "test_helper"

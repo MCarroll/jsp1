@@ -40,8 +40,9 @@ module SetCurrentRequestDetails
     current_user.accounts.includes(:payment_processor, :users).find_by(id: account_id)
   end
 
+  # Returns an account sorting by personal accounts and oldest account first
   def fallback_account
     return unless user_signed_in?
-    current_user.accounts.includes(:payment_processor, :users).order(created_at: :asc).first || current_user.create_default_account
+    current_user.accounts.includes(:payment_processor, :users).order(personal: :desc, created_at: :asc).first || current_user.create_default_account
   end
 end

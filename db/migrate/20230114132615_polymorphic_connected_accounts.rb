@@ -1,7 +1,7 @@
 class PolymorphicConnectedAccounts < ActiveRecord::Migration[7.0]
   def change
-    remove_index :user_connected_accounts, column: :user_id
     remove_foreign_key :user_connected_accounts, column: :user_id
+    remove_index :user_connected_accounts, column: :user_id
     rename_table :user_connected_accounts, :connected_accounts
     rename_column :connected_accounts, :user_id, :owner_id
     add_column :connected_accounts, :owner_type, :string

@@ -1,32 +1,10 @@
-# == Schema Information
-#
-# Table name: plans
-#
-#  id                :bigint           not null, primary key
-#  amount            :integer          default(0), not null
-#  charge_per_unit   :boolean
-#  currency          :string
-#  description       :string
-#  details           :jsonb            not null
-#  hidden            :boolean
-#  interval          :string           not null
-#  interval_count    :integer          default(1)
-#  name              :string           not null
-#  trial_period_days :integer          default(0)
-#  unit_label        :string
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#
-
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 personal:
   name: Personal
   amount: 1900
   interval: month
+  stripe_id: personal
+  braintree_id: personal
   details:
-    stripe_id: personal
-    braintree_id: personal
     features:
       - Unlimited access
 
@@ -34,9 +12,9 @@ business:
   name: Business
   amount: 7900
   interval: month
+  stripe_id: business
+  braintree_id: business
   details:
-    stripe_id: business
-    braintree_id: business
     features:
       - Unlimited access
 
@@ -44,17 +22,16 @@ personal_annual:
   name: Personal
   amount: 19000
   interval: year
-  details:
-    stripe_id: personal-annual
-    braintree_id: personal-annual
+  stripe_id: personal-annual
+  braintree_id: personal-annual
 
 business_annual:
   name: Business
   amount: 79000
   interval: year
+  stripe_id: business-annual
+  braintree_id: business-annual
   details:
-    stripe_id: business-annual
-    braintree_id: business-annual
     features:
       - Unlimited access
       - Business Feature
@@ -63,9 +40,9 @@ personal_with_trial:
   name: Personal with Trial
   amount: 1900
   interval: month
+  stripe_id: personal-monthly-trial
+  braintree_id: personal-monthly-trial
   details:
-    stripe_id: personal-monthly-trial
-    braintree_id: personal-monthly-trial
     features:
       - Unlimited access
 
@@ -74,9 +51,8 @@ hidden:
   amount: 1000
   interval: month
   hidden: true
-  details:
-    stripe_id: hidden
-    braintree_id: hidden
+  stripe_id: hidden
+  braintree_id: hidden
 
 per_seat:
   name: Per Seat Plan
@@ -85,7 +61,6 @@ per_seat:
   hidden: true
   unit_label: "seat"
   charge_per_unit: true
-  details:
-    stripe_id: per_seat
-    braintree_id: per_seat
-    fake_processor_id: per_seat
+  stripe_id: per_seat
+  braintree_id: per_seat
+  fake_processor_id: per_seat

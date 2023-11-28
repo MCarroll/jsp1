@@ -83,7 +83,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def set_plan
-    @plan = Plan.without_free.find_by_prefix_id!(params[:plan])
+    @plan = Plan.visible.find_by_prefix_id!(params[:plan])
   rescue ActiveRecord::RecordNotFound
     redirect_to pricing_path
   end

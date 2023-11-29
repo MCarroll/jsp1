@@ -1,51 +1,11 @@
-<% content_for :section_title, "Billing & Payments" %>
+<% content_for :section_title, "Billing" %>
 
 <p class="text-xl">Jumpstart Pro uses the <%= link_to "Pay gem", "https://github.com/pay-rails/pay", target: :_blank, class: "link underline" %> for handling payments and billing.</p>
 
 <%= h2_with_anchor "Accepting Payments" %>
 <p>Jumpstart Pro supports using several payment processors depending on your needs and location of your business.</p>
-<p><%= link_to "Subscriptions", "#subscriptions" %> are associated with Accounts, which allows you to offer separate billing for each group of users. You'll commonly see this in apps that support multiple accounts like GitHub Organizations, Heroku Teams, etc.</p>
-<p><%= link_to "One-time payments", "#one-time-payments" %> are also supported by Jumpstart Pro too.</p>
-
-<%= h2_with_anchor "Subscriptions" %>
-<p>Subscriptions in Jumpstart Pro are billed against a Account, not a User. This allows you to handle various different billing situations.</p>
-<p>Account billing allows you to share resources and billing functionality with the entire account and allows any member to manage the subscription. It's much easier to start with account billing support than adding it later, so we've got you covered even if you don't need it right away.</p>
-<p>For more information on how accounts work in Jumpstart Pro, check out <%= link_to "the Accounts documentation", accounts_docs_path, target: :_blank, class: "text-blue-500" %>.</p>
-
-<%= h3_with_anchor "Defining Subscription Plans" %>
-<p>Plans can be defined in the <%= link_to "Admin", main_app.admin_plans_path, target: :_blank, class: "text-blue-500", data: { controller: "tooltip", tooltip_content_value: "You must be logged in as an Admin to view this" } %>. Each plan should be defined with the price amount in cents.</p>
-
-<%= h5_with_anchor "Free Plans" %>
-<p>You can provide free subscriptions to friends and beta testers by using the Pay gem's fake payment processor.</p>
-<div class="not-prose">
-  <pre class="lang-ruby"><code># Ensure Jumpstart free plan exists for admin users
-Plan.where(name: "Free").first_or_create(hidden: true, amount: 0, currency: :usd, interval: :month, trial_period_days: 0, fake_processor_id: :free)
-
-# Create a fake subscription for the admin user so they have access to everything by default
-account = user.accounts.first
-account.set_payment_processor :fake_processor, allow_fake: true
-account.payment_processor.subscribe</code></pre>
-</div>
-
-<%= h4_with_anchor "Trials" %>
-<p>Plans have a <code>trial_period_days:integer</code> attribute to define a trial period. This may also be required on the Price in your payment processor.</p>
-<p>Depending on the payment processor, trials may require a payment method or can be configured to capture a payment method later.</p>
-
-<%= h4_with_anchor "Require a subscription" %>
-<p>It's common practice to require subscriptions to access certain parts of your application. You can use <code>before_action :require_subscription!</code> in your Rails controllers to ensure that only subscribed users can access certain actions.</p>
-<p>For example, the <code>premium_features</code> action can only be accessed by users who are subscribed. If a user who is not subscribed tries to access this action, they will be redirected to the pricing page.</p>
-<div class="not-prose">
-  <pre class="language-ruby"><code>class ProductsController &lt; ApplicationController
-  before_action :require_subscription!, only: [:premium_features]
-
-  def premium_features
-    # Only accessible by subscribed users
-  end
-end</code></pre>
-</div>
-
-<%= h2_with_anchor "One-time Payments" %>
-<p>Selling products as one-time purchases is also easy with Jumpstart Pro. You can
+<p><%= link_to "Subscriptions", subscriptions_docs_path %> are associated with Accounts, which allows you to offer separate billing for each group of users. You'll commonly see this in apps that support multiple accounts like GitHub Organizations, Heroku Teams, etc.</p>
+<p><%= link_to "One-time payments", one_time_payments_docs_path %> are also supported by Jumpstart Pro too.</p>
 
 <%= h2_with_anchor "Payment Processors" %>
 <%= h4_with_anchor "Stripe" %>

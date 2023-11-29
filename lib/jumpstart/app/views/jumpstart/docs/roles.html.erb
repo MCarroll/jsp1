@@ -1,0 +1,30 @@
+<% content_for :section_title, "Roles" %>
+
+<%= h2_with_anchor "Admins" %>
+<p>Users with the <code>admin</code> flag set to <code>true</code> will be allowed to access the application's admin interface (built with Administrate), Sidekiq web UI, and more.</p>
+<p>To set a user as an admin, simply update their admin flag: <code>Jumpstart.grant_system_admin! user</code> from the Rails console.</p>
+<p>You can check this flag if you would like to restrict any functionality only to admin users.</p>
+
+<%= h2_with_anchor "Account Roles" %>
+<p>Users can be assigned a role for each account they are a part of. By default, we only provide an <code>admin</code> role, but you can add more rules in <code>app/models/account_user.rb</code>. These roles will be listed in the UI when adding or editing a account member.</p>
+<p>You can check the role on the account member to restrict access to certain functionality on the account as needed.</p>
+
+
+<p>Users can be assigned a role for each account they are a part of. By default, we only provide an <code>admin</code> role, but you can add more roles in <code>app/models/account_user.rb</code>. These roles will be listed in the UI when adding or editing a account member. You should not use a reserved word (like "user") as the name of a role; this will cause an error when attempting to create an account.</p>
+<p>You can check the role on the account member to restrict access to certain functionality on the account as needed.</p>
+<p>To access the current account member or roles, you can use the following helpers in your controllers and views:</p>
+
+<div class="not-prose">
+  <pre class="lang-ruby"><code>current_account_user #=> AccountUser
+current_roles #=> [:admin]</code></pre>
+</div>
+
+<p class="mb-4 leading-normal">You can also access the roles individually on the AccountUser model:</p>
+
+<div class="not-prose">
+  <pre class="lang-ruby"><code>account_user = AccountUser.new
+account_user.admin? #=> false
+account_user.admin = true
+account_user.admin? #=> true
+account_user.active_roles #=> [:admin]</code></pre>
+</div>

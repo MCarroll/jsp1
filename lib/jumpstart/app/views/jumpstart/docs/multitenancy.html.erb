@@ -1,0 +1,26 @@
+<% content_for :section_title, "Multitenancy" %>
+
+<%= h3_with_anchor "Multitenancy" %>
+<p>By popular request, we support "multitenancy" by selecting the current account and scoping all model queries to the set account. We're using the <%= link_to "acts_as_tenant", "https://github.com/ErwinM/acts_as_tenant", target: :_blank %> gem to power this feature.</p>
+<p>Multitenancy is optional and must be opted in for each model that you want scoped to tenants. Any models without multitenancy will be globally available. We recommend you keep Users, Accounts, etc globally available outside tenants.</p>
+<p>To scope a resource to a tenant, make sure your model has an <code>account_id:integer</code> column in the database.</p>
+<p>Then you can add <code>acts_as_tenant :account</code> to the model.</p>
+
+<div class="not-prose">
+  <pre><code>class Project
+    acts_as_tenant :account
+  end</code></pre>
+</div>
+
+<p>This will automatically add a <code>belongs_to :account</code> association and scope all queries on the model to the current account. <code>Project.all</code> will produce the same results as <code>current_account.projects</code>.</p>
+<p>If current_account is <code>nil</code>, then all records will be returned. This can be changed to raise an exception if current account is nil by adding this initializer:</p>
+
+<div class="not-prose">
+  <pre class="lang-ruby"><code># config/initializers/acts_as_tenant.rb
+
+ActsAsTenant.configure do |config|
+  config.require_tenant = true
+end</code></pre>
+</div>
+
+<p>By enabling this feature, you will receive a <code>ActsAsTenant::NoTenant</code> when calling <code>Project.all</code> instead.</p>

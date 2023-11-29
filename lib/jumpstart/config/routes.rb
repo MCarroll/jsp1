@@ -4,11 +4,23 @@ Jumpstart::Engine.routes.draw do
   resources :users, only: [:create]
 
   resource :docs do
+    # Get Started
     get :installation
     get :configuration
     get :upgrading
     get :deploying
     get :screencasts
+
+    # Users
+    get :authentication
+    get :accounts
+    get :roles
+    get :billing
+    get :multitenancy
+
+    # Payments
+    get :subscriptions
+    get :one_time_payments
 
     # Backend
     get :action_cable
@@ -19,20 +31,15 @@ Jumpstart::Engine.routes.draw do
     get :announcements
     get :api
     get :api_clients
-    get :authentication
     get :background_workers
-    get :billing
     get :credentials
     get :cron
     get :databases
-    get :development
     get :email
     get :i18n
     get :notifications
     get :oauth
     get :scaffolds
-    get :accounts
-    get :users
 
     # Frontend
     get :branding

@@ -1,6 +1,7 @@
 require_relative "configuration/mailable"
 require_relative "configuration/integratable"
 require_relative "configuration/payable"
+require_relative "yaml_serializer"
 
 # Gems cannot be loaded here since this runs during bundler/setup
 
@@ -35,7 +36,7 @@ module Jumpstart
 
     def self.load!
       if File.exist?(config_path)
-        new(Bundler::YAMLSerializer.load(File.read(config_path))).apply_upgrades
+        new(YAMLSerializer.load(config_path)).apply_upgrades
       else
         new
       end
@@ -68,7 +69,7 @@ module Jumpstart
       @integrations = options.fetch("integrations", [])
       @omniauth_providers = options.fetch("omniauth_providers", [])
       @payment_processors = options.fetch("payment_processors", [])
-      @multitenancy = options["multitenancy"]
+      @multitenancy = options.fetch("multitenancy", [])
       @gems = options.fetch("gems", [])
     end
 
@@ -82,8 +83,7 @@ module Jumpstart
     end
 
     def write_config
-      # Creates config/jumpstart.yml
-      File.write(self.class.config_path, to_yaml)
+      YAMLSerializer.dump_to_file(self.class.config_path, self)
     end
 
     def save

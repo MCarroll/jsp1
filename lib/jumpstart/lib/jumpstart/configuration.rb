@@ -1,10 +1,8 @@
 require_relative "configuration/mailable"
 require_relative "configuration/integratable"
 require_relative "configuration/payable"
-require "erb"
-require "open-uri"
-require "psych"
-require "set" # standard:disable Lint/RedundantRequireStatement
+
+# Gems cannot be loaded here since this runs during bundler/setup
 
 module Jumpstart
   def self.config
@@ -37,13 +35,7 @@ module Jumpstart
 
     def self.load!
       if File.exist?(config_path)
-        config_yaml = ERB.new(File.read(config_path)).result
-        config = Psych.safe_load(config_yaml, permitted_classes: [Hash, Jumpstart::Configuration])
-        if config.is_a?(Jumpstart::Configuration)
-          config.apply_upgrades
-          return config
-        end
-        new(config)
+        new(Bundler::YAMLSerializer.load(File.read(config_path))).apply_upgrades
       else
         new
       end
@@ -67,9 +59,7 @@ module Jumpstart
       @background_job_processor = options["background_job_processor"] || "async"
       @email_provider = options["email_provider"]
 
-      @personal_accounts = cast_to_boolean(options["personal_accounts"])
-      @personal_accounts = true if @personal_accounts.nil?
-
+      @personal_accounts = cast_to_boolean(options["personal_accounts"]) || true
       @register_with_account = cast_to_boolean(options["register_with_account"]) || false
       @collect_billing_address = cast_to_boolean(options["collect_billing_address"])
 
@@ -88,6 +78,7 @@ module Jumpstart
         @payment_processors << "paddle_classic"
         write_config
       end
+      self
     end
 
     def write_config
@@ -287,7 +278,7 @@ module Jumpstart
       "FALSE", :FALSE,
       "off", :off,
       "OFF", :OFF
-    ].to_set.freeze
+    ].freeze
 
     def cast_to_boolean(value)
       if value.nil? || value == ""

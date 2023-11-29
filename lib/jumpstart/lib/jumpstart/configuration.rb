@@ -59,9 +59,7 @@ module Jumpstart
       @background_job_processor = options["background_job_processor"] || "async"
       @email_provider = options["email_provider"]
 
-      @personal_accounts = cast_to_boolean(options["personal_accounts"])
-      @personal_accounts = true if @personal_accounts.nil?
-
+      @personal_accounts = cast_to_boolean(options["personal_accounts"]) || true
       @register_with_account = cast_to_boolean(options["register_with_account"]) || false
       @collect_billing_address = cast_to_boolean(options["collect_billing_address"])
 

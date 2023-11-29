@@ -1,23 +1,3 @@
-# == Schema Information
-#
-# Table name: plans
-#
-#  id                :bigint           not null, primary key
-#  amount            :integer          default(0), not null
-#  charge_per_unit   :boolean
-#  currency          :string
-#  description       :string
-#  details           :jsonb            not null
-#  hidden            :boolean
-#  interval          :string           not null
-#  interval_count    :integer          default(1)
-#  name              :string           not null
-#  trial_period_days :integer          default(0)
-#  unit_label        :string
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#
-
 require "test_helper"
 
 class PlanTest < ActiveSupport::TestCase

@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/pay-rails/pay.git
-  revision: 8d47c846a98ad454eded9512f05030d48dbdcced
+  revision: cc4a2860a263f100b55cb8af8109fa892e828ccb
   specs:
     pay (6.8.1)
       rails (>= 6.0.0)
@@ -223,7 +223,7 @@ GEM
     invisible_captcha (2.1.0)
       rails (>= 5.2)
     io-console (0.6.0)
-    irb (1.9.0)
+    irb (1.9.1)
       rdoc
       reline (>= 0.3.8)
     jquery-rails (4.6.0)
@@ -286,7 +286,7 @@ GEM
       timeout
     net-smtp (0.4.0)
       net-protocol
-    nio4r (2.6.0)
+    nio4r (2.6.1)
     nokogiri (1.15.5-aarch64-linux)
       racc (~> 1.4)
     nokogiri (1.15.5-arm64-darwin)

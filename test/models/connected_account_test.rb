@@ -1,25 +1,3 @@
-# == Schema Information
-#
-# Table name: connected_accounts
-#
-#  id                  :bigint           not null, primary key
-#  access_token        :string
-#  access_token_secret :string
-#  auth                :text
-#  expires_at          :datetime
-#  owner_type          :string
-#  provider            :string
-#  refresh_token       :string
-#  uid                 :string
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  owner_id            :bigint
-#
-# Indexes
-#
-#  index_connected_accounts_on_owner_id_and_owner_type  (owner_id,owner_type)
-#
-
 require "test_helper"
 
 class ConnectedAccountTest < ActiveSupport::TestCase

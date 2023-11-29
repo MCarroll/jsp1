@@ -1,30 +1,9 @@
-# == Schema Information
-#
-# Table name: plans
-#
-#  id                :bigint           not null, primary key
-#  amount            :integer          default(0), not null
-#  charge_per_unit   :boolean
-#  currency          :string
-#  description       :string
-#  details           :jsonb            not null
-#  hidden            :boolean
-#  interval          :string           not null
-#  interval_count    :integer          default(1)
-#  name              :string           not null
-#  trial_period_days :integer          default(0)
-#  unit_label        :string
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#
-
 class Plan < ApplicationRecord
   # Generates hash IDs with a friendly prefix so users can't guess hidden plan IDs on checkout
   # https://github.com/excid3/prefixed_ids
   has_prefix_id :plan
 
-  store_accessor :details, :features, :stripe_id, :braintree_id, :paddle_billing_id, :paddle_classic_id, :jumpstart_id, :fake_processor_id, :stripe_tax
-  attribute :features, :string, array: true
+  store_accessor :details, :features, :stripe_tax
   attribute :currency, default: "usd"
   normalizes :currency, with: ->(currency) { currency.downcase }
 
@@ -34,14 +13,14 @@ class Plan < ApplicationRecord
   validates :trial_period_days, numericality: {only_integer: true}
   validates :unit_label, presence: {if: :charge_per_unit?}
 
-  scope :hidden, -> { unscope(where: :hidden).where(hidden: true) }
-  scope :monthly, -> { without_free.where(interval: :month) }
-  scope :sorted, -> { order(amount: :asc) }
+  scope :hidden, -> { where(hidden: true) }
   scope :visible, -> { where(hidden: [nil, false]) }
-  scope :with_hidden, -> { unscope(where: :hidden) }
-  scope :without_free, -> { where.not("details @> ?", {fake_processor_id: :free}.to_json) }
-  scope :yearly, -> { without_free.where(interval: :year) }
+  scope :without_free, -> { where.not(fake_processor_id: :free) }
+  scope :monthly, -> { where(interval: :month) }
+  scope :yearly, -> { where(interval: :year) }
+  scope :sorted, -> { order(amount: :asc) }
 
+  # Returns a free plan for the Fake Processor
   def self.free
     plan = where(name: "Free").first_or_initialize
     plan.update(hidden: true, amount: 0, currency: :usd, interval: :month, trial_period_days: 0, fake_processor_id: :free)
@@ -54,10 +33,6 @@ class Plan < ApplicationRecord
 
   def amount_with_currency(**)
     Pay::Currency.format(amount, currency: currency, **)
-  end
-
-  def dollar_amount
-    amount / 100
   end
 
   def has_trial?

@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<%= h2_with_anchor "Screencast" %>
+<%= h3_with_anchor "Screencast" %>
 <p>This screencast will walk you through cloning Jumpstart Pro's git repository, installing dependencies, and setting up your brand new application so you can easily merge updates from git.</p>
 
 <div class="w-full">
@@ -25,3 +25,38 @@
     <iframe src='https://www.youtube.com/embed/2DEneP450hU' frameborder='0' allowfullscreen></iframe>
   </div>
 </div>
+
+
+<%= h2_with_anchor "Development" %>
+
+<p class="text-xl">Jumpstart Pro provides some useful configuration for making development easier.</p>
+
+<%= h3_with_anchor "Processes" %>
+<p>Use the <code>bin/dev</code> command to run your application's processes.</p>
+<p>As usual, you'll need to run several processes in development.</p>
+
+<ul>
+  <li><code>rails server</code> - duh. 😜</li>
+  <li><code>yarn run build</code> - bundles Javascript using esbuild</li>
+  <li><code>yarn run build:css</code> - bundles CSS using Tailwind CLI and PostCSS</li>
+  <li><code>sidekiq</code> - or whatever background worker process you have configured</li>
+</ul>
+
+<p>These commands are defined in <code>Procfile</code> and <code>Procfile.dev</code> so they can be started and shutdown together.</p>
+<p>You'll also need to make sure PostgreSQL, Redis, etc servers are installed and running externally.</p>
+
+<%= h3_with_anchor "Foreman & Overmind" %>
+<p><%= link_to "Overmind", "https://github.com/DarthSim/overmind", target: :_blank %> and Foreman are process managers that start/stop the processes defined in <code>Procfile.dev</code>. Overmind is the recommended option because it uses tmux, allowing you to join a process and interact with it. Foreman is unable to do this which means you cannot use binding.irb or pry like normal unfortunately.</p>
+<div class="not-prose">
+  <pre><code>brew install tmux overmind
+# or
+# gem install foreman</code></pre>
+</div>
+
+<p>You can then run your application anytime with:</p>
+<div class="not-prose">
+  <pre><code>bin/dev</code></pre>
+</div>
+
+<%= h3_with_anchor "Docker" %>
+<p>If you'd like to use Docker, we provide a <code>Dockerfile</code> and <code>docker-compose.yml</code> example configuration you can use as a starting point.</p>

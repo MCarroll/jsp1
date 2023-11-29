@@ -1,4 +1,4 @@
-<% content_for :section_title, "Authentication" %>
+<% content_for :section_title, "Authentication & OAuth" %>
 
 <p class="text-xl">User registration, authentication, forgotten passwords, social logins with OAuth, and more.</p>
 
@@ -32,6 +32,9 @@
 
 <p>By default, OmniAuth callbacks controller will create a <code>ConnectedAccount</code> record and associate it with <code>current_user</code>.</p>
 
+<%= h2_with_anchor "OAuth Connected Accounts" %>
+<p>Users can sign up or login with connected accounts. We automatically add links based upon which OmniAuth providers are enabled. By default, Jumpstart has options for a few OmniAuth providers, but you're free to add other providers and they will be automatically added to parts of the UI.</p>
+
 <%= h2_with_anchor "Associate ConnectedAccount with other models" %>
 <p>If you would like to associate the <code>ConnectedAccount</code> with a different model, you can pass in the <code>record</code> param set to a Signed GlobalID. The callback controller will detect this and use this as the owner of the ConnectedAccount record.</p>
 <p>Here we will associate the Twitter <code>ConnectedAccount</code> with the <code>current_account</code>. Optionally, you can set the <code>redirect_to</code> to send the user to a different location afterwards.</p>
@@ -59,4 +62,14 @@ client = Twitter::REST::Client.new do |config|
   config.access_token        = connected_account.token
   config.access_token_secret = connected_account.access_token_secret
 end</code></pre>
+</div>
+
+<%= h2_with_anchor "Single log in across all sub domains" %>
+<p>By default, users will be required to enter their credentials for each of their subdomains. If instead you want them to log a single time and have access to all their subdomains, add these two lines:</p>
+<div class="not-prose">
+  <pre class="lang-ruby"><code># config/application.rb
+config.session_store :cookie_store, :key => '_some_key', :domain => '.lvh.me'</code></pre>
+
+  <pre class="lang-ruby"><code># config/environments/test.rb
+config.session_store :cookie_store, :key => '_some_key', :domain => '.example.com'</code></pre>
 </div>

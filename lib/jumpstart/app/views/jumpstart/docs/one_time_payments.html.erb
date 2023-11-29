@@ -1,0 +1,22 @@
+<% content_for :section_title, "One-time Payments" %>
+
+<%= h2_with_anchor "One-time Payments" %>
+<p>Selling products as one-time purchases is also easy with Jumpstart Pro. You can use the payment forms from Jumpstart Pro to do this.</p>
+
+<p>The easiest way to do this is to have a user put their card in first and then show them the checkout form.</p>
+
+<p>An example from the Jumpstart Pro website when purchasing a license: We check if the current account has a card on file, if so we let you purchase a license. If not, we display the card form.</p>
+
+<div class="not-prose">
+  <pre class="dark:border dark:border-gray-400/50 dark:rounded"><code class="hljs language-sql"><span class="hljs-operator">&lt;</span><span class="hljs-operator">%</span> if <span class="hljs-operator">!</span>current_account.payment_processor<span class="hljs-operator">&amp;</span>.default_payment_method <span class="hljs-operator">%</span><span class="hljs-operator">&gt;</span>
+  <span class="hljs-operator">&lt;</span>p<span class="hljs-operator">&gt;</span><span class="hljs-keyword">First</span>, <span class="hljs-keyword">add</span> a payment <span class="hljs-keyword">method</span> <span class="hljs-keyword">to</span> your account:
+
+  <span class="hljs-operator">&lt;</span><span class="hljs-operator">%</span><span class="hljs-operator">=</span> render <span class="hljs-string">'payment_methods/forms/stripe'</span>    if Jumpstart.config.stripe? <span class="hljs-operator">%</span><span class="hljs-operator">&gt;</span>
+  <span class="hljs-operator">&lt;</span><span class="hljs-operator">%</span><span class="hljs-operator">=</span> render <span class="hljs-string">'payment_methods/forms/braintree'</span> if Jumpstart.config.braintree? <span class="hljs-operator">%</span><span class="hljs-operator">&gt;</span>
+  <span class="hljs-operator">&lt;</span><span class="hljs-operator">%</span><span class="hljs-operator">=</span> render <span class="hljs-string">'payment_methods/forms/paypal'</span>    if Jumpstart.config.paypal? <span class="hljs-operator">%</span><span class="hljs-operator">&gt;</span>
+<span class="hljs-operator">&lt;</span><span class="hljs-operator">%</span> <span class="hljs-keyword">else</span> <span class="hljs-operator">%</span><span class="hljs-operator">&gt;</span>
+  <span class="hljs-operator">&lt;</span><span class="hljs-operator">%</span><span class="hljs-operator">=</span> render <span class="hljs-string">'form'</span>, license: <span class="hljs-variable">@license</span> <span class="hljs-operator">%</span><span class="hljs-operator">&gt;</span>
+<span class="hljs-operator">&lt;</span><span class="hljs-operator">%</span> <span class="hljs-keyword">end</span> <span class="hljs-operator">%</span><span class="hljs-operator">&gt;</span></code></pre>
+</div>
+
+<p>Then on the LicenseController create action, we use <code>current_account.charge(amount)</code> from Pay to issue the charge before creating the license.</p>

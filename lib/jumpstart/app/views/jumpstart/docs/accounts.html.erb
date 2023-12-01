@@ -1,44 +1,71 @@
 <% content_for :section_title, "Accounts & Teams" %>
 
-<p class="text-xl">Accounts are a core piece of functionality for many applications these days and Jumpstart comes preconfigured with them so you don't have to do any of the heavy lifting.</p>
+<%= h2_with_anchor "Overview" %>
 
-<%= h2_with_anchor "Personal Account" %>
-<p>Every user has a personal account that's only usable by themselves, so you can easily associate resources to accounts and still have private resources to a user.</p>
-<p>Make sure to add <code>account:references</code> when generating your models.</p>
-<p>If you'd like a resource to be shared across a Account, you can scope your controllers to the current account so the resources are shared between users in the associated account.</p>
+<p>Accounts are a core piece of functionality for many applications these days and Jumpstart comes preconfigured with them so you don't have to do any of the heavy lifting. The name Account is a generic term but can be thought of as a vehicle for creating teams or organizations as well as personal accounts.</p>
+<p>The Account model is the mechanism that allows resources to be scoped to an account of one user or a varying number of users based on the type of account. This way the resource(s) will be scoped to each customer of your SaaS/application.</p>
+<p>By default when a new user signs up they will have an account created for them that does not allow them to invite anyone else to it. This is known as a personal (solo) account in Jumpstart. After this initial account is created the user can create other accounts which will by default allow them to invite other users to the account. This is what many consider to be a team account. If you always want the accounts that are created when a new user signs up to be team accounts, then you can disable the personal account creation option via the configuration wizard.</p>
+<%= image_tag "https://jumpstartpro.b-cdn.net/jumpstart-account-flow-v2.png", class: "block mx-auto", alt: "Diagram of default account only flow in JumpstartPro", size: "800" %>
+<p>GitHub is an example of a similar flow that has both personal (solo) and team accounts. Many users of GitHub start off with a personal (solo) account and then later add new team account (GitHub calls these organization accounts) so they can add users and collaborate within that team account.</p>
+<p>Continuing with the GitHub example when you first create your personal account, all of your repositories are only available to you. If you create a team account, you can then invite others to the team and share access to repositories to all members of that team. This type of team account is the account type that will be created every time an existing user creates a new account after the initial personal account in your Jumpstart application out-of-the-box.</p>
+<p>If you decide to disable the creation of personal (solo) accounts, then the default behavior is to create a team account for users upon sign up for your Jumpstart application. If the initial team account has only one user it is similar to a personal account, but they can invite users later if desired or necessary. If so, this should be conveyed to the end user in the UI.</p>
+<%= image_tag "https://jumpstartpro.b-cdn.net/jumpstart-team-account-only-flow-v2.png", class: "block mx-auto", alt: "Diagram of team account only flow in JumpstartPro", size: "800" %>
+<p>Personal accounts can be re-enabled later if you change your mind, however, any previously existing users will not have personal accounts and you will need to create them for each existing user manually. Additionally, if you don't want to use the accounts functionality, you can simply remove links to the accounts, however, we encourage you to keep the accounts functionality around as it allows you flexibility in the future should you choose to implement accounts later in the development of your application.</p>
+<p>There is a configuration option that can be found at <a href="http://localhost:3000/jumpstart#accounts">http://localhost:3000/jumpstart#accounts</a> if you have the server running. In the first section labeled Accounts, there is a set of radio buttons for "personal and team accounts" or "just team accounts". If the personal and team account option is selected, then every new user that signs up for your application will be given a personal account by default.</p>
+<p><strong>NOTE</strong>: The default personal account is created via an after_create callback that comes from the UserAccounts concern which is included in the User class.</p>
 
-<p>Every user has a personal account they are an admin of. A personal account does not allow other users on it. This allows our code to work exactly the same whether we're adding resources privately for a user or a account of users.</p>
-<p>GitHub is a great example of this case. Repositories can be personal or on an organization (their name for accounts) and by setting them up this way, we can have our code treat them exactly the same.</p>
-<p>There is a configuration option that can be found at <%= link_to "http://localhost:3000/jumpstart#accounts", accounts_docs_path %> if you have the server running. In the first section labeled Accounts, there is a checkbox for enabling/disabling personal accounts. If checked, every new user that signs up for your application will be given a personal account by default. This happens via an <code>after_create</code> callback that comes from the <code>UserAccounts</code> concern which is included in the <code>User.rb</code> class:</p>
+<%= h2_with_anchor "Working with Personal (Solo) and Team Accounts" %>
+<p>When creating new resources that should be scoped to either type of account, make sure to add <code>account:references</code> when generating your models to set up the foreign keys. For example:</p>
 <div class="not-prose">
-  <pre><code># app/models/concerns/user_accounts.rb
-after_create :create_default_account, unless: :skip_default_account?</code></pre>
+  <pre><code>rails generate Post title:string body:text account:references</code></pre>
+</div>
+<p>You can then scope the queries in your controllers to the <code>current_account</code> so the resources are shared between users in the associated account.</p>
+<div class="not-prose">
+  <pre><code>class PostsController < ApplicationController
+  def index
+    @posts = current_account.posts
+  end
+end</code></pre>
+</div>
+<p>Using <code>current_account</code> in this way allows the code in Jumpstart to be simplified by functioning the same regardless of whether the account in question is a personal or team account. This is why Jumpstart uses <code>current_account</code> for a personal account with a single user instead of <code>current_user</code>. You do still have access to <code>current_user</code> in other cases if needed.</p>
+
+<%= h2_with_anchor "Account Association" %>
+<p>Users in Jumpstart can have many accounts, some of which they may be the owner of and others of which they may be members. You can query for all of a given users accounts via:</p>
+<div class="not-prose">
+<pre><code>user.accounts
+#=&gt; [#&lt;Account:0x0000000108f31728&gt;, #&lt;Account:0x00000001098735c0&gt;]</code></pre>
+</div>
+<p>Personal accounts on the other hand, have the relationship setup as a has_one association and can be accessed via:</p>
+<div class="not-prose">
+<pre><code>user.personal_account
+#=&gt; #&lt;Account:0x000000010935fca0&gt;</code></pre>
 </div>
 
-<p>After a new user record has been successfully created, this callback will be called and a personal account will be created for the new user unless you have disabled this feature in the Jumpstart configuration for your application via the checkbox mentioned previously at <%= link_to "http://localhost:3000/jumpstart#accounts", accounts_docs_path %></p>
-<p>With this in place, when an existing user creates a new account it will use the default setting of <code>personal: false</code>, which is setup in the migration for the <code>accounts</code> table:</p>
+<%= h2_with_anchor "Creating Accounts" %>
+<p>If you ever need to create an account outside of the default Jumpstart UI (for example in your Rails console for development or production), you can do so with the following lines of code (adjust argument values as needed):</p>
 <div class="not-prose">
-  <pre><code>t.boolean "personal", default: false</code></pre>
+<pre><code>user = User.first
+account = user.accounts.new(owner: user, name: user.name)
+account.account_users.new(user: user, admin: true)
+account.save</code></pre>
 </div>
 
-<%= h3_with_anchor "Additional Accounts" %>
-<p>Users can create additional accounts and invite other users to join them. Once created, users can switch which account they're viewing from their account dropdown in the navbar.</p>
-<p>Each account has separate billing, which allows you to setup flexible subscriptions based upon the account. This is also similar to GitHub where you can pay for a personal account or you can pay for an organization account.</p>
-<p>If you don't want to use the accounts functionality, you can simply remove links to the accounts. We encourage you to keep the accounts functionality around  as it allows you flexibility in the future should you choose to implement accounts later on.</p>
+<%= h2_with_anchor "Checking The Type Of Account" %>
+<p>Building off of the previous code sample, if you need to check an account type to find out if it is a personal (solo) account or not, you can do so the following way:</p>
+<div class="not-prose">
+<pre><code>account.personal?
+#=&gt; false</code></pre>
+</div>
+<p>To check if an account is a team account, you can do so the following way:</p>
+<div class="not-prose">
+<pre><code>account.team?
+#=&gt; true</code></pre>
+</div>
 
-<%= h3_with_anchor "Account Switching" %>
-<p>A user can switch which account they are viewing by clicking on the accounts in the navbar.</p>
-<p>There are several different ways users can switch between accounts:</p>
+<%= h2_with_anchor "Additional Accounts" %>
+<p>After the initial account is created, all additional accounts created will be team accounts. These new team accounts allow the user to invite other users to join them.</p>
 
-<ul>
-  <li>Session cookies <span class="text-sm text-gray-700">(default)</span></li>
-  <li>Path <code class="text-sm">/:account_id/</code></li>
-  <li>Subdomain</li>
-  <li>Custom Domain</li>
-</ul>
-
-<p>Each of these options provides some flexibility for how accounts can be accessed:</p>
-<p><em>Session cookies</em> are the simplest and require no additional configuration.</p>
-<p><em>Path</em> switching prepends all routes with the current account ID. This is called the <code>script_name</code> and is filtered out in a Rails middleware automatically. To change accounts, you must provide the script name in the URL helpers: <code>link_to "Home", root_url(script_name: "/#{account.id}"</code></p>
-<p><em>Subdomain</em> switching uses the first subdomain to determine the account. This requires wildcard DNS records to point <code>*.example.com</code> to your app and additional setup in your test suite to configure the host when making requests.</p>
-<p><em>Custom Domain</em> allows your users to provide their own domain to use your app. This requires customers to setup DNS records to point to your server. You'll also have to respond to these and make sure you generate SSL certificates for these domains. Since you cannot guarantee the user will setup their DNS records correctly, this option often is used in conjunction with subdomain switching to provide a fallback method of accessing the account.</p>
+<%= h2_with_anchor "Account Switching" %>
+<p>Once created, users can switch which account they're viewing from the dropdown in the navbar where their avatar is displayed as seen here:</p>
+<%= image_tag "https://jumpstartpro.b-cdn.net/jumpstart-account-switching.png", alt: "Location of switch account menu in Jumpstart Pro" %>
+<p>Any new accounts that are created by the user will be displayed in the dropdown as well by default.</p>

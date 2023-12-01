@@ -14,7 +14,7 @@
   <div class="flex justify-between form-group">
     <%= form.button class: "btn btn-primary" %>
 
-    <% if form.object.persisted? %>
+    <% if form.object.persisted? && !account_user.account_owner? %>
       <%= link_to t("delete"), account_account_user_path(@account, form.object), class: "btn btn-danger btn-outline", data: { turbo_method: :delete, turbo_confirm: t("are_you_sure") } %>
     <% end %>
   </div>

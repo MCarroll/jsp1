@@ -412,7 +412,6 @@ en:
           quantity: "Quantity"
           unit_price: "Unit Price"
           total: "Total"
-        quantity: "Quantity"
         back: "Back to Billing"
 
     forms:

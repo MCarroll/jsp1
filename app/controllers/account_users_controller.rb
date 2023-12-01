@@ -38,6 +38,8 @@ class AccountUsersController < Accounts::BaseController
 
   def set_account
     @account = current_user.accounts.find(params[:account_id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to accounts_path
   end
 
   # Use callbacks to share common setup or constraints between actions.

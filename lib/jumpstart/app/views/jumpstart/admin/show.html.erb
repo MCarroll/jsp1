@@ -12,16 +12,14 @@
 
       <h4 class="h5 mt-4 font-semibold text-gray-800 dark:text-gray-100">Configuration</h4>
       <div class="ml-2">
-        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="application">Application</a>
-        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="dependencies">Dependencies</a>
-        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="accounts">Accounts</a>
-        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="workers">Background Workers</a>
-        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="integrations">Integrations</a>
-        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="oauth">OAuth</a>
-        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="payments">Payments</a>
-        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="email">Transactional Email</a>
-        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="turbo-native">Turbo Native</a>
-        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#" id="users">Admin Users</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#application">Application</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#accounts">Accounts</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#dependencies">Dependencies</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#integrations">Integrations</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#oauth">OAuth</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#payments">Payments</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#turbo_native">Turbo Native</a>
+        <a class="block py-1 text-sm text-gray-700 dark:text-gray-200 no-underline hover:text-primary" data-tabs-target="tab" data-action="click->tabs#change:prevent" href="#users">Admin Users</a>
       </div>
 
       <div class="mt-4">
@@ -43,17 +41,17 @@
           <%= render "shared/flash" %>
         </div>
 
-        <% %w{ application dependencies multitenancy workers integrations oauth payments email turbo_native users }.each do |name| %>
-          <div data-tabs-target="panel" class="hidden">
+        <% %w{ application multitenancy dependencies integrations oauth payments turbo_native users }.each do |name| %>
+          <%= tag.div id: name, class: "hidden", data: { tabs_target: "panel" } do %>
             <%= render name, f: f %>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </div>
   </div>
 <% end %>
 
-<%= render partial: "admin_user_modal", locals: { user: @user } %>
+<%= form_with url: users_path, id: :admin_user %>
 
 <script>
   document.addEventListener("turbo:load", function() {

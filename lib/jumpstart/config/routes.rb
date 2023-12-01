@@ -1,7 +1,7 @@
 Jumpstart::Engine.routes.draw do
   resource :admin, only: [:show]
   resource :config, only: [:create]
-  resources :users, only: [:create]
+  resources :users, only: [:index, :create]
 
   resource :docs do
     # Get Started

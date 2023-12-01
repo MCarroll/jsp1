@@ -59,11 +59,7 @@ module Jumpstart
       @default_from_email = options["default_from_email"] || "My App <no-reply@example.com>"
       @background_job_processor = options["background_job_processor"] || "async"
       @email_provider = options["email_provider"]
-
       @personal_accounts = cast_to_boolean(options["personal_accounts"], default: true)
-      @register_with_account = cast_to_boolean(options["register_with_account"], default: false)
-      @collect_billing_address = cast_to_boolean(options["collect_billing_address"])
-
       @apns = cast_to_boolean(options["apns"])
       @fcm = cast_to_boolean(options["fcm"])
       @integrations = options.fetch("integrations", [])
@@ -108,20 +104,15 @@ module Jumpstart
       Array(@omniauth_providers)
     end
 
-    def register_with_account=(value)
-      @register_with_account = cast_to_boolean(value)
-    end
-
     def register_with_account?
-      @register_with_account.nil? ? false : cast_to_boolean(@register_with_account)
+      !personal_accounts?
     end
 
     def personal_accounts=(value)
       @personal_accounts = cast_to_boolean(value)
     end
 
-    def personal_accounts
-      # Enabled by default
+    def personal_accounts?
       @personal_accounts.nil? ? true : cast_to_boolean(@personal_accounts)
     end
 
@@ -131,14 +122,6 @@ module Jumpstart
 
     def fcm?
       cast_to_boolean(@fcm || false)
-    end
-
-    def collect_billing_address=(value)
-      @collect_billing_address = cast_to_boolean(value)
-    end
-
-    def collect_billing_address?
-      cast_to_boolean(@collect_billing_address || false)
     end
 
     def update_procfiles

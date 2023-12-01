@@ -8,7 +8,7 @@ class Jumpstart::MultitenancyTest < ActionDispatch::IntegrationTest
   end
 
   test "domain multitenancy" do
-    Jumpstart::Multitenancy.stub :selected, ["domain"] do
+    Jumpstart::Multitenancy.stub :selected, ["subdomain"] do
       get user_root_path
       assert_select "a", text: @user.name
 

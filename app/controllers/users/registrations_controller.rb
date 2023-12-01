@@ -15,10 +15,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @account_invitation = invite
       resource.skip_default_account = true
 
-    # Build and display account fields in registration form if enabled
+    # Build and display account fields in registration form if needed
     elsif Jumpstart.config.register_with_account?
-      account = resource.owned_accounts.first
-      account ||= resource.owned_accounts.new
+      account = resource.owned_accounts.first || resource.owned_accounts.new
       account.account_users.new(user: resource, admin: true)
     end
   end

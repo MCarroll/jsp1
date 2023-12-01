@@ -1,52 +1,48 @@
-<fieldset>
-  <legend class="h4">Dependencies</legend>
-  <p class="text-sm font-medium text-gray-700">Optional, but officially supported dependencies for Jumpstart Pro applications.</p>
+<h4>Dependencies</h4>
+<p class="text-sm text-gray-700 dark:text-gray-300">Optional, but officially supported dependencies for Jumpstart Pro applications.</p>
 
-  <div class="mt-8 space-y-5">
-
-    <div class="relative items-start">
-      <div class="flex h-6 items-center toggle">
-        <%= check_box_tag "configuration[gems][]", "acts_as_tenant", Jumpstart.config.gems.include?("acts_as_tenant"), id: "acts_as_tenant", class: "form-checkbox" %>
-        <label for="acts_as_tenant" class="font-medium text-gray-900">ActsAsTenant</label>
-      </div>
-      <div class="pl-1 ml-14 text-sm leading-6">
-        <p class="text-gray-500"><%= link_to "ActsAsTenant", "https://github.com/erwinm/acts_as_tenant", target: :_blank %> provides row-level, scalable multitenancy for Rails.</p>
-        <p class="text-gray-500">See the <%= link_to "Accounts & Multitenancy", accounts_docs_path, target: :_blank %> docs to learn how to use ActsAsTenant.</p>
-      </div>
+<div class="mt-8 space-y-5">
+  <div class="relative items-start">
+    <div class="flex h-6 items-center toggle">
+      <%= check_box_tag "configuration[gems][]", "acts_as_tenant", Jumpstart.config.gems.include?("acts_as_tenant"), id: "acts_as_tenant", class: "form-checkbox" %>
+      <label for="acts_as_tenant" class="font-medium text-gray-900">ActsAsTenant</label>
     </div>
-
-    <div class="relative items-start">
-      <div class="flex h-6 items-center toggle">
-        <%= check_box_tag "configuration[gems][]", "oj", Jumpstart.config.gems.include?("oj"), id: "oj", class: "form-checkbox" %>
-        <label for="oj" class="font-medium text-gray-900">Oj</label>
-      </div>
-      <div class="pl-1 ml-14 text-sm leading-6">
-        <p class="text-gray-500"><%= link_to "Oj", "https://github.com/ohler55/oj", target: :_blank %> is a C extension for Ruby for fast JSON parsing.</p>
-        <p class="text-gray-500">Enabling Oj will speed up Rails JSON parsing in <code>config/initializers/oj.rb</code>.</p>
-      </div>
+    <div class="pl-1 ml-14 text-sm leading-6">
+      <p class="text-gray-500"><%= link_to "ActsAsTenant", "https://github.com/erwinm/acts_as_tenant", target: :_blank %> provides row-level, scalable multitenancy for Rails.</p>
+      <p class="text-gray-500">See the <%= link_to "Accounts & Multitenancy", accounts_docs_path, target: :_blank %> docs to learn how to use ActsAsTenant.</p>
     </div>
-
-    <div class="relative items-start">
-      <div class="flex h-6 items-center toggle">
-        <%= check_box_tag "configuration[gems][]", "rack-attack", Jumpstart.config.gems.include?("rack-attack"), id: "rack-attack", class: "form-checkbox" %>
-        <label for="rack-attack" class="font-medium text-gray-900">Rack Attack</label>
-      </div>
-      <div class="pl-1 ml-14 text-sm leading-6">
-        <p class="text-gray-500"><%= link_to "Rack Attack", "https://github.com/rack/rack-attack", target: :_blank %> lets you easily decide when to allow, block and throttle based on properties of the request.</p>
-        <p class="text-gray-500">See <code>config/initializers/rack_attack.rb</code> to define rate limiting rules.</p>
-      </div>
-    </div>
-
-    <div class="relative items-start">
-      <div class="flex h-6 items-center toggle">
-        <%= check_box_tag "configuration[gems][]", "whenever", Jumpstart.config.gems.include?("whenever"), id: "whenever", class: "form-checkbox" %>
-        <label for="whenever" class="font-medium text-gray-900">Whenever</label>
-      </div>
-      <div class="pl-1 ml-14 text-sm leading-6">
-        <p class="text-gray-500"><%= link_to "Whenever", "https://github.com/javan/whenever", target: :_blank %> lets you define and manage cron jobs.</p>
-        <p class="text-gray-500">See <code>config/schedule.rb</code> to define cron jobs.</p>
-      </div>
-    </div>
-
   </div>
-</fieldset>
+
+  <div class="relative items-start">
+    <div class="flex h-6 items-center toggle">
+      <%= check_box_tag "configuration[gems][]", "oj", Jumpstart.config.gems.include?("oj"), id: "oj", class: "form-checkbox" %>
+      <label for="oj" class="font-medium text-gray-900">Oj</label>
+    </div>
+    <div class="pl-1 ml-14 text-sm leading-6">
+      <p class="text-gray-500"><%= link_to "Oj", "https://github.com/ohler55/oj", target: :_blank %> is a C extension for Ruby for fast JSON parsing.</p>
+      <p class="text-gray-500">Enabling Oj will speed up Rails JSON parsing in <code>config/initializers/oj.rb</code>.</p>
+    </div>
+  </div>
+
+  <div class="relative items-start">
+    <div class="flex h-6 items-center toggle">
+      <%= check_box_tag "configuration[gems][]", "rack-attack", Jumpstart.config.gems.include?("rack-attack"), id: "rack-attack", class: "form-checkbox" %>
+      <label for="rack-attack" class="font-medium text-gray-900">Rack Attack</label>
+    </div>
+    <div class="pl-1 ml-14 text-sm leading-6">
+      <p class="text-gray-500"><%= link_to "Rack Attack", "https://github.com/rack/rack-attack", target: :_blank %> lets you easily decide when to allow, block and throttle based on properties of the request.</p>
+      <p class="text-gray-500">See <code>config/initializers/rack_attack.rb</code> to define rate limiting rules.</p>
+    </div>
+  </div>
+
+  <div class="relative items-start">
+    <div class="flex h-6 items-center toggle">
+      <%= check_box_tag "configuration[gems][]", "whenever", Jumpstart.config.gems.include?("whenever"), id: "whenever", class: "form-checkbox" %>
+      <label for="whenever" class="font-medium text-gray-900">Whenever</label>
+    </div>
+    <div class="pl-1 ml-14 text-sm leading-6">
+      <p class="text-gray-500"><%= link_to "Whenever", "https://github.com/javan/whenever", target: :_blank %> lets you define and manage cron jobs.</p>
+      <p class="text-gray-500">See <code>config/schedule.rb</code> to define cron jobs.</p>
+    </div>
+  </div>
+</div>

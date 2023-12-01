@@ -1,7 +1,7 @@
 module Jumpstart
   module Multitenancy
     def self.domain?
-      selected.include?("domain")
+      subdomain?
     end
 
     def self.subdomain?

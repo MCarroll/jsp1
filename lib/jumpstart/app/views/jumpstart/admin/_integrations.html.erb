@@ -1,15 +1,11 @@
-<div class="mb-24 form-group">
-  <h4>Integrations</h4>
-  <p class="small text-gray-600 dark:text-gray-300">Integrations with popular services can be enabled with the click of a button. Simply add your credentials and enable the integration and we'll take care of installing and configuring it for you.</p>
-  <pre class="mt-4"><code>rails credentials:edit --environment=development</code></pre>
+<h4>Integrations</h4>
+<p class="mb-4 text-sm text-gray-700 dark:text-gray-300">Integrations with popular services can be enabled with the click of a button. Add your credentials to the <%= link_to "Rails credentials", credentials_docs_path, target: :_blank %> and enable the integration and we'll take care of installing and configuring it for you.</p>
 
-  <h5>Services</h5>
-  <% Jumpstart::Configuration::Integratable::AVAILABLE_PROVIDERS.each do |integration_name, name| %>
-    <div class="mb-4">
-      <div class="custom-control custom-checkbox toggle">
-        <%= check_box_tag "configuration[integrations][]", name, Jumpstart.config.integrations.include?(name), disabled: false, id: name, class: "form-checkbox" %>
-        <%= label_tag name, "#{integration_name}", class: "inline-block" %>
-      </div>
+<% Jumpstart::Configuration::Integratable::AVAILABLE_PROVIDERS.each do |integration_name, name| %>
+  <div class="mb-4">
+    <div class="custom-control custom-checkbox toggle">
+      <%= check_box_tag "configuration[integrations][]", name, Jumpstart.config.integrations.include?(name), disabled: false, id: name, class: "form-checkbox" %>
+      <%= label_tag name, "#{integration_name}", class: "inline-block" %>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

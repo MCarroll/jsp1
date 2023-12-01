@@ -1,29 +1,11 @@
-<div class="form-group">
-  <h4>Social Login with Omniauth</h4>
-  <p>Let users log in with third-party accounts.</p>
+<h4>Social Login with OAuth</h4>
+<p class="mb-4 text-sm text-gray-700 dark:text-gray-300">Allow users to <%= link_to "login with OAuth", authentication_docs_path, target: :_blank %>  accounts. Make sure to add your OAuth credentials to the <%= link_to "Rails credentials", credentials_docs_path, target: :_blank %>.</p>
 
-  <p>To enable an omniauth provider, add your OAuth details to Rails credentials under the <code>omniauth</code> key. Any extra options will be passed into the omniauth provider automatically so you can easily customize scopes and more.</p>
-  <pre><code class="yaml rounded">omniauth:
-  facebook:
-    public_key: x
-    private_key: y
-    scope: email</code></pre>
-
-  <p>We recommend you use environment specific credentials (new in Rails 6.0) so you can safely separate your production and development keys.</p>
-  <pre><code class="bash rounded">rails credentials:edit --environment development</code></pre>
-
-  <h4>Providers</h4>
-  <% Jumpstart::Omniauth.all_providers.each do |gem_name, details| %>
-    <div class="mb-4">
-
-
-      <div class="custom-control custom-checkbox toggle">
-          <%= check_box_tag "configuration[omniauth_providers][]", gem_name, Jumpstart::Omniauth.enabled?(gem_name), id: gem_name, class: "form-checkbox" %>
-          <%= label_tag gem_name, details[:name], class: "font-weight-semibold inline-block" %>
-          <% if gem_name == "facebook" %>
-            <p class="pl-1 ml-14 text-sm text-gray-700 dark:text-gray-300/75">Facebook requires HTTPS for OAuth so you will need to use a service like <%= link_to "ngrok", "https://ngrok.com/", target: :_blank %> for testing.</p>
-          <% end %>
-      </div>
+<% Jumpstart::Omniauth.all_providers.each do |gem_name, details| %>
+  <div class="mb-4">
+    <div class="custom-control custom-checkbox toggle">
+      <%= check_box_tag "configuration[omniauth_providers][]", gem_name, Jumpstart::Omniauth.enabled?(gem_name), id: gem_name, class: "form-checkbox" %>
+      <%= label_tag gem_name, details[:name], class: "font-weight-semibold inline-block" %>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

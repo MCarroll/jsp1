@@ -1,5 +1,5 @@
-<h3>Create an Admin User</h3>
-<p>Admin users have access to the admin dashboard. They're marked in the database with the <code>admin</code> flag set to true.</p>
+<h4>Admin Users</h4>
+<p class="mb-4 text-sm text-gray-700 dark:text-gray-300">Admin users have access to the admin dashboard. They're marked in the database with the <code>admin</code> flag set to true.</p>
 
 <table class="table table-bordered text-left text-sm my-6">
   <thead>
@@ -14,4 +14,11 @@
   </tbody>
 </table>
 
-<a class="cursor-pointer btn btn-white" onclick="document.querySelector('#show_admin_user_form').click()">Create Admin User</a>
+<h4>Add an admin</h4>
+<%= select_tag :id, [], placeholder: "Search users by email", form: :admin_user, data: {
+  controller: :select,
+  select_url_value: users_path(format: :json),
+  select_label_field_value: :email,
+  select_value_field_value: :id,
+  select_submit_on_change_value: true
+} %>

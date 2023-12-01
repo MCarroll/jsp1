@@ -1,13 +1,13 @@
-<h3>Application Details</h3>
+<h4>Application Details</h4>
 
 <div class="form-group">
   <%= f.label :application_name %>
-  <%= f.text_field :application_name, placeholder: "App", class: "form-control" %>
+  <%= f.text_field :application_name, placeholder: "My App", class: "form-control" %>
 </div>
 
 <div class="form-group">
   <%= f.label :business_name %>
-  <%= f.text_field :business_name, placeholder: "Company, LLC", class: "form-control" %>
+  <%= f.text_field :business_name, placeholder: "My Company, LLC", class: "form-control" %>
   <small class="form-text text-gray-600">This will be shown in the footer, terms of service, privacy policy, in receipts, etc.</small>
 </div>
 
@@ -21,4 +21,28 @@
   <%= f.label :support_email %>
   <%= f.text_field :support_email, placeholder: "support@example.com", class: "form-control" %>
   <small class="form-text text-muted">This email will be used in receipts if a user needs help.</small>
+</div>
+
+<div class="form-group">
+  <label>Transactional Email Service</label>
+  <p class="form-hint">This will only be configured for production use.</p>
+  <%= f.select :email_provider, Jumpstart::Configuration::Mailable::AVAILABLE_PROVIDERS, { include_blank: "None" }, { class: "form-control" } %>
+</div>
+
+<div class="form-group">
+  <%= f.label :domain %>
+  <p class="form-hint">We'll use this domain to generate links inside emails.</p>
+  <%= f.text_field :domain, placeholder: "support@example.com", class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :default_from_email %>
+  <p class="form-hint">When sending emails, we'll send them from this email address by default unless you override it in the mailer.</p>
+  <%= f.text_field :default_from_email, placeholder: "noreply@example.com", class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <label>Background Job Processor</label>
+  <p class="form-hint">Background jobs are used for sending emails, broadcasting events, and more.</p>
+  <%= f.select :background_job_processor, Jumpstart::JobProcessor::AVAILABLE_PROVIDERS, {}, { class: "form-control" } %>
 </div>

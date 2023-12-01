@@ -1,46 +1,42 @@
-<div class="form-group">
-  <h3>Payment Processors</h3>
-  <p class="mt-1 mb-4 text-sm text-gray-700">Only enable one payment processor at a time. See the <%= link_to "Billing & Payments docs", jumpstart.billing_docs_path, target: :_blank %> for more details.</p>
+<h4>Payment Processors</h4>
+<p class="mb-4 text-sm text-gray-700 dark-text-gray-300">Enable one payment processor at a time. See the <%= link_to "Billing & Payments docs", jumpstart.billing_docs_path, target: :_blank %> for more details.</p>
 
-  <div class="mb-4 flex items-center flex items-center toggle">
-    <%= check_box_tag "configuration[payment_processors][]", :stripe, @config.stripe?, class: "form-checkbox", id: :stripe %>
-    <label for="stripe" class="mb-0">
-      Stripe
-    </label>
-  </div>
-
-  <div class="mb-4 flex items-center toggle">
-    <%= check_box_tag "configuration[payment_processors][]", :paddle_billing, @config.paddle_billing?, class: "form-checkbox", id: :paddle_billing %>
-    <label for="paddle_billing" class="mb-0">
-      Paddle Billing
-    </label>
-  </div>
-
-  <div class="mb-4 flex items-center toggle">
-    <%= check_box_tag "configuration[payment_processors][]", :paddle_classic, @config.paddle_classic?, class: "form-checkbox", id: :paddle_classic %>
-    <label for="paddle_classic" class="mb-0">
-      Paddle Classic
-    </label>
-  </div>
-
-  <div class="mb-4 flex items-center toggle">
-    <%= check_box_tag "configuration[payment_processors][]", :braintree, @config.braintree?, class: "form-checkbox", id: :braintree %>
-    <label for="braintree" class="mb-0">
-      Braintree
-    </label>
-  </div>
-
-  <div class="mb-4 flex items-center toggle">
-    <%= check_box_tag "configuration[payment_processors][]", :paypal, @config.paypal?, class: "form-checkbox", id: :paypal %>
-    <label for="paypal" class="mb-0">
-      PayPal Only
-    </label>
-    <small class="ml-2 text-gray-600 dark:text-gray-300/75">Uses Braintree behind the scenes</small>
-  </div>
+<div class="mb-4 flex items-center flex items-center toggle">
+  <%= check_box_tag "configuration[payment_processors][]", :stripe, @config.stripe?, class: "form-checkbox", id: :stripe %>
+  <label for="stripe" class="mb-0">
+    Stripe
+  </label>
 </div>
 
-<hr class="my-4" />
+<div class="mb-4 flex items-center toggle">
+  <%= check_box_tag "configuration[payment_processors][]", :paddle_billing, @config.paddle_billing?, class: "form-checkbox", id: :paddle_billing %>
+  <label for="paddle_billing" class="mb-0">
+    Paddle Billing
+  </label>
+</div>
 
-<h5>Plans</h5>
-<p class="text-sm">Visit <%= link_to "the Plans page", main_app.admin_plans_path, target: :blank %> in the admin to add plans.</p>
+<div class="mb-4 flex items-center toggle">
+  <%= check_box_tag "configuration[payment_processors][]", :paddle_classic, @config.paddle_classic?, class: "form-checkbox", id: :paddle_classic %>
+  <label for="paddle_classic" class="mb-0">
+    Paddle Classic
+  </label>
+</div>
+
+<div class="mb-4 flex items-center toggle">
+  <%= check_box_tag "configuration[payment_processors][]", :braintree, @config.braintree?, class: "form-checkbox", id: :braintree %>
+  <label for="braintree" class="mb-0">
+    Braintree
+  </label>
+</div>
+
+<div class="mb-4 flex items-center toggle">
+  <%= check_box_tag "configuration[payment_processors][]", :paypal, @config.paypal?, class: "form-checkbox", id: :paypal %>
+  <label for="paypal" class="mb-0">
+    PayPal Only
+  </label>
+  <small class="ml-2 text-gray-600 dark:text-gray-300/75">Uses Braintree behind the scenes</small>
+</div>
+
+<h5 class="mt-8">Plans</h5>
+<p class="text-sm">Use the <%= link_to "Plans page", main_app.admin_plans_path, target: :blank %> in the admin to add plans.</p>
 <p class="mt-2 alert text-sm"><strong>Don't forget!</strong> You need to be <%= link_to "signed in", main_app.new_user_session_path %> as an admin to view the Plans page in the admin area. <%= link_to "Create an admin user.", "#users", data: { toggle: "pill" } %></p>

@@ -19,10 +19,8 @@ class Jumpstart::SubscriptionsTest < ActionDispatch::IntegrationTest
 
     test "can subscribe account" do
       Jumpstart.config.stub(:payments_enabled?, true) do
-        Jumpstart.config.stub(:collect_billing_address?, false) do
-          get new_subscription_path(plan: @plan)
-          assert_response :success
-        end
+        get new_subscription_path(plan: @plan)
+        assert_response :success
       end
     end
 

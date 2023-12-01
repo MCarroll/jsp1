@@ -2,32 +2,14 @@ require_dependency "jumpstart/application_controller"
 
 module Jumpstart
   class UsersController < ApplicationController
-    def create
-      @user = User.new(user_params)
-
-      if @user.save
-        Jumpstart.grant_system_admin!(@user)
-
-        # Create a fake subscription for the admin user so they have access to everything by default
-        account = @user.accounts.first
-        account.set_payment_processor :fake_processor, allow_fake: true
-        account.payment_processor.subscribe plan: Plan.free.fake_processor_id
-
-        @notice = "#{@user.name} (#{@user.email}) has been added as an admin. #{view_context.link_to("Login", main_app.new_user_session_path)}"
-
-        respond_to do |format|
-          format.turbo_stream
-          format.html { redirect_to root_path(anchor: :users), notice: @notice }
-        end
-      else
-        render partial: "jumpstart/admin/admin_user_modal", locals: {user: @user}
-      end
+    def index
+      render json: User.where(admin: [nil, false]).where(User.arel_table[:email].matches("%#{User.sanitize_sql_like(params[:query])}%"))
     end
 
-    private
-
-    def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :time_zone).merge(terms_of_service: true)
+    def create
+      user = User.find(params[:id])
+      Jumpstart.grant_system_admin! user
+      render turbo_stream: turbo_stream.append("admin_users", partial: "jumpstart/users/user", locals: {user: user})
     end
   end
 end

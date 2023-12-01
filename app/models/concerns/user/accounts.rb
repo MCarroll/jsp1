@@ -10,7 +10,7 @@ module User::Accounts
 
     # Regular users should get their account created immediately
     after_create :create_default_account, unless: :skip_default_account?
-    after_update :sync_personal_account_name, if: -> { Jumpstart.config.personal_accounts }
+    after_update :sync_personal_account_name, if: -> { Jumpstart.config.personal_accounts? }
 
     accepts_nested_attributes_for :owned_accounts, reject_if: :all_blank
 
@@ -24,7 +24,7 @@ module User::Accounts
     return unless name.present?
     return accounts.first if accounts.any?
 
-    account = accounts.new(owner: self, name: name, personal: Jumpstart.config.personal_accounts)
+    account = accounts.new(owner: self, name: name, personal: Jumpstart.config.personal_accounts?)
     account.account_users.new(user: self, admin: true)
     account.save!
     account

@@ -1,57 +1,40 @@
 <h4>Accounts</h4>
-<p class="text-gray-800 dark:text-gray-200">Every user in Jumpstart apps will have at least one Account they're a part of.</p>
-<p class="text-gray-800 dark:text-gray-200 mt-2">Personal accounts allow users to have resources that are private and not shared with other users. This is similar to personal GitHub repositories vs Org repos and personal vs team on Heroku apps.</p>
-
-<div class="mt-4">
-  <div class="custom-control custom-checkbox toggle">
-    <%= f.check_box :personal_accounts, value: Jumpstart.config.personal_accounts, class: "form-checkbox", id: "personal_accounts" %>
-    <%= label_tag "personal_accounts", "Enable Personal Accounts", class: "inline-block" %>
+<p class="text-sm text-gray-700 dark:text-gray-300">Accounts make sharing resources easy with other users and teams.</p>
+<p class="mt-8 text-sm text-gray-700 dark:text-gray-300">What kind of accounts does your application need?</p>
+<div class="mt-2 form-group">
+  <div>
+    <%= f.radio_button :personal_accounts, true, checked: Jumpstart.config.personal_accounts?, class: "form-checkbox", id: "personal_accounts" %>
+    <%= label_tag "personal_accounts", "Personal and Team Accounts", class: "inline-block" %>
   </div>
-
-  <p class="mt-2 text-sm text-gray-600 dark:text-gray-300/75">Disabling personal accounts will automatically create a regular account for each user instead.</p>
+  <div>
+    <%= f.radio_button :personal_accounts, false, checked: !Jumpstart.config.personal_accounts?, class: "form-checkbox", id: "team_accounts" %>
+    <%= label_tag "team_accounts", "Just Team Accounts", class: "inline-block" %>
+  </div>
 </div>
 
 <hr class="my-4" />
 
-<h4>Register with Account Details</h4>
-<p class="text-gray-800 dark:text-gray-200">Account details may need to be collected when the user signs up or registers. By enabling this feature, users will be prompted for an Account name on the registration form.</p>
-<p class="text-gray-800 dark:text-gray-200 mt-2">You can add additional fields by adding fields to the Account model and permitting the params in <code>application_controller.rb</code> for the Devise sign_up action.</p>
-
-<div class="mt-4">
-  <div class="custom-control custom-checkbox toggle">
-    <%= f.check_box :register_with_account, value: true, checked: Jumpstart.config.register_with_account?, class: "form-checkbox", id: "register_with_account" %>
-    <%= label_tag "register_with_account", "Include account fields in sign up / registration", class: "inline-block" %>
-  </div>
-
-  <p class="mt-2 text-sm text-gray-600 dark:text-gray-300/75">Users signing up through an invitation will <u>not</u> be prompted for account details.</p>
-  <p class="mt-2 text-sm text-gray-600 dark:text-gray-300/75">Enabling this option <u>disables</u> the personal accounts feature.</p>
-</div>
-
-<hr class="my-4" />
-
-<h4>Multitenancy</h4>
-<p class="text-gray-800 dark:text-gray-200">Jumpstart Pro uses an Account model to separate resources. You can use this to make your application multitenant. By default, we switch accounts using a session cookie, but this can be extended to also use subdomains, paths, and custom domains</p>
+<h4>Account Switching</h4>
+<p class="text-sm text-gray-700 dark:text-gray-300">How would you like to switch between accounts?</p>
 
 <div class="mt-4 mb-24 space-y-2">
-  <label>Switch accounts automatically by:</label>
+  <label>Switch accounts by:</label>
 
   <div class="custom-control custom-checkbox toggle">
-    <%= check_box_tag "configuration[multitenancy][]", "path", Jumpstart::Multitenancy.path?, class: "form-checkbox", id: "multitenancy_path" %>
-    <%= label_tag "multitenancy_path", "Path", class: "inline-block" %>
-    <span class="text-sm text-gray-600 dark:text-gray-300/75">(prepends <code>/:account_id/</code> as the script_name before Rails routes)</span>
+    <%= check_box_tag "configuration[multitenancy][]", "session", Jumpstart::Multitenancy.session?, class: "form-checkbox", id: "multitenancy_session", disabled: true %>
+    <%= label_tag "multitenancy_session", "Session Cookie", class: "inline-block" %>
+    <span class="text-sm text-gray-600 dark:text-gray-300/75">(always enabled as a fallback)</span>
   </div>
 
   <div class="custom-control custom-checkbox toggle">
     <%= check_box_tag "configuration[multitenancy][]", "subdomain", Jumpstart::Multitenancy.subdomain?, class: "form-checkbox", id: "multitenancy_subdomain" %>
-    <%= label_tag "multitenancy_subdomain", "Subdomain", class: "inline-block" %>
+    <%= label_tag "multitenancy_subdomain", "Subdomains & Custom Domains", class: "inline-block" %>
+    <span class="text-sm text-gray-600 dark:text-gray-300/75">(such as you.example.org or mydomain.com)</span>
   </div>
 
   <div class="custom-control custom-checkbox toggle">
-    <%= check_box_tag "configuration[multitenancy][]", "domain", Jumpstart::Multitenancy.domain?, class: "form-checkbox", id: "multitenancy_domain" %>
-    <%= label_tag "multitenancy_domain", "Custom Domain", class: "inline-block" %>
-  </div>
-
-  <div class="text-sm text-gray-600 dark:text-gray-300/75 mt-3">
-    <i class="fas fa-info-circle"></i> Typically, custom domains should be combined with subdomain switching. This provides a fallback in case the customer's domain isn't configured properly.
+    <%= check_box_tag "configuration[multitenancy][]", "path", Jumpstart::Multitenancy.path?, class: "form-checkbox", id: "multitenancy_path" %>
+    <%= label_tag "multitenancy_path", "URL Path", class: "inline-block" %>
+    <span class="text-sm text-gray-600 dark:text-gray-300/75">(prepends <code>/:account_id/</code> as the script_name before Rails routes)</span>
   </div>
 </div>

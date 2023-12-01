@@ -1,7 +1,5 @@
-# Sample configuration file for Sidekiq.
 # Options here can still be overridden by cmd line args.
-# Place this file at config/sidekiq.yml and Sidekiq will
-# pick it up automatically.
+# Sidekiq will run this file through ERB when reading it so you can even put in dynamic logic, like a host-specific queue.
 ---
 :verbose: false
 :concurrency: 10
@@ -9,21 +7,19 @@
 # Set timeout to 8 on Heroku, longer if you manage your own systems.
 :timeout: 30
 
-# Sidekiq will run this file through ERB when reading it so you can
-# even put in dynamic logic, like a host-specific queue.
-# http://www.mikeperham.com/2013/11/13/advanced-sidekiq-host-specific-queues/
+# With weighted priority, queue will be checked first (weight / total) of the time.
+# Weights should be between 1-10. For random queue ordering, set all weights to 1.
 :queues:
-  - critical
-  - default
-  - <%= `hostname`.strip %>
-  - mailers
-  - action_mailbox_incineration
-  - action_mailbox_routing
-  - active_storage_analysis
-  - active_storage_purge
-  - low
+  - ['critical', 10]
+  - ['mailers', 5]
+  - ['active_storage_analysis', 4]
+  - ['default', 2]
+  - ['action_mailbox_routing', 2]
+  - ['active_storage_purge', 1]
+  - ['action_mailbox_incineration', 1]
+  - ['low', 1]
 
-# you can override concurrency based on environment
+# You can override concurrency based on environment
 production:
   :concurrency: 25
 staging:

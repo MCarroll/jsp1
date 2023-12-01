@@ -60,8 +60,8 @@ module Jumpstart
       @background_job_processor = options["background_job_processor"] || "async"
       @email_provider = options["email_provider"]
 
-      @personal_accounts = cast_to_boolean(options["personal_accounts"]) || true
-      @register_with_account = cast_to_boolean(options["register_with_account"]) || false
+      @personal_accounts = cast_to_boolean(options["personal_accounts"], default: true)
+      @register_with_account = cast_to_boolean(options["register_with_account"], default: false)
       @collect_billing_address = cast_to_boolean(options["collect_billing_address"])
 
       @apns = cast_to_boolean(options["apns"])
@@ -280,9 +280,9 @@ module Jumpstart
       "OFF", :OFF
     ].freeze
 
-    def cast_to_boolean(value)
+    def cast_to_boolean(value, default: nil)
       if value.nil? || value == ""
-        nil
+        default
       else
         !FALSE_VALUES.include?(value)
       end

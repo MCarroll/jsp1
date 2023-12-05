@@ -289,7 +289,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_155334) do
     t.string "paddle_classic_id"
     t.string "lemon_squeezy_id"
     t.string "fake_processor_id"
-    t.string "jumpstart_id"
   end
 
   create_table "users", force: :cascade do |t|

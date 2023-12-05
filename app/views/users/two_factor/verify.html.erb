@@ -1,4 +1,4 @@
-<div class="max-w-xl mx-auto mt-12 p-8 bg-white rounded border border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+<div class="max-w-xl p-8 mx-auto mt-12 bg-white border border-gray-200 rounded dark:bg-gray-900 dark:border-gray-700">
   <h3><%= t ".header" %></h3>
   <p class="mb-4 text-sm text-gray-700"><%= t ".subheader" %></p>
 
@@ -15,8 +15,13 @@
     </ol>
   </div>
 
-  <div class="w-2/5 my-12 mx-auto dark:bg-gray-200 p-4 rounded">
+  <div class="w-2/5 p-4 mx-auto my-12 rounded dark:bg-gray-200">
     <%= current_user.two_factor_otp_qr_code(viewbox: true).html_safe %>
+  </div>
+
+  <div class="mx-auto mb-4 text-sm text-gray-700">
+    <p class="mb-4 text-sm text-gray-700"><%= t ".instructions_4" %></p>
+    <p><%= current_user.otp_app_code %></p>
   </div>
 
   <h6 class="font-semibold"><%= t ".verify_header" %></h6>

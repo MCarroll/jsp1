@@ -484,6 +484,7 @@ en:
         instructions_1_html: "Install Authy: %{ios} or %{android}"
         instructions_2: "In the app, select \"Add account\""
         instructions_3: "Choose \"Scan QR Code\""
+        instructions_4: "Trouble scanning? Enter this key in your app instead:"
         verify_header: "Enter the six-digit code from the application"
         verify_description: "After scanning the QR code, the app will display a code that you can enter to continue."
         cancel: "Cancel"

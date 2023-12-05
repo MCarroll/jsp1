@@ -35,6 +35,10 @@ module TwoFactorAuthentication
     otp.provisioning_uri(email)
   end
 
+  def otp_app_code
+    otp.secret
+  end
+
   def current_otp
     otp.now
   end

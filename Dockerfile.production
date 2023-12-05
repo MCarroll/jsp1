@@ -85,8 +85,8 @@ RUN bundle config --local without "development test omit" && bundle install --jo
 COPY package.json yarn.lock /app/
 RUN yarn install
 COPY . /app
-RUN bin/rails assets:precompile
+RUN SECRET_KEY_BASE_DUMMY=1 bin/rails assets:precompile
 
-CMD ["bin/rails"]
+CMD ["bin/rails", "server"]
 
 EXPOSE 3000

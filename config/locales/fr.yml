@@ -477,6 +477,7 @@ fr:
         instructions_1_html: "Installer Authy: %{ios} ou %{android}"
         instructions_2: "Dans l'appli, choisir \"Ajouter un compte\""
         instructions_3: "Choisir \"Scanner un code QR\""
+        instructions_4: "Un problème de numérisation ? Saisissez plutôt cette clé dans votre application :"
         verify_header: "Entrer le code à six chiffres affiché par l'application"
         verify_description: "Après avoir scanné l'image du code QC, l'application affichera un code numérique à consigner dans la boîte ici-bas."
         cancel: "Annuler"

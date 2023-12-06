@@ -14,7 +14,7 @@ GIT
 
 GIT
   remote: https://github.com/excid3/devise.git
-  revision: 82a3d2327c32b543a4ff653a6ea9a896d64513f0
+  revision: 871c1b7cf6a0cc24b5f8fd5bc165d9c261a6da23
   branch: sign-in-after-reset-password-proc
   specs:
     devise (4.9.3)
@@ -32,13 +32,6 @@ GIT
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-
-GIT
-  remote: https://github.com/pay-rails/pay.git
-  revision: cc4a2860a263f100b55cb8af8109fa892e828ccb
-  specs:
-    pay (6.8.1)
-      rails (>= 6.0.0)
 
 GIT
   remote: https://github.com/prawnpdf/prawn.git
@@ -223,7 +216,7 @@ GEM
     invisible_captcha (2.1.0)
       rails (>= 5.2)
     io-console (0.6.0)
-    irb (1.9.1)
+    irb (1.10.1)
       rdoc
       reline (>= 0.3.8)
     jquery-rails (4.6.0)
@@ -232,7 +225,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jsbundling-rails (1.2.1)
       railties (>= 6.0.0)
-    json (2.6.3)
+    json (2.7.1)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -277,7 +270,7 @@ GEM
     mutex_m (0.2.0)
     name_of_person (1.1.2)
       activesupport (>= 5.2.0)
-    net-imap (0.4.5)
+    net-imap (0.4.7)
       date
       net-protocol
     net-pop (0.1.2)
@@ -286,7 +279,7 @@ GEM
       timeout
     net-smtp (0.4.0)
       net-protocol
-    nio4r (2.6.1)
+    nio4r (2.7.0)
     nokogiri (1.15.5-aarch64-linux)
       racc (~> 1.4)
     nokogiri (1.15.5-arm64-darwin)
@@ -308,6 +301,8 @@ GEM
     parser (3.2.2.4)
       ast (~> 2.4.1)
       racc
+    pay (7.0.0)
+      rails (>= 6.0.0)
     pdf-core (0.9.0)
     pg (1.5.4)
     prawn-table (0.2.2)
@@ -364,7 +359,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.1.0)
-    rdoc (6.6.0)
+    rdoc (6.6.1)
       psych (>= 4.0.0)
     receipts (2.2.0)
       prawn (>= 1.3.0, < 3.0.0)
@@ -373,8 +368,8 @@ GEM
       redis-client (>= 0.17.0)
     redis-client (0.18.0)
       connection_pool
-    regexp_parser (2.8.2)
-    reline (0.4.0)
+    regexp_parser (2.8.3)
+    reline (0.4.1)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
@@ -416,7 +411,7 @@ GEM
       sprockets-rails
       tilt
     selectize-rails (0.12.6)
-    selenium-webdriver (4.15.0)
+    selenium-webdriver (4.16.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -428,7 +423,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    standard (1.32.0)
+    standard (1.32.1)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
       rubocop (~> 1.57.2)
@@ -442,7 +437,7 @@ GEM
       rubocop-performance (~> 1.19.1)
     stimulus-rails (1.3.0)
       railties (>= 6.0.0)
-    stringio (3.0.9)
+    stringio (3.1.0)
     thor (1.3.0)
     tilt (2.3.0)
     timeout (0.4.1)
@@ -510,7 +505,7 @@ DEPENDENCIES
   noticed (~> 1.5)
   overcommit
   pagy (~> 6.0)
-  pay!
+  pay (~> 7.0)
   pg
   prawn!
   prefixed_ids (~> 1.2)

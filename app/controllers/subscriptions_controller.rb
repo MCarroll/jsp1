@@ -8,7 +8,7 @@ class SubscriptionsController < ApplicationController
   before_action :redirect_if_already_subscribed, only: [:new]
   before_action :handle_past_due_or_unpaid, only: [:new]
 
-  layout "checkout", only: [:new, :payment, :create]
+  layout "checkout", only: [:new, :create]
 
   def index
     @payment_processor = current_account.payment_processor

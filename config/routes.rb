@@ -15,6 +15,7 @@ Rails.application.routes.draw do
         require "sidekiq/web"
         mount Sidekiq::Web => "/sidekiq"
       end
+      mount Flipper::UI.app(Flipper) => "/flipper" if defined?(::Flipper::UI)
 
       resources :announcements
       resources :users do

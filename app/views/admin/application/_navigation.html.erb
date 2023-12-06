@@ -11,6 +11,7 @@ as defined by the routes in the `admin/` namespace
   <%= link_to "← Back to App", root_path, class: "navigation__link" %>
   <%= link_to "Jumpstart", jumpstart_path, class: "navigation__link" if Rails.env.development? %>
   <%= link_to "Sidekiq", admin_sidekiq_web_path, class: "navigation__link", target: :_blank if defined?(::Sidekiq) %>
+  <%= link_to "Feature Flags", "/admin/flipper", class: "navigation__link", target: :_blank if defined?(::Flipper::UI) %>
   <hr />
 
   <%= link_to "Dashboard", admin_root_path, class: "navigation__link" %>

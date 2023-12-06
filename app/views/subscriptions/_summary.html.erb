@@ -1,9 +1,9 @@
 <h4><%= subscription.plan&.name || subscription.name %></h4>
 <% unless subscription.plan.nil? %>
   <div class="mb-2 text-lg">
-    <%= subscription.amount_with_currency %> / <%= subscription.plan.interval %>
+    <%= pay_amount_to_currency(subscription) %> / <%= subscription.plan.interval %>
   </div>
   <% if subscription.quantity > 1 || subscription.plan.charge_per_unit? %>
-    <div><%= t(".quantity", quantity: subscription.quantity, price: subscription.plan.amount_with_currency, unit: (subscription.plan.unit_label? ? t(".per_unit", unit: subscription.plan.unit_label) : t(".each"))) %></div>
+    <div><%= t(".quantity", quantity: subscription.quantity, price: pay_amount_to_currency(subscription.plan), unit: (subscription.plan.unit_label? ? t(".per_unit", unit: subscription.plan.unit_label) : t(".each"))) %></div>
   <% end %>
 <% end %>

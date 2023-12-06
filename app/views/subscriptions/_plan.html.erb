@@ -2,7 +2,7 @@
   <h4 class="mb-4"><%= plan.name %></h4>
 
   <div class="mb-4">
-    <span class="text-5xl font-bold"><%= plan.amount_with_currency(strip_insignificant_zeros: true) %></span>
+    <span class="text-5xl font-bold"><%= pay_amount_to_currency(plan, strip_insignificant_zeros: true) %></span>
     <span class="text-lg text-gray-500 dark:text-gray-300 font-medium">
       <% if plan.unit_label? %>/ <%= plan.unit_label %><% end %>
       / <%= formatted_plan_interval(plan) %>

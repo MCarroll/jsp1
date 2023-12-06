@@ -19,7 +19,7 @@
           <div>
             <h1 class="font-semibold text-lg text-gray-500 dark:text-gray-200">Try <%= @plan.name %></h1>
             <h3 class="my-1 font-bold text-3xl"><%= @plan.trial_period_days %> days free</h3>
-            <p class="font-medium text-gray-500 dark:text-gray-200">Then <span id="recurringTotal"><%= @plan.amount_with_currency %></span> per <%= @plan.interval %></p>
+            <p class="font-medium text-gray-500 dark:text-gray-200">Then <span id="recurringTotal"><%= pay_amount_to_currency(@plan) %></span> per <%= @plan.interval %></p>
           </div>
 
         <% else %>
@@ -27,7 +27,7 @@
             <h1 class="font-semibold text-lg text-gray-500 dark:text-gray-200">Subscribe to <%= @plan.name %></h1>
 
             <div class="flex items-center">
-              <h3 id="recurringTotal" class="my-1 font-bold text-4xl"><%= @plan.amount_with_currency %></h3>
+              <h3 id="recurringTotal" class="my-1 font-bold text-4xl"><%= pay_amount_to_currency(@plan) %></h3>
 
               <div class="ml-2 font-medium text-sm text-gray-500 dark:text-gray-200 leading-none">
                 <% if @plan.unit_label? %>
@@ -103,7 +103,7 @@
         <%= render 'subscriptions/forms/paypal' if Jumpstart.config.paypal? %>
 
         <% if @plan.has_trial? %>
-          <p class="mt-4 text-center text-sm text-gray-500 dark:text-gray-300">After your trial ends, you will be charged <%= @plan.amount_with_currency %> per <%= @plan.interval %> starting <%= l @plan.trial_period_days.days.from_now.to_date, format: :long %>. You can always cancel before then.</p>
+          <p class="mt-4 text-center text-sm text-gray-500 dark:text-gray-300">After your trial ends, you will be charged <%= pay_amount_to_currency(@plan) %> per <%= @plan.interval %> starting <%= l @plan.trial_period_days.days.from_now.to_date, format: :long %>. You can always cancel before then.</p>
         <% else %>
           <p class="mt-4 text-center text-sm text-gray-500 dark:text-gray-300">By confirming your subscription, you allow <%= Jumpstart.config.application_name %> to charge your payment method for this payment and future payments in accorandce with our terms.</p>
         <% end %>

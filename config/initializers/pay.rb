@@ -20,22 +20,16 @@ module SubscriptionExtensions
   extend ActiveSupport::Concern
 
   included do
-    # Generates hash IDs with a friendly prefix so users can't guess hidden plan IDs on checkout
-    # https://github.com/excid3/prefixed_ids
     has_prefix_id :sub
+    delegate :currency, to: :plan
   end
 
   def plan
     @plan ||= Plan.where("#{customer.processor}_id": processor_plan).first
   end
 
-  def plan_interval
-    plan.interval
-  end
-
-  def amount_with_currency(**)
-    total = (quantity == 0) ? plan.amount : plan.amount * quantity
-    Pay::Currency.format(total, currency: plan.currency, **)
+  def amount
+    (quantity == 0) ? plan.amount : plan.amount * quantity
   end
 end
 
@@ -43,8 +37,6 @@ module ChargeExtensions
   extend ActiveSupport::Concern
 
   included do
-    # Generates hash IDs with a friendly prefix so users can't guess hidden plan IDs on checkout
-    # https://github.com/excid3/prefixed_ids
     has_prefix_id :ch
   end
 end

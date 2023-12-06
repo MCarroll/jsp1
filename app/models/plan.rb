@@ -31,10 +31,6 @@ class Plan < ApplicationRecord
     Array.wrap(super)
   end
 
-  def amount_with_currency(**)
-    Pay::Currency.format(amount, currency: currency, **)
-  end
-
   def has_trial?
     trial_period_days.to_i > 0
   end

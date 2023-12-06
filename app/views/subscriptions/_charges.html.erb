@@ -15,7 +15,7 @@
       <% current_account.charges.sorted.each do |charge| %>
         <tr class="group border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900">
           <td class="p-3 font-medium text-gray-700 dark:text-gray-200"><%= charge.created_at.strftime("%B %e, %Y") %></td>
-          <td class="p-3 text-gray-700 dark:text-gray-200"><%= charge.amount_with_currency %></td>
+          <td class="p-3 text-gray-700 dark:text-gray-200"><%= pay_amount_to_currency(charge) %></td>
           <td class="p-3 text-center text-gray-700 dark:text-gray-200">
             <%= link_to invoice_charge_path(charge, format: :pdf), target: :_blank do %>
               <svg xmlns="http://www.w3.org/2000/svg" class="inline-block text-gray-500 dark:text-gray-300 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

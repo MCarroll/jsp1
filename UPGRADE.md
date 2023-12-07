@@ -2,6 +2,14 @@
 
 This file includes notes on major changes that might affect your application and require changes from you to update.
 
+### December 6, 2023
+
+NotificationTokens for Android now use "fcm" (Firebase Cloud Messaging) as the platform. If you're using this feature, you'll want to update all notification tokens in the database.
+
+```ruby
+NotificationToken.where(platform: "Android").update_all(platform: "fcm")
+```
+
 ### November 22, 2023
 
 The following methods have been renamed - `Account#impersonal?` has been renamed to `Account#team?` and `scope :impersonal` has been renamed to `scope :team`. You will need to update any references to these methods in your application.

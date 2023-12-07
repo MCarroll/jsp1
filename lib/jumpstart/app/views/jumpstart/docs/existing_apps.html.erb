@@ -130,7 +130,7 @@ export default class extends Controller {
   <li>Use <code>Authorization</code> header to authenticate user with API token</li>
   <li>Accept params:<ul>
       <li><code>token</code> - device notification token</li>
-      <li><code>platform</code> - platform of device (iOS, Android)</li>
+      <li><code>platform</code> - platform of device (iOS, fcm). "fcm" is Firebase Cloud Messaging which is used for Android.</li>
     </ul>
   </li>
   <li>Find or create NotificationToken record for user with params</li>

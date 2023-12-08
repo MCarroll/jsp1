@@ -62,6 +62,7 @@ en:
   account_users:
     updated: "Account member was successfully updated."
     destroyed: "Account member was successfully removed."
+    not_allowed: "You cannot remove the account owner."
     edit:
       description: "Editing account permissions for %{user}."
 

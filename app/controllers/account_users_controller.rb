@@ -4,6 +4,7 @@ class AccountUsersController < Accounts::BaseController
   before_action :require_non_personal_account!
   before_action :set_account_user, only: [:edit, :update, :destroy]
   before_action :require_account_admin, except: [:index, :show]
+  before_action :require_account_owner!, only: [:destroy]
 
   # GET /accounts
   def index
@@ -54,5 +55,9 @@ class AccountUsersController < Accounts::BaseController
 
   def require_non_personal_account!
     redirect_to accounts_path if @account.personal?
+  end
+
+  def require_account_owner!
+    redirect_to @account, alert: t(".not_allowed") if @account_user.account_owner?
   end
 end

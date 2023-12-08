@@ -74,6 +74,9 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
 
+  # Uncomment the line below to enable strict loading across all models. More granular control can be applied at the model or association level.
+  # config.active_record.strict_loading_by_default = true
+
   # Set the default URL for ActionMailer in development.
   config.action_mailer.default_url_options = {host: "lvh.me", port: ENV.fetch("PORT", 3000).to_i}
   config.action_mailer.delivery_method = :letter_opener_web

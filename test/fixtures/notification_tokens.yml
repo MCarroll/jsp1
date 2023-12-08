@@ -5,5 +5,5 @@ ios:
 
 android:
   user: one
-  platform: Android
+  platform: fcm
   token: abcd

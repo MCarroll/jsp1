@@ -1,26 +1,55 @@
 <% content_for :section_title, "Multitenancy" %>
 
-<%= h3_with_anchor "Multitenancy" %>
-<p>By popular request, we support "multitenancy" by selecting the current account and scoping all model queries to the set account. We're using the <%= link_to "acts_as_tenant", "https://github.com/ErwinM/acts_as_tenant", target: :_blank %> gem to power this feature.</p>
-<p>Multitenancy is optional and must be opted in for each model that you want scoped to tenants. Any models without multitenancy will be globally available. We recommend you keep Users, Accounts, etc globally available outside tenants.</p>
-<p>To scope a resource to a tenant, make sure your model has an <code>account_id:integer</code> column in the database.</p>
-<p>Then you can add <code>acts_as_tenant :account</code> to the model.</p>
+<%= h2_with_anchor "Overview" %>
+<p>Jumpstart Pro supports multi-tenancy out-of-the-box by using the <code>Account</code> model to scope access to resources. This forbids users that are not associated to a given account from seeing the resources that belong to that account. The below diagram illustrates this functionality:</p>
+<%= image_tag "https://jumpstartpro.b-cdn.net/resources-scoped-to-accounts.png", class: "block mx-auto", alt: "Diagram of how resources are scoped to accounts in JumpstartPro", size: "600" %>
+<p>With multi-tenancy in place resources can be transferred between accounts easily by updating the `account_id` attribute of a given resource from the old <code>account_id</code> to the new <code>account_id</code>. The diagram below shows transferring a project to another account using this approach:</p>
+<%= image_tag "https://jumpstartpro.b-cdn.net/transferring-resources-bt-accounts.png", class: "block mx-auto", alt: "Diagram of how to transfer resources to another accounts in JumpstartPro", size: "600" %>
+
+<%= h2_with_anchor "Setting The Account/Tenant" %>
+<p>The process of finding and setting the <code>current_account</code> can be configured in the configuration wizard, as shown in the screenshot below:</p>
+<%= image_tag "https://jumpstartpro.b-cdn.net/config-wizard-account-switching.png", class: "block mx-auto", alt: "Screenshot of configuring how accounts are set via the config wizard in JumpstartPro", size: "950" %>
+<p>When a request is made to your application, Jumpstart Pro automatically uses these configurations to determine how to look up an account and properly scope the resources to the <code>current_account</code>.</p>
+
+<%= h2_with_anchor "Multitenancy with Associations" %>
+<p>For instance, when creating a resource like the <code>Project</code> model, you can specify that a project <code>belongs_to</code> an <code>account</code> using the following command:</p>
 
 <div class="not-prose">
-  <pre><code>class Project
-    acts_as_tenant :account
-  end</code></pre>
+  <pre><code>rails g model Project account:belongs_to title:string</code></pre>
 </div>
 
-<p>This will automatically add a <code>belongs_to :account</code> association and scope all queries on the model to the current account. <code>Project.all</code> will produce the same results as <code>current_account.projects</code>.</p>
-<p>If current_account is <code>nil</code>, then all records will be returned. This can be changed to raise an exception if current account is nil by adding this initializer:</p>
+<p>Once set up, you can easily scope projects to the <code>current_account</code> in your <code>ProjectsController</code>:</p>
 
 <div class="not-prose">
-  <pre class="lang-ruby"><code># config/initializers/acts_as_tenant.rb
+  <pre class="lang-ruby"><code>class ProjectsController < ApplicationController
+  def index
+    @projects = current_account.projects
+  end
 
+  def new
+    @project = current_account.projects.new
+  end
+end</code></pre>
+</div>
+
+<p>Using the association scopes the Projects to the <code>current_account</code>. The downside is accessing <code>Project.all</code> would return Projects for any account.</p>
+<p>To safeguard against this, you can integrate the <%= link_to "act_as_tenant", "https://github.com/ErwinM/acts_as_tenant" %> gem via the "Dependencies" section of the configuration wizard. This is especially useful for ensuring that queries are properly scoped to an account in the event you forget to do something like the above code example where the scoping is written by you in your controller actions or other queries. More information on <code>acts_as_tenant</code> is provided below.</p>
+
+<%= h2_with_anchor "Multitenancy with ActsAsTenant" %>
+<p>Supporting multitenancy with <code>acts_as_tenant</code> involves setting the <code>current_account</code> and scoping all model queries to that account.</p>
+<p>Enabling multitenancy with <code>acts_as_tenant</code> is optional and must be specified for each model requiring tenant scoping. Any models without multitenancy will be globally available. It's recommended to keep models like <code>User</code> and <code>Account</code> globally available outside of tenants.</p>
+<p>To scope a resource to a tenant, ensure your model has an <code>account_id:integer</code> column in the database, and then add <code>acts_as_tenant :account</code> to the model:</p>
+<div class="not-prose">
+  <pre class="lang-ruby"><code>class Project < ApplicationRecord
+  acts_as_tenant :account
+end</code></pre>
+</div>
+<p>This automatically adds a <code>belongs_to :account</code> association and scopes all queries on the model to the <code>current_account</code>. For example, calling <code>Post.all</code> produces the same results as <code>current_account.posts</code>.</p>
+<p>If <code>current_account</code> is <code>nil</code>, all records will be returned. To change this behavior and raise an exception if <code>current_account</code> is <code>nil</code>, add the following initializer:</p>
+<div class="not-prose">
+  <pre class="lang-ruby"><code># config/initializers/acts_as_tenant.rb
 ActsAsTenant.configure do |config|
   config.require_tenant = true
 end</code></pre>
 </div>
-
-<p>By enabling this feature, you will receive a <code>ActsAsTenant::NoTenant</code> when calling <code>Project.all</code> instead.</p>
+<p>By enabling this feature, calling <code>Project.all</code> without a tenant set will result in an <code>ActsAsTenant::NoTenant</code> error.</p>

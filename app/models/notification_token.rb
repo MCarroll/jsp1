@@ -3,8 +3,8 @@ class NotificationToken < ApplicationRecord
 
   belongs_to :user
   validates :token, presence: true
-  validates :platform, presence: true, inclusion: {in: %w[iOS Android]}
+  validates :platform, presence: true, inclusion: {in: %w[iOS fcm]}
 
-  scope :android, -> { where(platform: "Android") }
+  scope :android, -> { where(platform: "fcm") }
   scope :ios, -> { where(platform: "iOS") }
 end

@@ -42,6 +42,13 @@ class Jumpstart::AccountUsersTest < ActionDispatch::IntegrationTest
       assert_response :redirect
     end
 
+    test "cannot delete account owner" do
+      account_user = @account.account_users.find_by(user_id: @account.owner_id)
+      assert_no_difference "@account.account_users.count" do
+        delete account_account_user_path(@account, account_user.id)
+      end
+    end
+
     test "disables admin role checkbox when editing owner" do
       account_user = account_users(:company_admin)
       get edit_account_account_user_path(@account, account_user)

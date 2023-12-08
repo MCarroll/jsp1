@@ -58,6 +58,6 @@ class AccountUsersController < Accounts::BaseController
   end
 
   def safeguard_account_owner_deletion!
-    redirect_to @account, alert: t(".not_allowed") if @account_user.account_owner?
+    redirect_to @account, alert: t("unauthorized") if @account_user.account_owner?
   end
 end

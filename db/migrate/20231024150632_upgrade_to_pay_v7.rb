@@ -12,7 +12,5 @@ class UpgradeToPayV7 < ActiveRecord::Migration[7.1]
     Pay::Subscription.find_each { |c| c.update(stripe_account: c.data&.dig("stripe_account")) }
     Pay::PaymentMethod.find_each { |c| c.update(stripe_account: c.data&.dig("stripe_account")) }
     Pay::Charge.find_each { |c| c.update(stripe_account: c.data&.dig("stripe_account")) }
-
-    Plan.find_each { |c| c.update(paddle_classic_id: c.details&.dig("paddle_id")) }
   end
 end

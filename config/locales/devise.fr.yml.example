@@ -42,7 +42,7 @@ fr:
       unlock_instructions:
         action: Déverrouiller mon compte
         greeting: Bonjour %{recipient}!
-        instruction: 'Cliquez sur le lien ici-bas pour déverrouiller votre compte:'
+        instruction: "Cliquez sur le lien ici-bas pour déverrouiller votre compte:"
         message: Votre compte a été verrouillé à cause d'un nombre important d'échecs de connexion.
         subject: Instructions pour déverrouiller le compte
     omniauth_callbacks:
@@ -67,7 +67,9 @@ fr:
       edit:
         are_you_sure: Êtes-vous certain?
         cancel_my_account: Supprimer mon compte
-        currently_waiting_confirmation_for_email: 'En attente de confirmation pour: %{email}'
+        cancel_my_account_description: Ceci va supprimer définitivement toutes les données associées à votre compte. Cette action ne peut être annulée.
+        cancel_my_account_confirm_description_html: Ceci va supprimer définitivement toutes les données associées à votre compte. Cette action ne peut être annulée.<br/><br/>Pour confirmer, entrez votre adresse courriel pour confirmer et supprimer votre compte.
+        currently_waiting_confirmation_for_email: "En attente de confirmation pour: %{email}"
         leave_blank_if_you_don_t_want_to_change_it: laisser vide si vous ne voulez pas le changer
         title: Modifier mon profil
         unhappy: Insatisfait?

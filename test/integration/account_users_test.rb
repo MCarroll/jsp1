@@ -23,7 +23,7 @@ class Jumpstart::AccountUsersTest < ActionDispatch::IntegrationTest
     test "can edit account user" do
       account_user = account_users(:company_regular_user)
       get edit_account_account_user_path(@account, account_user)
-      assert_select "button", "Update Account user"
+      assert_select "button", I18n.t("helpers.submit.update", model: AccountUser.model_name.human)
     end
 
     test "can update account user" do

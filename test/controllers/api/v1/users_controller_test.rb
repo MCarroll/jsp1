@@ -5,7 +5,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     post api_v1_users_url, params: {}
     assert_response :unprocessable_entity
     assert response.parsed_body["errors"]
-    assert_equal ["can't be blank"], response.parsed_body["errors"]["email"]
+    assert_equal [I18n.t("errors.messages.blank")], response.parsed_body["errors"]["email"]
   end
 
   test "returns user and api token on success" do

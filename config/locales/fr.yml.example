@@ -75,6 +75,7 @@ fr:
       current: "Compte actuel"
     show:
       invite: "Inviter un utilisateur"
+      resend_invite: "Renvoyer l’invitation"
       edit: "Modifier"
       edit_account: "Modifier le compte"
       copy_link: "Copier le lien"
@@ -95,6 +96,7 @@ fr:
     users: "Utilisateurs"
     roles: "Rôles"
     account_invitations:
+      sent: "L’invitation a été envoyée à %{email}."
       updated: "L'invitation a bien été mise à jour."
       destroyed: "L'invitation a bien été supprimée."
       new:
@@ -188,7 +190,7 @@ fr:
       confirm_button: "Confirmer le paiement"
 
   static:
-    no_plans: "Aucun forfait n’est configuré."
+    no_plans_html: "Il n'y a pas de plans de prix configurés. %{link}."
     pricing:
       heading: "Abonnements"
       subhead: "Une structure de prix simple pour vous lancer"
@@ -253,6 +255,7 @@ fr:
     created: "Merci de vous être abonné !"
     resumed: "Votre abonnement a repris."
     billing_settings_updated: "Les informations de facturation ont été sauvegardées."
+    already_subscribed: "Vous êtes déjà abonné."
 
     plan:
       change_plan: "Changer de forfait"
@@ -430,6 +433,11 @@ fr:
           enable: "Activer l'authentification à deux facteurs"
           disable: "Désactiver l'authentification à deux facteurs"
 
+  themes:
+    system: "Synchroniser avec le système"
+    light: "Clair"
+    dark: "Sombre"
+
   users:
     agreements:
       show:
@@ -449,6 +457,8 @@ fr:
         remove: "Enlever"
         redirecting: "Redirection…"
         none: "Vous n’avez pas de compte connecté."
+      connected_account:
+        remove: "Supprimer"
     omniauth_callbacks:
       account_exists: "Un compte associé à cette adresse courriel existe déjà. Connectez-vous avec vos identifiants précédants avant de vous connecter à celui-ci."
     sessions:
@@ -556,3 +566,17 @@ fr:
         name: "Prénom Untel"
         email: "vous@exemple.com"
         password: "motdepasse"
+
+  pay:
+    line_items:
+      amount: "Montant"
+      description: "Description"
+      quantity: "Quantité"
+      subtotal: "Sous-total"
+      total: "Total"
+      unit_price: "Prix unitaire"
+    receipt:
+      date: "Date"
+      number: "Numéro de reçu"
+      payment_method: "Méthode de paiement"
+      amount_paid: "Montant payé"

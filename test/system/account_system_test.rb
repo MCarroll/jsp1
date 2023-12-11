@@ -10,7 +10,7 @@ class AccountSystemTest < ApplicationSystemTestCase
     refute @user.avatar.attached?
     visit edit_user_registration_path
     attach_file "user[avatar]", file_fixture("avatar.jpg")
-    click_button "Update"
+    click_button I18n.t("devise.registrations.edit.update")
     assert_selector "img[src*='avatar.jpg']"
   end
 end

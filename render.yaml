@@ -1,8 +1,6 @@
 # Example Render configuration. You will need to adjust this for the different services you run.
-# Replace repo url with the repository url for your Jumpstart Pro application
 services:
   - type: web
-    repo: https://github.com/GITHUB_USERNAME/GITHUB_REPOSITORY # Replace this url
     name: rails
     env: ruby
     region: oregon # the region must be consistent across all services for the internal keys to be read

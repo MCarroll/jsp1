@@ -1,5 +1,5 @@
 <div data-controller="tabs"
-     data-tabs-active-tab-class="border-blue-500 text-blue-600"
+     data-tabs-active-tab-class="border-primary-500 text-primary-600"
      data-tabs-inactive-tab-class="border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-700 dark:hover:text-neutral-300">
 
   <%= select_tag nil, options_for_select(component.tabs), class: "sm:hidden mb-4", data: {action: "tabs#change"} %>

@@ -3,10 +3,10 @@
 <%= h2_with_anchor "Subscriptions" %>
 <p>Subscriptions in Jumpstart Pro are billed against a Account, not a User. This allows you to handle various different billing situations.</p>
 <p>Account billing allows you to share resources and billing functionality with the entire account and allows any member to manage the subscription. It's much easier to start with account billing support than adding it later, so we've got you covered even if you don't need it right away.</p>
-<p>For more information on how accounts work in Jumpstart Pro, check out <%= link_to "the Accounts documentation", accounts_docs_path, target: :_blank, class: "text-blue-500" %>.</p>
+<p>For more information on how accounts work in Jumpstart Pro, check out <%= link_to "the Accounts documentation", accounts_docs_path, target: :_blank, class: "text-primary-500" %>.</p>
 
 <%= h3_with_anchor "Defining Subscription Plans" %>
-<p>Plans can be defined in the <%= link_to "Admin", main_app.admin_plans_path, target: :_blank, class: "text-blue-500", data: { controller: "tooltip", tooltip_content_value: "You must be logged in as an Admin to view this" } %>. Each plan should be defined with the price amount in cents.</p>
+<p>Plans can be defined in the <%= link_to "Admin", main_app.admin_plans_path, target: :_blank, class: "text-primary-500", data: { controller: "tooltip", tooltip_content_value: "You must be logged in as an Admin to view this" } %>. Each plan should be defined with the price amount in cents.</p>
 
 <%= h5_with_anchor "Free Plans" %>
 <p>You can provide free subscriptions to friends and beta testers by using the Pay gem's fake payment processor.</p>

@@ -36,19 +36,19 @@ button[disabled]        .when-enabled { display: none; }
   }
 
   .btn-primary {
-    @apply bg-blue-600 text-white focus:ring-blue-500;
+    @apply bg-primary-600 text-white focus:ring-primary-500;
 
     &:hover,
     &:focus {
-      @apply bg-blue-500 text-white;
+      @apply bg-primary-500 text-white;
     }
 
     &.btn-outline {
-      @apply bg-transparent border border-blue-500 text-blue-500 shadow-none;
+      @apply bg-transparent border border-primary-500 text-primary-500 shadow-none;
 
       &:hover,
       &:focus {
-        @apply bg-blue-500 text-white;
+        @apply bg-primary-500 text-white;
       }
     }
   }
@@ -116,10 +116,10 @@ button[disabled]        .when-enabled { display: none; }
   }
 
   .btn-white {
-    @apply bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:text-gray-700 focus:ring-blue-500;
+    @apply bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:text-gray-700 focus:ring-primary-500;
 
     &.primary {
-      @apply text-blue-600;
+      @apply text-primary-600;
     }
 
     &.secondary {
@@ -136,18 +136,18 @@ button[disabled]        .when-enabled { display: none; }
   }
 
   .btn-link {
-    @apply text-blue-500 bg-transparent shadow-none;
+    @apply text-primary-500 bg-transparent shadow-none;
 
     &:hover,
     &:focus {
-      @apply text-blue-600;
+      @apply text-primary-600;
 
       transform: none;
     }
   }
 
   .btn-light-blue {
-    @apply text-blue-700 bg-blue-100 focus:ring-blue-700;
+    @apply text-primary-700 bg-primary-100 focus:ring-primary-700;
   }
 
   .btn-light-green {

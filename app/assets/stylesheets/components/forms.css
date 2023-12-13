@@ -146,16 +146,17 @@ form.inline {
   }
 }
 
-.switch, .toggle {
+.switch,
+.toggle {
   @apply relative;
 
   input[type="checkbox"] {
     @apply absolute top-2 left-0 opacity-0;
 
     &:checked {
-      + label {
+      +label {
         &:before {
-          @apply bg-blue-600 dark:bg-blue-400;
+          @apply bg-primary-600 dark:bg-primary-400;
         }
 
         &:after {

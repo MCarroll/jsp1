@@ -28,10 +28,10 @@ h6, .h6 {
 }
 
 .link {
-  @apply text-blue-500;
+  @apply text-primary-500;
 
   &:hover,
   &:focus {
-    @apply text-blue-600;
+    @apply text-primary-600;
   }
 }

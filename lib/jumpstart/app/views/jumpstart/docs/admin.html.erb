@@ -5,7 +5,7 @@
 <%= h2_with_anchor "Admin Area" %>
 <p>The Jumpstart Pro admin area is a great place to take a peek into your application. You can access any of the models you have generated a dashboard for and provide customer support easily through it.</p>
 <p>A dashboard is provided in the admin so you can see important metrics. By default, we show you details about your total and recent revenue and the number of users and active subscriptions to your product. You can customize this to add your own metrics as you build your application.</p>
-<p>The admin area is available at <%= link_to "/admin", "/admin", target: :_blank, class: "text-blue-500 underline" %> and <em>only</em> accessible to admin users of your application.</p>
+<p>The admin area is available at <%= link_to "/admin", "/admin", target: :_blank, class: "text-primary-500 underline" %> and <em>only</em> accessible to admin users of your application.</p>
 
 <%= h2_with_anchor "Admin Users" %>
 <p>To set a user as an admin, simply update their admin flag: <code>Jumpstart.grant_system_admin! user</code> from the Rails console.</p>
@@ -18,4 +18,4 @@
 
 <%= h2_with_anchor "Using Administrate" %>
 <p>To generate an admin dashboard for a model, you can run <code>rails g administrate:dashboard MODEL_NAME</code>.</p>
-<p>Check out the <%= link_to "GoRails screencast episodes on Administration", "https://gorails.com/episodes/tagged/Administration", target: :_blank, class: "text-blue-500" %> and the <%= link_to "Administrate GitHub", "https://github.com/thoughtbot/administrate", target: :_blank, class: "text-blue-500" %> for more information on how to use Administrate.</p>
+<p>Check out the <%= link_to "GoRails screencast episodes on Administration", "https://gorails.com/episodes/tagged/Administration", target: :_blank, class: "text-primary-500" %> and the <%= link_to "Administrate GitHub", "https://github.com/thoughtbot/administrate", target: :_blank, class: "text-primary-500" %> for more information on how to use Administrate.</p>

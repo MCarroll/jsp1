@@ -3,13 +3,13 @@
 <p class="text-xl">Announcements are a way for you to notify users of new features, changes, and improvements you've made to your product.</p>
 
 <%= h2_with_anchor "Viewing Announcements" %>
-<p>Announcements are shown in the navbar under <%= link_to "What's New", main_app.announcements_path, target: :_blank, class: "text-blue-500 underline" %>.</p>
+<p>Announcements are shown in the navbar under <%= link_to "What's New", main_app.announcements_path, target: :_blank, class: "text-primary-500 underline" %>.</p>
 <p>When a user has unread announcements, a red dot will show up next to this link to get their attention that they haven't seen the latest announcements.</p>
 <p>After viewing the announcements page, the user will have their account updated to record the last time they viewed the announcements and the red dot will be hidden until there new announcements they haven't seen are published.</p>
 <p>Users who aren't logged in will always see the red dot next to "What's New" in the navbar.</p>
 
 <%= h2_with_anchor "Creating  Announcements" %>
-<p>To create an announcement, login as an admin and visit <%= link_to "/admin/announcements", main_app.admin_announcements_path, target: :_blank, class: "text-blue-500 underline" %>.</p>
+<p>To create an announcement, login as an admin and visit <%= link_to "/admin/announcements", main_app.admin_announcements_path, target: :_blank, class: "text-primary-500 underline" %>.</p>
 
 <%= h2_with_anchor "Announcement Types" %>
 <p>Jumpstart comes with 4 default announcement types.</p>

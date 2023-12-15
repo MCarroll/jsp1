@@ -2,7 +2,7 @@
   "name": "Jumpstart Pro Rails",
   "dockerComposeFile": "../docker-compose.yml",
   "service": "web",
-  "workspaceFolder": "/app",
+  "workspaceFolder": "/rails",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest"

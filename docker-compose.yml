@@ -16,7 +16,9 @@ services:
       - "6379:6379"
 
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     depends_on:
       - postgres
       - redis

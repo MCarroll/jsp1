@@ -13,14 +13,14 @@ class AnnouncementTest < ActiveSupport::TestCase
     user = users(:one)
     user.update(announcements_read_at: nil)
     Announcement.delete_all
-    refute Announcement.unread?(user)
+    assert_not Announcement.unread?(user)
   end
 
   test "unread? returns false when no announcements" do
     user = users(:one)
     user.update(announcements_read_at: 1.month.ago)
     Announcement.delete_all
-    refute Announcement.unread?(user)
+    assert_not Announcement.unread?(user)
   end
 
   test "unread? returns true with unread announcements" do
@@ -32,6 +32,6 @@ class AnnouncementTest < ActiveSupport::TestCase
   test "unread? returns false with no unread announcements" do
     user = users(:one)
     user.update(announcements_read_at: Announcement.maximum(:published_at) + 1.month)
-    refute Announcement.unread?(user)
+    assert_not Announcement.unread?(user)
   end
 end

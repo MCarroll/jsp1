@@ -67,7 +67,7 @@ if defined? OmniAuth
       user = users(:invited)
 
       # Ensure these are separate users
-      refute_equal connected_account.owner, user
+      assert_not_equal connected_account.owner, user
 
       sign_in user
       OmniAuth.config.add_mock(:developer, uid: connected_account.uid, info: {email: connected_account.owner.email}, credentials: {token: 1})

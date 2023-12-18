@@ -8,17 +8,17 @@ class PlanTest < ActiveSupport::TestCase
 
   test "monthly?" do
     assert monthly.monthly?
-    refute annual.monthly?
+    assert_not annual.monthly?
   end
 
   test "annual?" do
     assert annual.annual?
-    refute monthly.annual?
+    assert_not monthly.annual?
   end
 
   test "yearly?" do
     assert annual.yearly?
-    refute monthly.yearly?
+    assert_not monthly.yearly?
   end
 
   test "monthly_version" do
@@ -54,12 +54,12 @@ class PlanTest < ActiveSupport::TestCase
     assert plan.stripe_tax
 
     plan.stripe_tax = "0"
-    refute plan.stripe_tax
+    assert_not plan.stripe_tax
   end
 
   test "unit label required if charge_by_unit enabled" do
     plan = Plan.new(charge_per_unit: true, unit_label: "")
-    refute plan.valid?
+    assert_not plan.valid?
     assert plan.errors[:unit_label].any?
   end
 

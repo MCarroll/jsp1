@@ -7,7 +7,7 @@ class AccountSystemTest < ApplicationSystemTestCase
   end
 
   test "can upload avatar" do
-    refute @user.avatar.attached?
+    assert_not @user.avatar.attached?
     visit edit_user_registration_path
     attach_file "user[avatar]", file_fixture("avatar.jpg")
     click_button I18n.t("devise.registrations.edit.update")

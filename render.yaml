@@ -6,6 +6,7 @@ services:
     region: oregon # the region must be consistent across all services for the internal keys to be read
     buildCommand: "./bin/render-build.sh"
     startCommand: bundle exec rails s
+    healthCheckPath: "/up"
     envVars:
       - key: RAILS_MASTER_KEY
         sync: false

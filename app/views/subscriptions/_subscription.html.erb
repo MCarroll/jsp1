@@ -47,7 +47,7 @@
 
     <div class="mt-2 flex flex-col gap-2 text-center">
       <% if subscription.on_grace_period? %>
-        <%= link_to t(".resume"), subscription_resume_path(subscription), class: "btn btn-primary" if subscription.resumable?%>
+        <%= link_to t(".resume"), subscription_resume_path(subscription), class: "btn btn-primary" if subscription.resumable? %>
       <% elsif subscription.active? %>
         <%= link_to t(".change_plan"), edit_subscription_path(subscription), class: "btn btn-primary" %>
         <%# Only show pausing for Paddle customers because their subscription cancellations can be permanent %>

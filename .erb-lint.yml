@@ -1,3 +1,10 @@
 ---
 exclude:
+  - 'vendor/bundle/**/*'
   - 'lib/jumpstart/app/views/pagy/_nav.html.erb'
+EnableDefaultLinters: false
+linters:
+  SpaceAroundErbTag:
+    enabled: true
+  ExtraNewline:
+    enabled: true

@@ -30,8 +30,6 @@ PreCommit:
       [
         'erblint',
         '--lint-all',
-        '--enable-linters',
-        'space_around_erb_tag,extra_newline',
       ]
 #  RustyWind:
 #    enabled: true

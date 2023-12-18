@@ -86,4 +86,11 @@ Rails.application.configure do
 
   # You may need to set to include the correct URLs from Turbo, etc
   # config.action_controller.default_url_options = {host: "lvh.me", port: ENV.fetch("PORT", 3000).to_i}
+
+  config.generators.after_generate do |files|
+    parsable_files = files.filter { |file| file.end_with?(".rb") }
+    unless parsable_files.empty?
+      system("bundle exec standardrb --fix #{parsable_files.shelljoin}", exception: true)
+    end
+  end
 end

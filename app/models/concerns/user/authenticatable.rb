@@ -5,7 +5,7 @@ module User::Authenticatable
     include TwoFactorAuthentication
 
     # Include default devise modules. Others available are:
-    # :lockable, :timeoutable, andle :trackable
+    # :lockable, :timeoutable, and :trackable
     devise(*[:database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable, (:omniauthable if defined? OmniAuth)].compact)
 
     # Don't confirm email address on create, just when changed

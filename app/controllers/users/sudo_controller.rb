@@ -1,4 +1,4 @@
-class Users::SudoController < ActionController::Base
+class Users::SudoController < ApplicationController
   before_action :authenticate_user!
 
   def create

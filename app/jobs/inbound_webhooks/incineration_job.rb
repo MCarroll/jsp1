@@ -1,5 +1,5 @@
 module InboundWebhooks
-  class IncinerationJob < ActiveJob::Base
+  class IncinerationJob < ApplicationJob
     queue_as :default
 
     discard_on ActiveRecord::RecordNotFound

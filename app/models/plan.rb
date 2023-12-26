@@ -72,6 +72,6 @@ class Plan < ApplicationRecord
   def id_for_processor(processor_name, currency: "usd")
     return if processor_name.nil?
     processor_name = :braintree if processor_name.to_s == "paypal"
-    send("#{processor_name}_id")
+    send(:"#{processor_name}_id")
   end
 end

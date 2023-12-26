@@ -77,7 +77,7 @@ class ActionText::Embed < ApplicationRecord
   )
 
   %w[link photo rich video].each do |embed_type|
-    define_method "#{embed_type}?" do
+    define_method :"#{embed_type}?" do
       type == embed_type
     end
   end

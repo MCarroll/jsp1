@@ -39,7 +39,7 @@ module NavHelper
   end
 
   (1..6).each do |i|
-    define_method "h#{i}_with_anchor" do |*args, **kwargs|
+    define_method :"h#{i}_with_anchor" do |*args, **kwargs|
       header_with_anchor(*args, **kwargs.merge(header_tag: :"h#{i}"))
     end
   end

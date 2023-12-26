@@ -1,7 +1,7 @@
 IntercomRails.config do |config|
   # == Intercom app_id
   #
-  config.app_id = ENV["INTERCOM_APP_ID"] || Rails.application.credentials.dig(:intercom, :app_id)
+  config.app_id = Rails.application.credentials.dig(:intercom, :app_id)
 
   # == Intercom session_duration
   #

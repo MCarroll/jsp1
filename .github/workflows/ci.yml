@@ -1,4 +1,4 @@
-name: Tests
+name: CI
 
 on:
   pull_request:
@@ -9,6 +9,38 @@ on:
       - main
 
 jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Scan for security vulnerabilities
+        run: bin/brakeman
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Lint code for consistent style
+        run: bundle exec standardrb
+
+      - name: Erblint
+        run: bundle exec erblint --lint-all
+
   test:
     runs-on: ubuntu-latest
     services:
@@ -52,16 +84,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y -qq libvips
           yarn install --frozen-lockfile
-
-      - name: Standardrb Check
-        run: bundle exec standardrb
-
-      - name: Erblint Check
-        run: bundle exec erblint --lint-all
-
-# Uncomment to enable Brakeman checks in CI
-#     - name: Brakeman Check
-#       run: bundle exec brakeman
 
       - name: Run tests
         env:

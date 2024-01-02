@@ -53,15 +53,16 @@ group :development, :test do
 
   gem "annotate", ">= 3.2.0"
   gem "letter_opener_web", "~> 2.0"
-  gem "standard", require: false
-  gem "erb_lint", require: false
-
-  # Security tooling to
-  # gem "brakeman"
-  # gem "bundler-audit", github: "rubysec/bundler-audit"
 end
 
 group :development do
+  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem "brakeman", require: false
+
+  # Lint code for consistent style
+  gem "standard", require: false
+  gem "erb_lint", require: false
+
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console", ">= 4.1.0"
 

@@ -4,7 +4,7 @@
 //
 // `yarn build` - Build JavaScript and exit
 // `yarn build --watch` - Rebuild JavaScript on change
-// `yarn build --reload` - Reloads page when views, JavaScript, or stylesheets change
+// `yarn build --reload` - Reloads page when views, JavaScript, or stylesheets change. Requires a PORT to listen on. Defaults to 3200 but can be specified with PORT env var
 //
 // Minify is enabled when "RAILS_ENV=production"
 // Sourcemaps are enabled in non-production environments
@@ -39,7 +39,8 @@ const config = {
 
 async function buildAndReload() {
   // Foreman & Overmind assign a separate PORT for each process
-  const port = parseInt(process.env.PORT)
+  const port = parseInt(process.env.PORT || 3200)
+  console.log(`Esbuild is listening on port ${port}`)
   const context = await esbuild.context({
     ...config,
     banner: {

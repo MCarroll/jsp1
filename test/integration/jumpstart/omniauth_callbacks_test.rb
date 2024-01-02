@@ -8,6 +8,7 @@ if defined? OmniAuth
     end
 
     test "can register and login with a social account" do
+      freeze_time
       get "/users/auth/developer/callback"
 
       user = User.last
@@ -15,7 +16,7 @@ if defined? OmniAuth
       assert_equal "developer", user.connected_accounts.last.provider
       assert_equal "12345", user.connected_accounts.last.uid
       assert_equal user, controller.current_user
-      assert_in_delta Time.now.utc + 100, user.connected_accounts.last.expires_at.utc, 1
+      assert_equal Time.now.utc + 100, user.connected_accounts.last.expires_at.utc
 
       sign_out user
       get "/"

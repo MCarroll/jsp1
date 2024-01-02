@@ -51,7 +51,6 @@ group :development, :test do
   # gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   # gem "pry-rails"
 
-  gem "annotate", ">= 3.2.0"
   gem "letter_opener_web", "~> 2.0"
 end
 
@@ -62,6 +61,9 @@ group :development do
   # Lint code for consistent style
   gem "standard", require: false
   gem "erb_lint", require: false
+
+  # Annotate models and tests with database columns
+  # gem "annotate", ">= 3.2.0"
 
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console", ">= 4.1.0"

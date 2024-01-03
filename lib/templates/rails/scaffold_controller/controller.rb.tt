@@ -6,10 +6,6 @@ require_dependency "<%= namespaced_path %>/application_controller"
 class <%= controller_class_name %>Controller < ApplicationController
   before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
 
-  # Uncomment to enforce Pundit authorization
-  # after_action :verify_authorized
-  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
   # GET <%= route_url %>
   def index
     @pagy, @<%= plural_table_name %> = pagy(<%= class_name %>.sort_by_params(params[:sort], sort_direction))

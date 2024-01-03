@@ -32,8 +32,8 @@ services:
       - REDIS_URL=redis://redis:6379
       - PORT=3000
     volumes:
-      - .:/app
-      - node_modules:/app/node_modules
+      - .:/rails
+      - node_modules:/rails/node_modules
 
 volumes:
   postgres:

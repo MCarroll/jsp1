@@ -17,6 +17,31 @@ class AuthsControllerTest < ActionDispatch::IntegrationTest
     assert_not_nil response.parsed_body["token"]
   end
 
+  test "returns 422 if OTP attempt is required but not included" do
+    user = users(:one)
+    user.enable_two_factor!
+    user.set_otp_secret!
+    post api_v1_auth_url, params: {email: user.email, password: "password"}
+    assert_response :unprocessable_entity
+  end
+
+  test "returns unauthorized if OTP attempt is required but incorrect" do
+    user = users(:one)
+    user.enable_two_factor!
+    user.set_otp_secret!
+    post api_v1_auth_url, params: {email: user.email, password: "password", otp_attempt: "123456"}
+    assert_response :unauthorized
+  end
+
+  test "returns an api token on successful auth with otp attempt" do
+    user = users(:one)
+    user.enable_two_factor!
+    user.set_otp_secret!
+    post api_v1_auth_url, params: {email: user.email, password: "password", otp_attempt: user.current_otp}
+    assert_response :success
+    assert_not_nil response.parsed_body["token"]
+  end
+
   test "creates a new default api token if one didn't exist" do
     user = users(:one)
     assert_difference "user.api_tokens.count" do

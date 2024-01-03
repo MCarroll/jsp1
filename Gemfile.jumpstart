@@ -63,6 +63,7 @@ gem "delayed" if Jumpstart.config.background_job_processor == "delayed_job"
 gem "sneakers" if Jumpstart.config.background_job_processor == "sneakers"
 gem "sucker_punch" if Jumpstart.config.background_job_processor == "sucker_punch"
 gem "good_job" if Jumpstart.config.background_job_processor == "good_job"
+gem "solid_queue" if Jumpstart.config.background_job_processor == "solid_queue"
 
 # Payment processors
 gem "stripe", "~> 10.0" if Jumpstart.config.stripe?

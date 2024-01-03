@@ -44,12 +44,16 @@ module Jumpstart
 
   # Commands to be run after bundle install
   def self.post_install
-    if JobProcessor.delayed_job? && Dir[Rails.root.join("db/migrate/**/*delayed_jobs*")].any?
+    if JobProcessor.delayed_job? && !Dir[Rails.root.join("db/migrate/**/*delayed_jobs*")].any?
       run_command("rails generate delayed:migration")
       run_command("rails db:migrate")
     end
-    if JobProcessor.good_job? && Dir[Rails.root.join("db/migrate/**/*good_jobs*")].any?
+    if JobProcessor.good_job? && !Dir[Rails.root.join("db/migrate/**/*good_jobs*")].any?
       run_command("rails generate good_job:install")
+      run_command("rails db:migrate")
+    end
+    if JobProcessor.solid_queue? && !Dir[Rails.root.join("db/migrate/**/*solid_queue*")].any?
+      run_command("rails generate solid_queue:install")
       run_command("rails db:migrate")
     end
   end

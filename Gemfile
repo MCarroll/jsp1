@@ -47,14 +47,6 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows]
 
-  # Optional debugging tools
-  # gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
-  # gem "pry-rails"
-
-  gem "letter_opener_web", "~> 2.0"
-end
-
-group :development do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
@@ -62,6 +54,14 @@ group :development do
   gem "standard", require: false
   gem "erb_lint", require: false
 
+  gem "letter_opener_web", "~> 2.0"
+
+  # Optional debugging tools
+  # gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  # gem "pry-rails"
+end
+
+group :development do
   # Annotate models and tests with database columns
   # gem "annotate", ">= 3.2.0"
 

@@ -16,14 +16,13 @@
     return_url: checkout_completed_url
   )
   redirect_to @checkout_session.url, allow_other_host: true
-end<code></pre>
+end</code></pre>
 </div>
 
 <p>For Paddle Billing, checkout happens in JavaScript.</p>
 
 <div class="not-prose">
-  <pre class="language-erb"></code>
-&lt;%= tag.div data: {
+  <pre class="language-ruby"><code>&lt;%= tag.div data: {
   controller: "paddle--billing",
   paddle__billing_environment_value: Pay::PaddleBilling.environment,
   paddle__billing_client_token_value: Pay::PaddleBilling.client_token,
@@ -41,7 +40,7 @@ end<code></pre>
 <p>In the previous step, we used a <code>checkout_completed_url</code> to redirect the user after checkout. You'll need to define a route for this and matching controller action to sync purchases.</p>
 
 <div class="not-prose">
-  <pre class="language-ruby"><code>class Checkout::CompletedController < ApplicationController
+  <pre class="language-ruby"><code>class Checkout::CompletedController &lt; ApplicationController
   def show
    # For Stripe
    @charge = Pay::Stripe::Charge.sync_from_checkout_session(params[:session_id])
@@ -59,7 +58,7 @@ end</code></pre>
 <p>Now that checkout is setup and redirects are handled, we can implement the fulfillment step.</p>
 
 <div class="not-prose">
-  <pre class="language-ruby"></code># config/initializers/pay.rb
+  <pre class="language-ruby"><code># config/initializers/pay.rb
 module PayChargeExtension
   extend ActiveSupport::Concern
 

@@ -1,22 +1,84 @@
 <% content_for :section_title, "One-time Payments" %>
 
 <%= h2_with_anchor "One-time Payments" %>
-<p>Selling products as one-time purchases is also easy with Jumpstart Pro. You can use the payment forms from Jumpstart Pro to do this.</p>
+<p>Selling products as one-time purchases is also easy with Jumpstart Pro. This is a multi-step process that starts with presenting the customer with checkout and then fulfilling the purchase once completed.</p>
 
-<p>The easiest way to do this is to have a user put their card in first and then show them the checkout form.</p>
+<%= h3_with_anchor "Checkout Form" %>
+<p>The first step is to create a checkout form that handles one-time payments. We recommend adding metadata to the checkout for accessing later in fulfillment.</p>
 
-<p>An example from the Jumpstart Pro website when purchasing a license: We check if the current account has a card on file, if so we let you purchase a license. If not, we display the card form.</p>
-
+<p>For Stripe, you'll create a Checkout Session and redirect or embed the form on the page (see <code>subscriptions/forms/stripe</code>). We'll use hosted Stripe Checkout for our example.</p>
 <div class="not-prose">
-  <pre class="dark:border dark:border-gray-400/50 dark:rounded"><code class="hljs language-sql"><span class="hljs-operator">&lt;</span><span class="hljs-operator">%</span> if <span class="hljs-operator">!</span>current_account.payment_processor<span class="hljs-operator">&amp;</span>.default_payment_method <span class="hljs-operator">%</span><span class="hljs-operator">&gt;</span>
-  <span class="hljs-operator">&lt;</span>p<span class="hljs-operator">&gt;</span><span class="hljs-keyword">First</span>, <span class="hljs-keyword">add</span> a payment <span class="hljs-keyword">method</span> <span class="hljs-keyword">to</span> your account:
-
-  <span class="hljs-operator">&lt;</span><span class="hljs-operator">%</span><span class="hljs-operator">=</span> render <span class="hljs-string">'payment_methods/forms/stripe'</span>    if Jumpstart.config.stripe? <span class="hljs-operator">%</span><span class="hljs-operator">&gt;</span>
-  <span class="hljs-operator">&lt;</span><span class="hljs-operator">%</span><span class="hljs-operator">=</span> render <span class="hljs-string">'payment_methods/forms/braintree'</span> if Jumpstart.config.braintree? <span class="hljs-operator">%</span><span class="hljs-operator">&gt;</span>
-  <span class="hljs-operator">&lt;</span><span class="hljs-operator">%</span><span class="hljs-operator">=</span> render <span class="hljs-string">'payment_methods/forms/paypal'</span>    if Jumpstart.config.paypal? <span class="hljs-operator">%</span><span class="hljs-operator">&gt;</span>
-<span class="hljs-operator">&lt;</span><span class="hljs-operator">%</span> <span class="hljs-keyword">else</span> <span class="hljs-operator">%</span><span class="hljs-operator">&gt;</span>
-  <span class="hljs-operator">&lt;</span><span class="hljs-operator">%</span><span class="hljs-operator">=</span> render <span class="hljs-string">'form'</span>, license: <span class="hljs-variable">@license</span> <span class="hljs-operator">%</span><span class="hljs-operator">&gt;</span>
-<span class="hljs-operator">&lt;</span><span class="hljs-operator">%</span> <span class="hljs-keyword">end</span> <span class="hljs-operator">%</span><span class="hljs-operator">&gt;</span></code></pre>
+  <pre class="language-ruby"><code>def new
+  @checkout_session = payment_processor.checkout(
+    mode: "payment",
+    line_items: "price_1ILVZaKXBGcbgpbZQ26kgXWG",
+    allow_promotion_codes: true,
+    return_url: checkout_completed_url
+  )
+  redirect_to @checkout_session.url, allow_other_host: true
+end<code></pre>
 </div>
 
-<p>Then on the LicenseController create action, we use <code>current_account.charge(amount)</code> from Pay to issue the charge before creating the license.</p>
+<p>For Paddle Billing, checkout happens in JavaScript.</p>
+
+<div class="not-prose">
+  <pre class="language-erb"></code>
+&lt;%= tag.div data: {
+  controller: "paddle--billing",
+  paddle__billing_environment_value: Pay::PaddleBilling.environment,
+  paddle__billing_client_token_value: Pay::PaddleBilling.client_token,
+  paddle__billing_target: "form",
+  paddle__billing_email_value: current_account.email,
+  paddle__billing_items_value: [price_id: @price_id].to_json,
+  paddle__billing_success_url_value: checkout_completed_url,
+  paddle__billing_custom_data: {order: @order.id}.to_json
+} %&gt;</code></pre>
+</div>
+
+<%= h3_with_anchor "Checkout Completed Controller" %>
+<p>Webhooks are the most reliable way of fulfilling a purchase but redirects after completed purchase also help ensure fulfillment happens as the user finishes in case webhooks are delayed.</p>
+
+<p>In the previous step, we used a <code>checkout_completed_url</code> to redirect the user after checkout. You'll need to define a route for this and matching controller action to sync purchases.</p>
+
+<div class="not-prose">
+  <pre class="language-ruby"><code>class Checkout::CompletedController < ApplicationController
+  def show
+   # For Stripe
+   @charge = Pay::Stripe::Charge.sync_from_checkout_session(params[:session_id])
+
+   # For Paddle Billing
+   current_account.set_payment_processor :paddle_billing, processor_id: params[:user_id]
+   @transatction = Pay::PaddleBilling::Charge.sync_from_transaction(params[:transaction_id])
+  end
+end</code></pre>
+</div>
+
+<p>The controller is only responsible for triggering the sync to the database. This is the exact same process as webhooks and ensures that any delays with webhooks don't affect the customer's checkout flow.</p>
+
+<%= h3_with_anchor "Fulfillment" %>
+<p>Now that checkout is setup and redirects are handled, we can implement the fulfillment step.</p>
+
+<div class="not-prose">
+  <pre class="language-ruby"></code># config/initializers/pay.rb
+module PayChargeExtension
+  extend ActiveSupport::Concern
+
+  # Trigger fulfillment on create
+  after_commit :fulfill_purchase, on: :create
+
+  def fulfill_purchase
+    # Look up record from metadata
+    order = Order.find(metadata["course_id"])
+
+    # Skip if already processed
+    return if order.completed?
+
+    # Handle fulfillment and mark it as complete
+    order.update(status: :completed)
+  end
+end
+
+Rails.configuration.to_prepare do
+  Pay::Charge.include PayChargeExtension
+end</code></pre>
+</div>

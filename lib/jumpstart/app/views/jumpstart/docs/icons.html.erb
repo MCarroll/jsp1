@@ -31,7 +31,7 @@
 
 <div class="pb-10 mb-10 border-b border-gray-300">
   <%= h3_with_anchor "Zondicons" %>
-  <p class="mb-6 leading-normal">The icons shipping with Jumpstart are from the <%= link_to "Zondicons", "https://www.zondicons.com/", class: "link" %> library from <%= link_to "Steve Schoger", "https://twitter.com/steveschoger", class: "link" %>. Find them in <code>app/images/icons</code>. We use a <code>SVG</code> render function that hooks into the <%= link_to "inline_svg", "https://github.com/jamesmartin/inline_svg", class: "link" %> gem. In doing so you can pass <code>styles</code>. <code>title</code>, and <code>name</code> attributes which are all optional.</p>
+  <p class="mb-6 leading-normal">The icons shipping with Jumpstart Pro are from the <%= link_to "Zondicons", "https://www.zondicons.com/", class: "link" %> library from <%= link_to "Steve Schoger", "https://twitter.com/steveschoger", class: "link" %>. Find them in <code>app/images/icons</code>. We use a <code>SVG</code> render function that hooks into the <%= link_to "inline_svg", "https://github.com/jamesmartin/inline_svg", class: "link" %> gem. In doing so you can pass <code>styles</code>. <code>title</code>, and <code>name</code> attributes which are all optional.</p>
   <p class="leading-normal">Pass in both <code>fill-current</code> &amp; a text color class from Tailwind CSS to alter the colors respectively. Use the helper like the following for SVG-based icons/images</p>
   <div class="not-prose">
     <pre><code>&lt;%= render_svg "icon-name", styles: "fill-current text-color-black icon-lg", title: "my icon" %&gt;</code></pre>

@@ -1,6 +1,6 @@
 <% content_for :section_title, "Notifications" %>
 
-<p class="text-xl">Notifications for Jumpstart Pro are built-in using the <%= link_to "Noticed gem", "https://github.com/excid3/noticed", target: :_blank %> and allows delivering notifications across any medium.</p>
+<p class="text-xl">Notifications for Jumpstart Pro are built-in using the <%= link_to "Noticed gem", "https://github.com/excid3/noticed", target: :_blank, class: "link underline" %> and allows delivering notifications across any medium.</p>
 
 <%= h2_with_anchor "Creating Notifications" %>
 <p>To generate a new notification, run the following:</p>
@@ -30,7 +30,7 @@
 <%= link_to "#delivery-methods", class: "no-underline" do %>
   <h2 id="delivery-methods">Delivery Methods</h2>
 <% end %>
-<p>Check <%= link_to "the Noticed gem's readme", "https://github.com/excid3/noticed", target: :_blank %> to see the full list of delivery methods and how to create your own.</p>
+<p>Check <%= link_to "the Noticed gem's readme", "https://github.com/excid3/noticed", target: :_blank, class: "link underline" %> to see the full list of delivery methods and how to create your own.</p>
 <p>Here are a few of the supported delivery methods:</p>
 <ul>
   <li>Database</li>
@@ -83,3 +83,5 @@ end</code></pre>
 </div>
 
 <p><strong>Warning:</strong> Do not include <code>acts_as_tenant</code> on the Notification model or you won't be able to create notifications for other users correctly.</p>
+
+<p>To learn more about sending notifications with Noticed, check out the <%= link_to "How to add Notifications to Rails with Noticed", "https://gorails.com/episodes/rails-notifications-with-noticed?autoplay=1", class: "link underline", target: :_blank %> video on GoRails.</p>

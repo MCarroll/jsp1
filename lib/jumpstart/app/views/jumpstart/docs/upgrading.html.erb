@@ -1,6 +1,6 @@
 <% content_for :section_title, "Upgrading" %>
 
-<p class="mtext-xl text-gray-700 dark:text-gray-200 leading-normal">You can clone Jumpstart Pro from our Git repository and merge updates at any time.</p>
+<p class="text-xl text-gray-700 dark:text-gray-200 leading-normal">You can clone Jumpstart Pro from our Git repository and merge updates at any time.</p>
 
 <%= h2_with_anchor "Using Jumpstart Pro with Git" %>
 <p>Git provides an easy way to merge changes from Jumpstart Pro into your application. This is handy when new features or improvements are added to Jumpstart Pro and you'd like to merge them into your application.</p>
@@ -25,7 +25,7 @@ git remote rename origin jumpstart</code></pre>
   <%= link_to "BitBucket", "https://bitbucket.org/repo/create", target: :_blank, class: "btn btn-white" %>
 </p>
 
-<p>We can then set <code>origin</code> to point to our new repository and push the code up to it.</p>
+<p>We can then add a new remote called <code>origin</code>, point it to our new repository and push the code up to it.</p>
 
 <div class="not-prose">
   <pre class="lang-bash"><code>git remote add origin git@github.com:your-account/your-new-repo.git
@@ -35,7 +35,7 @@ git push -u origin main</code></pre>
 <%= link_to "#jsp-git-merge", class: "no-underline" do %>
   <h4 id="jsp-git-merge">Merging updates from Jumpstart Pro</h4>
 <% end %>
-<p>Then We can use git to fetch and merge updates into your application.</p>
+<p>We can then use git to fetch and merge updates into your application.</p>
 
 <div class="not-prose">
   <pre class="lang-bash"><code>git fetch jumpstart

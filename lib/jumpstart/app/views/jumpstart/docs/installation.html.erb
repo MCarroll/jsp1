@@ -28,24 +28,25 @@
 
 <%= h2_with_anchor "Development" %>
 
-<p class="text-xl">Jumpstart Pro provides some useful configuration for making development easier.</p>
+<p class="text-xl">Jumpstart Pro provides useful configurations to make development easier which are mentioned in more detail below.</p>
 
 <%= h3_with_anchor "Processes" %>
 <p>Use the <code>bin/dev</code> command to run your application's processes.</p>
 <p>As usual, you'll need to run several processes in development.</p>
 
 <ul>
-  <li><code>rails server</code> - duh. 😜</li>
+  <li><code>rails server</code> - starts your Rails application server.</li>
   <li><code>yarn run build</code> - bundles Javascript using esbuild</li>
   <li><code>yarn run build:css</code> - bundles CSS using Tailwind CLI and PostCSS</li>
   <li><code>sidekiq</code> - or whatever background worker process you have configured</li>
 </ul>
 
 <p>These commands are defined in <code>Procfile</code> and <code>Procfile.dev</code> so they can be started and shutdown together.</p>
-<p>You'll also need to make sure PostgreSQL, Redis, etc servers are installed and running externally.</p>
+<p>You'll also need to make sure the PostgreSQL, Redis, etc servers are installed and running externally.</p>
 
 <%= h3_with_anchor "Overmind & Foreman" %>
-<p><%= link_to "Overmind", "https://github.com/DarthSim/overmind", target: :_blank %> and Foreman are process managers that start/stop the processes defined in <code>Procfile.dev</code>. Overmind is recommended because it allows you to join a process and interact with it. Unfortunately, Foreman is incompatible with binding.irb, pry, or similar debuggers.</p>
+<p><%= link_to "Overmind", "https://github.com/DarthSim/overmind", target: :_blank %> and Foreman are process managers that start/stop the processes defined in <code>Procfile.dev</code>. Overmind is recommended because it allows you to join a process and interact with it. Unfortunately, Foreman is incompatible with binding.irb, pry, or similar debuggers therefore you cannot join and interact with a process as you can with Overmind.</p>
+<p>Install Overmind with Homebrew:</p>
 <div class="not-prose">
   <pre><code>brew install tmux overmind</code></pre>
 </div>
@@ -57,7 +58,7 @@
 
 <%= h4_with_anchor "Overmind Tips" %>
 <div class="not-prose">
-  <pre><code># Debugging with byebug: connect to the `web` process to be able to input commands:
+  <pre><code># Debugging with byebug, binding.irb, etc: connect to the `web` process to be able to input commands:
 overmind connect web
 # Then disconnect by hitting [Ctrl+B] (or your tmux prefix) and then [D].
 
@@ -74,13 +75,13 @@ overmind kill</code></pre>
   <pre><code>docker-compose up</code></pre>
 </div>
 <p>Then open <%= link_to "http://localhost:3000", "http://localhost:3000", target: :_blank %></p>
-<p>To run Rails console, run:</p>
+<p>To run the Rails console, run:</p>
 <div class="not-prose">
   <pre><code>docker-compose exec web bin/rails console</code></pre>
 </div>
 
 <%= h3_with_anchor "Developing on Windows", id: :windows %>
-<p>If you'd like to run Jumpstart Pro on Windows, we recommend using WSL2. You can find instructions here: https://gorails.com/setup/windows</p>
+<p>If you'd like to run Jumpstart Pro on Windows, we recommend using WSL2. You can find instructions here: <%= link_to "https://gorails.com/setup/windows", "https://gorails.com/setup/windows", target: :_blank %></p>
 <p>Alternatively, if you'd like to use Docker on Windows, you'll need to make sure you clone the repository and preserve the Linux line endings.</p>
 <div class="not-prose">
   <pre><code>git clone git@github.com:username/myrepo.git --config core.autocrlf=input</code></pre>

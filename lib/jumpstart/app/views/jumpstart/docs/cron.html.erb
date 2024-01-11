@@ -3,11 +3,11 @@
 <p class="text-xl">Jumpstart Pro has support for running periodic jobs in the background at scheduled times.</p>
 
 <%= h2_with_anchor "Whenever Gem" %>
-<p>The whenever gem can be enabled in the Jumpstart Pro configuration for managing cron jobs.</p>
+<p>The whenever gem can be enabled in the Jumpstart Pro configuration wizard UI for managing cron jobs.</p>
 <p>You can define cron jobs in <code>config/schedule.rb</code>.</p>
 <p>We recommend designing your cron jobs to kick off workers so you can process (and retry) the scheduled jobs with your workers.</p>
-<p><%= link_to "Hatchbox.io", "https://hatchbox.io", target: :_blank, class: "text-primary-500 underline" %> supports cron jobs for each app. Add each cron job into the Cron section of your app and Hatchbox will configure your server's cron to run them.</p>
+<p><%= link_to "Hatchbox.io", "https://hatchbox.io", target: :_blank, class: "link underline" %> supports cron jobs for each app. Add each cron job into the Cron section of your app and Hatchbox will configure your server's cron to run them.</p>
 <p>For Heroku, you'll need to manually add your cron jobs to the Herkou Scheduler or use an alternative like Sidekiq Cron.</p>
 
 <%= h2_with_anchor "Sidekiq-Cron gem" %>
-<p>If you're using Sidekiq, you might also consider using <%= link_to "Sidekiq-Cron", "https://github.com/ondrejbartas/sidekiq-cron", target: :_blank, class: "text-primary-500" %> instead of whenever for running jobs. This will fire off new Sidekiq jobs based on your schedule and distribute the work across your sidekiq workers.</p>
+<p>If you're using Sidekiq, you might also consider using <%= link_to "Sidekiq-Cron", "https://github.com/ondrejbartas/sidekiq-cron", target: :_blank, class: "link underline" %> instead of whenever for running jobs. This will fire off new Sidekiq jobs based on your schedule and distribute the work across your sidekiq workers.</p>

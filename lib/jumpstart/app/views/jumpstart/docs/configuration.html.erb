@@ -1,17 +1,17 @@
 <% content_for :section_title, "Configuration" %>
 
-<p class="text-xl">Configuring Jumpstart Pro is easy. We've even built a handy little configuration interface in development mode to save you time.</p>
+<p class="text-xl">Configuring Jumpstart Pro is easy. We've built a handy configuration wizard interface in development mode to save you time configuring your application.</p>
 
 <%= h2_with_anchor "Credentials" %>
 <p>Rails credentials are used for configuration API keys. Check out the <%= link_to "Credentials", credentials_docs_path, class: "text-primary-500 underline" %> guide to learn more.</p>
 
 <%= h2_with_anchor "Configuration Wizard" %>
-<p>Jumpstart Pro comes with a configuration wizard to help you enable and disable features quickly in development. For example, you can simply check a box and click Save &amp; Reload and your dependency will be installed and your Rails app restarted.</p>
+<p>Jumpstart Pro comes with a configuration wizard to help you enable and disable features quickly in development. For example, you can simply check a box or toggle a feature on/off, click Save &amp; Reload and your dependency will be installed and your Rails app restarted.</p>
 
-<p>You can view the configuration UI at <code>/jumpstart</code> <em>only in development</em>.</p>
+<p>You can view the configuration wizard UI at <%= link_to nil, "/jumpstart", target: :_blank, class: "text-primary-500 underline" %> only in development</em>.</p>
 
 <%= h2_with_anchor "Screencast" %>
-<p>This screencast will walk you through Jumpstart Pro's configuration UI for enabling and disabling features.</p>
+<p>This screencast will walk you through Jumpstart Pro's configuration wizard UI for enabling and disabling features.</p>
 
 <div class="w-full xl:w-2/3">
   <div class="embed-container">

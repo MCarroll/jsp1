@@ -1,4 +1,4 @@
-<% content_for :section_title, "Billing" %>
+<% content_for :section_title, "Payments & Billing" %>
 
 <p class="text-xl">Jumpstart Pro uses the <%= link_to "Pay gem", "https://github.com/pay-rails/pay", target: :_blank, class: "link underline" %> for handling payments and billing.</p>
 
@@ -16,9 +16,9 @@
 <p>The <code>/webhooks/stripe</code> endpoint is available in your application for handling webhooks from Stripe. Add this URL to Stripe to process activity from your account.</p>
 
 <%= h5_with_anchor "Stripe CLI" %>
-<p>Jumpstart Pro now requires webhooks to support SCA. You must use <%= link_to "the Stripe CLI", "https://stripe.com/docs/stripe-cli", target: :_blank, class: "link underline" %> to forward webhooks to your local Rails server to process subscriptions and payments with SCA.</p>
+<p>Stripe now requires webhooks in development and provides the <%= link_to "Stripe CLI", "https://stripe.com/docs/stripe-cli", target: :_blank, class: "link underline" %> to forward webhooks to your local Rails server. After enabling Stripe in Jumpstart Pro, you will need to install the Stripe CLI and login. Jumpstart Pro will add the stripe listen process to Procfile.dev to forward webhooks while your Rails application is running.</p>
 <div class="not-prose">
-  <pre><code>stripe login</code><br /><code>stripe listen --forward-to localhost:5000/webhooks/stripe</code></pre>
+  <pre><code>stripe login</code><br /><code>stripe listen --forward-to localhost:3000/webhooks/stripe</code></pre>
 </div>
 <p>Once stripe CLI is running it should display your signing secret. Add it to your credentials to make sure your server can receive stripe events.</p>
 <p>Alternatively, you can use ngrok or localtunnel to expose your Rails server to the internet so it can receive webhooks.</p>

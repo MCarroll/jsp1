@@ -1,9 +1,7 @@
 <%- if devise_mapping.omniauthable? && %w{ registrations sessions }.include?(controller_name) %>
   <div class="flex flex-wrap justify-center -mx-2">
     <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= button_to omniauth_authorize_path(:user, provider), class: "btn btn-#{provider} m-1", data: { turbo: false, disable_with: t(".redirecting") } do %>
-        <%= t("shared.oauth.#{provider}") %>
-      <% end %>
+      <%= button_to t("shared.oauth.sign_in_with", provider: t("shared.oauth.#{provider}")), omniauth_authorize_path(:user, provider), class: "btn btn-#{provider} m-1", data: { turbo: false, disable_with: t(".redirecting") } %>
     <% end -%>
   </div>
 

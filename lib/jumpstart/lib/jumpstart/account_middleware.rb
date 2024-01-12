@@ -7,6 +7,9 @@
 
 module Jumpstart
   class AccountMiddleware
+    INT_MATCHER = /^\d+/
+    UUID_MATCHER = /\A[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\z/
+
     def initialize(app)
       @app = app
     end
@@ -17,7 +20,7 @@ module Jumpstart
       request = ActionDispatch::Request.new env
       _, account_id, request_path = request.path.split("/", 3)
 
-      if /^\d+/.match?(account_id)
+      if INT_MATCHER.match?(account_id) || UUID_MATCHER.match?(account_id)
         if (account = Account.find_by(id: account_id))
           Current.account = account
         else

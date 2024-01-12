@@ -23,13 +23,7 @@
       </div>
 
       <div class="mt-4">
-        <%= f.button class: "btn btn-block btn-primary" do %>
-          <%= tag.span "Save changes", class: "when-enabled" %>
-          <%= tag.span class: "when-disabled" do %>
-            <%= inline_svg_tag "icons/spinner.svg", class: "animate-spin inline-block h-4 w-4 mr-2" %>
-            Processing...
-          <% end %>
-        <% end %>
+        <%= f.button button_text("Save changes"), class: "btn btn-block btn-primary" %>
 
         <p class="text-gray-600 dark:text-gray-300 text-xs mt-2">Jumpstart Pro will install any new dependencies after saving and automatically restart your app.</p>
       </div>

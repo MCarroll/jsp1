@@ -2,7 +2,6 @@
   <div class="flex flex-wrap justify-center -mx-2">
     <%- resource_class.omniauth_providers.each do |provider| %>
       <%= button_to omniauth_authorize_path(:user, provider), class: "btn btn-#{provider} m-1", data: { turbo: false, disable_with: t(".redirecting") } do %>
-        <%= social_icon provider, class: "mr-2" %>
         <%= t("shared.oauth.#{provider}") %>
       <% end %>
     <% end -%>

@@ -10,7 +10,6 @@
       <div class="my-2 flex flex-wrap gap-x-4 gap-y-2">
         <% Devise.omniauth_configs.each do |provider, config| %>
           <%= button_to omniauth_authorize_path(:user, provider), class: "btn btn-#{provider}", data: { turbo: false, disable_with: t(".redirecting") } do %>
-            <%= social_icon provider, class: "mr-2" %>
             <%= t("shared.oauth.#{provider}") %>
           <% end %>
         <% end %>

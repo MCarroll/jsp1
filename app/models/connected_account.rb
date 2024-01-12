@@ -19,6 +19,10 @@ class ConnectedAccount < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first
   end
 
+  def provider_name
+    Jumpstart::Omniauth::AVAILABLE_PROVIDERS.dig(provider, :name) || provider.humanize
+  end
+
   def name
     auth&.dig("info", "name")
   end

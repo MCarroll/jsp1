@@ -7,7 +7,7 @@
 
       <div class="form-group mt-4 flex items-center gap-2">
         <%= f.email_field :billing_email, class: "form-control mt-0 dark:bg-gray-900 dark:text-gray-200", placeholder: true %>
-        <%= f.button t(".save"), class: "btn btn-light-gray", data: { disable_with: disable_with(t(".saving"))} %>
+        <%= f.button t(".save"), class: "btn btn-light-gray", data: { disable_with: t(".saving") } %>
       </div>
     </div>
   <% end %>

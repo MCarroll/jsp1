@@ -11,8 +11,8 @@
         </div>
 
         <div class="flex-shrink-0">
-          <%= link_to t(".edit"), edit_api_token_path(@api_token), class: "btn btn-light-gray" %>
-          <%= link_to t(".revoke"), @api_token, class: "btn btn-light-gray", data: { turbo_method: :delete, turbo_confirm: t(".confirm") } %>
+          <%= link_to t(".edit"), edit_api_token_path(@api_token), class: "btn btn-white" %>
+          <%= link_to t(".revoke"), @api_token, class: "btn btn-danger btn-outline", data: { turbo_method: :delete, turbo_confirm: t(".confirm") } %>
         </div>
       </div>
 

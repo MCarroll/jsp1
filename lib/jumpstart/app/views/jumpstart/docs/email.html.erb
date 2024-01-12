@@ -2,7 +2,10 @@
 
 <p class="text-xl">Jumpstart Pro provides easy configuration for transaction email providers.</p>
 <p>To enable a transactional email provider you can do so in the Application section of the Jumpstart Pro configuration wizard UI located at <%= link_to nil, "/jumpstart", target: :_blank, class: "link underline" %>.</p>
-<%= image_tag "https://jumpstartpro.b-cdn.net/jsp-transactional-email-config-wizard-v1.png", class: "block mx-auto", alt: "Screenshot of Jumpstart Pro Application/transactional email provider configuration wizard", size: "800" %>
+
+<%= link_to("https://jumpstartpro.b-cdn.net/jsp-transactional-email-config-wizard-v1.png", target: "_blank") do %>
+  <%= image_tag "https://jumpstartpro.b-cdn.net/jsp-transactional-email-config-wizard-v1.png", class: "block mx-auto", alt: "Screenshot of Jumpstart Pro Application/transactional email provider configuration wizard", size: "800" %>
+<% end %>
 
 <%= h2_with_anchor "Transactional Email Services" %>
 <p>We have looked up the configurations for several different transactional email providers so you don't have to waste time fiddling with configs.</p>

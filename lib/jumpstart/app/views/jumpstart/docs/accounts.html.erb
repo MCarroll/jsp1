@@ -5,14 +5,26 @@
 <p>Accounts are a core piece of functionality for many applications these days and Jumpstart Pro comes preconfigured with them so you don't have to do any of the heavy lifting. The name Account is a generic term but can be thought of as a vehicle for creating teams or organizations as well as personal accounts.</p>
 <p>The Account model is the mechanism that allows resources to be scoped to an account of one user or a varying number of users based on the type of account. This way the resource(s) will be scoped to each customer of your SaaS/application.</p>
 <p>By default when a new user signs up they will have an account created for them that does not allow them to invite anyone else to it. This is known as a personal (solo) account in Jumpstart Pro. After this initial account is created the user can create other accounts which will by default allow them to invite other users to the account. This is what many consider to be a team account. If you always want the accounts that are created when a new user signs up to be team accounts, then you can disable the personal account creation option via the configuration wizard.</p>
-<%= image_tag "https://jumpstartpro.b-cdn.net/jumpstart-account-flow-v2.png", class: "block mx-auto", alt: "Diagram of default account only flow in Jumpstart Pro", size: "800" %>
+
+<%= link_to("https://jumpstartpro.b-cdn.net/jumpstart-account-flow-v2.png", target: "_blank") do %>
+  <%= image_tag "https://jumpstartpro.b-cdn.net/jumpstart-account-flow-v2.png", class: "block mx-auto", alt: "Diagram of default account only flow in Jumpstart Pro", size: "800" %>
+<% end %>
+
 <p>GitHub is an example of a similar flow that has both personal (solo) and team accounts. Many users of GitHub start off with a personal (solo) account and then later add new team account (GitHub calls these organization accounts) so they can add users and collaborate within that team account.</p>
 <p>Continuing with the GitHub example when you first create your personal account, all of your repositories are only available to you. If you create a team account, you can then invite others to the team and share access to repositories to all members of that team. This type of team account is the account type that will be created every time an existing user creates a new account after the initial personal account in your Jumpstart Pro application out-of-the-box.</p>
 <p>If you decide to disable the creation of personal (solo) accounts, then the default behavior is to create a team account for users upon sign up for your Jumpstart Pro application. If the initial team account has only one user it is similar to a personal account, but they can invite users later if desired or necessary. If so, this should be conveyed to the end user in the UI.</p>
-<%= image_tag "https://jumpstartpro.b-cdn.net/jumpstart-team-account-only-flow-v2.png", class: "block mx-auto", alt: "Diagram of team account only flow in Jumpstart Pro", size: "800" %>
+
+<%= link_to("https://jumpstartpro.b-cdn.net/jumpstart-team-account-only-flow-v2.png", target: "_blank") do %>
+  <%= image_tag "https://jumpstartpro.b-cdn.net/jumpstart-team-account-only-flow-v2.png", class: "block mx-auto", alt: "Diagram of team account only flow in Jumpstart Pro", size: "800" %>
+<% end %>
+
 <p>Personal accounts can be re-enabled later if you change your mind, however, any previously existing users will not have personal accounts and you will need to create them for each existing user manually. Additionally, if you don't want to use the accounts functionality, you can simply remove links to the accounts, however, we encourage you to keep the accounts functionality around as it allows you flexibility in the future should you choose to implement accounts later in the development of your application.</p>
 <p>There is a configuration option (shown in the screenshot below) that can be found at <%= link_to nil, "/jumpstart", target: :_blank, class: "text-primary-500 underline" %> if you have the server running. In the first section labeled Accounts, there is a set of radio buttons for "Personal and Team Accounts" or "Just Team Accounts". If the "Personal and Team Accounts" option is selected, then every new user that signs up for your application will be given a personal account by default.</p>
-<%= image_tag "https://jumpstartpro.b-cdn.net/jsp-team-account-config-wizard-v1.png", class: "block mx-auto", alt: "Screenshot of Jumpstart Pro Team Account configuration wizard", size: "800" %>
+
+<%= link_to("https://jumpstartpro.b-cdn.net/jsp-team-account-config-wizard-v1.png", target: "_blank") do %>
+  <%= image_tag "https://jumpstartpro.b-cdn.net/jsp-team-account-config-wizard-v1.png", class: "block mx-auto", alt: "Screenshot of Jumpstart Pro Team Account configuration wizard", size: "800" %>
+<% end %>
+
 <p><strong>NOTE</strong>: The default personal account is created via an after_create callback that comes from the UserAccounts concern which is included in the User class.</p>
 
 <%= h2_with_anchor "Working with Personal (Solo) and Team Accounts" %>
@@ -68,5 +80,9 @@ account.save</code></pre>
 
 <%= h2_with_anchor "Account Switching" %>
 <p>Once created, users can switch which account they're viewing from the dropdown in the navbar where their avatar is displayed as seen here:</p>
-<%= image_tag "https://jumpstartpro.b-cdn.net/jumpstart-account-switching.png", alt: "Location of switch account menu in Jumpstart Pro" %>
+
+<%= link_to("https://jumpstartpro.b-cdn.net/jumpstart-account-switching.png", target: "_blank") do %>
+  <%= image_tag "https://jumpstartpro.b-cdn.net/jumpstart-account-switching.png", alt: "Location of switch account menu in Jumpstart Pro" %>
+<% end %>
+
 <p>Any new accounts that are created by the user will be displayed in the dropdown as well by default.</p>

@@ -1,21 +1,20 @@
-<% instance = notification.to_notification %>
 <%= link_to notification, data: {
     notifications_target: "notification",
     id: notification&.id,
+    seen_at: notification&.seen_at,
     read_at: notification&.read_at,
-    interacted_at: notification&.interacted_at,
   },
   class: "flex items-center px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800" do %>
   <div class="flex-1">
     <p class="mb-2 text-sm leading-5 font-medium text-gray-900 dark:text-gray-200">
-      <%= instance.message %>
+      <%= notification.message %>
     </p>
 
     <p class="text-sm text-gray-600 dark:text-gray-400"><%= local_time_ago notification&.created_at %></p>
   </div>
 
-  <%# blue dot is toggled by CSS from the parent's data-interacted-at attribute presence %>
-  <div uninteracted class="hidden flex-shrink-0">
+  <%# blue dot is toggled by CSS from the parent's data-read-at attribute presence %>
+  <div unread class="hidden flex-shrink-0">
     <span class="inline-block w-2 h-2 ml-4 bg-primary-500 rounded-full"></span>
   </div>
 <% end %>

@@ -31,10 +31,11 @@ class AccountInvitationTest < ActiveSupport::TestCase
   end
 
   test "accept sends notifications account owner and inviter" do
-    assert_difference "Notification.count", 2 do
+    assert_difference "Noticed::Notification.count", 2 do
       account_invitations(:two).accept!(users(:invited))
     end
-    assert_equal @account, Notification.last.account
-    assert_equal users(:invited), Notification.last.params[:user]
+    event = Noticed::Event.last
+    assert_equal @account, event.account
+    assert_equal users(:invited), event.params[:user]
   end
 end

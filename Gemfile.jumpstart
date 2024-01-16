@@ -13,7 +13,7 @@ gem "jsbundling-rails", "~> 1.2.1"
 gem "jumpstart", path: "lib/jumpstart", group: :omit
 gem "local_time", "~> 2.1"
 gem "name_of_person", "~> 1.0"
-gem "noticed", "~> 1.5"
+gem "noticed", "~> 2.0"
 gem "pagy", "~> 6.0"
 gem "pay", "~> 7.1"
 gem "prawn", github: "prawnpdf/prawn"

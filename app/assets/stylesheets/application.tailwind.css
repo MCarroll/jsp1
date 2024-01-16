@@ -19,6 +19,7 @@
 @import "components/forms";
 @import "components/iframe";
 @import "components/nav";
+@import "components/notifications";
 @import "components/pagination";
 @import "components/strada";
 @import "components/tabs";

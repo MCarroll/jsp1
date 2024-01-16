@@ -139,4 +139,22 @@ class AccountTest < ActiveSupport::TestCase
     mail = Pay::UserMailer.with(pay_customer: pay_customer, pay_charge: pay_charge).receipt
     assert_equal [account.email, "accounting@example.com"], mail.to
   end
+
+  test "destroys noticed events when associated" do
+    account = accounts(:one)
+    Noticed::Event.create!(account: account)
+
+    assert_difference "Noticed::Event.count", -1 do
+      account.destroy
+    end
+  end
+
+  test "destroys noticed events when associated as record" do
+    account = accounts(:one)
+    Noticed::Event.create!(account: accounts(:two), record: account)
+
+    assert_difference "Noticed::Event.count", -1 do
+      account.destroy
+    end
+  end
 end

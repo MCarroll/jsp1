@@ -18,18 +18,6 @@
   }
 }
 
-/* Highlights unread notifications with background color */
-[data-notifications-target="notification"]:not([data-read-at]) {
-  @apply bg-gray-100;
-}
-
-/* Highlights uninteracted notifications with blue dot */
-[data-notifications-target="notification"]:not([data-interacted-at]) {
-  [uninteracted] {
-    @apply block;
-  }
-}
-
 .dropdown-menu {
   min-width: 100%;
 

@@ -88,6 +88,11 @@ group :test do
 end
 
 # Jumpstart Pro dependencies
+require_relative "lib/jumpstart/lib/jumpstart/configuration/mailable"
+require_relative "lib/jumpstart/lib/jumpstart/configuration/integratable"
+require_relative "lib/jumpstart/lib/jumpstart/configuration/payable"
+require_relative "lib/jumpstart/lib/jumpstart/yaml_serializer"
+require_relative "lib/jumpstart/lib/jumpstart/configuration"
 eval_gemfile "Gemfile.jumpstart"
 
 # We recommend using strong migrations when your app is in production

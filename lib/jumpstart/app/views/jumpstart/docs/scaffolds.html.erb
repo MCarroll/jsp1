@@ -1,12 +1,12 @@
 <% content_for :section_title, "Scaffolds" %>
 
-<p class="text-xl">Jumpstart customizes scaffolds to make it easier and quicker to develop your application.</p>
+<p class="text-xl">Jumpstart Pro customizes scaffolds to make it easier and quicker to develop your application.</p>
 
 <%= h2_with_anchor "Account Resources" %>
 <p>If you'd like a resource to be shared across a Account, you can scope your controllers to the current account so the resources are shared between users in the associated account.</p>
 <p>Every user has a personal account that's only usable by themselves, so you can easily associate resources to accounts and still have private resources to a user.</p>
 <p>Make sure to add <code>account:references</code> when generating your models.</p>
-<p>You should also add <code>acts_as_tenant :account</code> to your model if you would like to have acts_as_tenant enforce multitenancy on the model. This is optional and you can read the <%= link_to "Multitenancy docs", accounts_docs_path %> for more information on this.</p>
+<p>You should also add <code>acts_as_tenant :account</code> to your model if you would like to have acts_as_tenant enforce multitenancy on the model. This is optional and you can read the <%= link_to "Multitenancy docs", accounts_docs_path, class: "link underline" %> for more information on this.</p>
 <p>You should also ensure your model's Turbo Streams broadcast methods are scoped to the account so only users associated to your account receive the broadcast. You can scope the broadcast methods by passing account in the method <code>broadcast_prepend_later_to account, :my_new_model</code>. In your views, you will also need ensure Turbo Streams is subscribed to the correct stream scoped to the account <code>turbo_stream_from current_account, :my_new_model</code> </p>
 
 <%= h2_with_anchor "Theme" %>
@@ -14,7 +14,7 @@
 <p>Check out the templates under <code>lib/templates</code> to customize the templates.</p>
 
 <%= h2_with_anchor "Navigation" %>
-<p>Jumpstart includes an addition to the scaffold generator to automatically include new scaffolds into the navbar for convenience.</p>
+<p>Jumpstart Pro includes an addition to the scaffold generator to automatically include new scaffolds into the navbar for convenience.</p>
 
 <%= h2_with_anchor "Pagy" %>
-<p>Scaffolds use <%= link_to "Pagy", "https://github.com/ddnexus/pagy", target: :_blank %> to paginate scaffolds by default. Pagination is also themed to match the template.</p>
+<p>Scaffolds use <%= link_to "Pagy", "https://github.com/ddnexus/pagy", target: :_blank, class: "link underline" %> to paginate scaffolds by default. Pagination is also themed to match the template.</p>

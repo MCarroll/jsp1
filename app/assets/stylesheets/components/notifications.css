@@ -1,0 +1,11 @@
+/* Highlights unseen notifications with background color */
+[data-notifications-target="notification"]:not([data-seen-at]) {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+/* Highlights unread notifications with blue dot */
+[data-notifications-target="notification"]:not([data-read-at]) {
+  [unread] {
+    @apply block;
+  }
+}

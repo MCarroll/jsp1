@@ -73,21 +73,21 @@ export default class extends Controller {
     this.badgeTarget.classList.add("hidden")
   }
 
-  markAllAsRead() {
+  markAllAsSeen() {
     let ids = this.notificationTargets.map((target) => target.dataset.id)
-    this.subscription.perform("mark_as_read", {ids: ids})
+    this.subscription.perform("mark_as_seen", {ids: ids})
 
     this.accountUnreadValue = 0
     this.totalUnreadValue -= ids.length
   }
 
-  markAsInteracted(event) {
+  markAsRead(event) {
     let id = event.currentTarget.dataset.id
     if (id == null) return
-    this.subscription.perform("mark_as_interacted", {ids: [id]})
+    this.subscription.perform("mark_as_read", {ids: [id]})
 
     // Uncomment to visually mark notification as interacted
-    // event.currentTarget.dataset.interactedAt = new Date()
+    // event.currentTarget.dataset.readAt = new Date()
   }
 
   // Browser notifications

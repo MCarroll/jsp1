@@ -1,7 +1,7 @@
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_notification, only: [:show]
-  after_action :mark_as_read, only: [:index]
+  after_action :mark_as_seen, only: [:index]
 
   def index
     @pagy, @notifications = pagy(current_user.notifications.where(account: current_account).newest_first, items: (turbo_frame_request? ? 10 : 25))
@@ -9,8 +9,8 @@ class NotificationsController < ApplicationController
   end
 
   def show
-    @notification.mark_as_interacted!
-    redirect_to @notification.to_notification.url
+    @notification.mark_as_read
+    redirect_to @notification.event.url
   end
 
   private
@@ -21,7 +21,7 @@ class NotificationsController < ApplicationController
     redirect_to notifications_path
   end
 
-  def mark_as_read
-    @notifications.mark_as_read!
+  def mark_as_seen
+    @notifications.mark_as_seen
   end
 end

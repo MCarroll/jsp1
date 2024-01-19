@@ -2,18 +2,42 @@
 
 <div class="max-w-4xl text-gray-700 dark:text-gray-200">
   <div class="mb-10">
-    <p class="leading-normal text-xl mb-4">We're excited to see what you build with Jumpstart Pro and Ruby on Rails. This documentation is everything you need to know to start building products with Jumpstart.</p>
+    <p class="leading-normal text-xl mb-4">We're excited to see what you build with Jumpstart Pro and Ruby on Rails. This documentation is everything you need to know to start building products with Jumpstart Pro.</p>
   </div>
 
   <div class="mb-10">
     <h3 class="text-gray-800 dark:text-gray-300 mb-4">How to get started with Jumpstart Pro Rails</h3>
-    <p class="leading-normal mb-4">First of all, thanks for using Jumpstart Pro! We want to make Jumpstart the easiest way for you to launch a business with Ruby on Rails.</p>
-    <p class="leading-normal mb-4">To the left, you'll see all the different areas of documentation that you'll need to know. Check out the <%= link_to "Screencasts", screencasts_docs_path %> section if you'd like to learn Jumpstart by watching videos.</p>
-    <p class="leading-normal mb-4">If you have an idea for a feature or found a bug, please let us know on the <%= link_to "GitHub repository.", "https://github.com/jumpstart-pro/jumpstart-pro", target: :_blank %></p>
+    <p class="leading-normal mb-4">First of all, thanks for using Jumpstart Pro! We want to make Jumpstart Pro the easiest way for you to launch a business with Ruby on Rails.</p>
+    <p class="leading-normal mb-4">Below are some quick links to the documentation for some of the core features and functionality of Jumpstart Pro.</p>
+
+    <%= link_to accounts_docs_path, class: "no-underline" do %>
+      <p class="mb-1">Accounts &amp; Teams</p>
+      <p class="font-normal text-gray-700 text-sm m-0">Learn about Jumpstart Pro's Accounts feature which enables user-specific or multi-user resource scoping</p>
+    <% end %>
+
+    <%= link_to billing_docs_path, class: "no-underline" do %>
+      <p class="mb-1">Billing</p>
+      <p class="font-normal text-gray-700 text-sm m-0">Explore Jumpstart Pro's flexible billing options, supporting multiple payment processors, subscriptions, and one-time payments.</p>
+    <% end %>
+
+    <%= link_to javascript_docs_path, class: "no-underline" do %>
+      <p class="mb-1">JavaScript</p>
+      <p class="font-normal text-gray-700 text-sm m-0">Dive into Jumpstart Pro's JavaScript handling, featuring Stimulus.js, esbuild for efficient bundling, and automatic page reloads for a streamlined development process.</p>
+    <% end %>
+
+    <%= link_to roles_docs_path, class: "no-underline" do %>
+      <p class="mb-1">Roles</p>
+      <p class="font-normal text-gray-700 text-sm m-0">Discover Jumpstart Pro's Account Roles, allowing role assignment per account with customizable roles, facilitating access control to account functionalities.</p>
+    <% end %>
+
+    <%= link_to tailwind_docs_path, class: "no-underline" do %>
+      <p class="mb-1">Tailwind CSS</p>
+      <p class="font-normal text-gray-700 text-sm m-0">Adapt Jumpstart Pro's UI components and Tailwind CSS configuration as a starting point for your template, with automatic style purging and monitoring for CSS classes in Rails helpers, views, and JavaScript files.</p>
+    <% end %>
   </div>
 
   <div class="mb-10">
     <h3 class="text-gray-800 dark:text-gray-300 mb-4">Next</h3>
-    <p class="leading-normal mb-4"><%= link_to "Install Jumpstart Pro", installation_docs_path %></p>
+    <p class="leading-normal mb-2"><%= link_to "Install Jumpstart Pro", installation_docs_path %></p>
   </div>
 </div>

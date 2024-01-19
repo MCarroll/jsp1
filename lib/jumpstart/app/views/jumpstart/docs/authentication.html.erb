@@ -7,7 +7,11 @@
 <p>If you would like to collect other information on registration, you can add the fields to the devise views in <code>app/views/devise</code> and permit the additional params in <code>application_controller.rb</code>.</p>
 
 <%= h2_with_anchor "Social Login / OAuth with Omniauth Providers" %>
-<p>Devise is preconfigured to connect with Omniauth providers so users can register or sign in with their social accounts.</p>
+<p>To enable an oauth provider you can do so in the OAuth section of the Jumpstart Pro configuration wizard UI located at <%= link_to nil, "/jumpstart", target: :_blank, class: "link underline" %>.</p>
+<%= link_to("https://jumpstartpro.b-cdn.net/jsp-oauth-config-wizard-v1.png", target: "_blank") do %>
+  <%= image_tag "https://jumpstartpro.b-cdn.net/jsp-oauth-config-wizard-v1.png", class: "block mx-auto", alt: "Screenshot of Jumpstart Pro OAuth configuration wizard", size: "800" %>
+<% end %>
+  <p>Devise is preconfigured to connect with Omniauth providers so users can register or sign in with their social accounts.</p>
 <p>We automatically handle the various situations that can arise with social auth:</p>
 
 <ul>
@@ -33,7 +37,7 @@
 <p>By default, OmniAuth callbacks controller will create a <code>ConnectedAccount</code> record and associate it with <code>current_user</code>.</p>
 
 <%= h2_with_anchor "OAuth Connected Accounts" %>
-<p>Users can sign up or login with connected accounts. We automatically add links based upon which OmniAuth providers are enabled. By default, Jumpstart has options for a few OmniAuth providers, but you're free to add other providers and they will be automatically added to parts of the UI.</p>
+<p>Users can sign up or login with connected accounts. We automatically add links based upon which OmniAuth providers are enabled. By default, Jumpstart Pro has options for a few OmniAuth providers, but you're free to add other providers and they will be automatically added to parts of the UI.</p>
 
 <%= h2_with_anchor "Associate ConnectedAccount with other models" %>
 <p>If you would like to associate the <code>ConnectedAccount</code> with a different model, you can pass in the <code>record</code> param set to a Signed GlobalID. The callback controller will detect this and use this as the owner of the ConnectedAccount record.</p>

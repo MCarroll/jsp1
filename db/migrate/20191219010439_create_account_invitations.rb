@@ -7,7 +7,7 @@ class CreateAccountInvitations < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.string :email, null: false
       if t.respond_to? :jsonb
-        t.jsonb :roles
+        t.jsonb :roles, null: false, default: {}
       else
         t.json :roles
       end

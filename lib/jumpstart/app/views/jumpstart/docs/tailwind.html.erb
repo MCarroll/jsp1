@@ -9,10 +9,18 @@
 <p>
   You can modify the <code>tailwind.config.js</code> file to include any additional colors, fonts, and other customizations.
   For example, looking in <code>tailwind.config.js</code>, you will see that Jumpstart Pro has a CSS class called <code>primary</code> with a default value of <code>colors.blue</code>. This <code>primary</code> class is used throughout the application on various elements. One example is shown in the following screenshot:
-  <%= image_tag "https://jumpstartpro.b-cdn.net/jumpstart-default-primary-color.png", class: "block mx-auto", alt: "Default primary color example in Jumpstart Pro", size: "900" %>
+  
+  <%= link_to("https://jumpstartpro.b-cdn.net/jumpstart-default-primary-color.png", target: "_blank") do %> 
+    <%= image_tag "https://jumpstartpro.b-cdn.net/jumpstart-default-primary-color.png", class: "block mx-auto", alt: "Default primary color example in Jumpstart Pro", size: "900" %>
+  <% end %>
+  
   If you need to change that color to fit your application theme, switching to a different color is a simple change to make as shown in the following screenshot:
-  <%= image_tag "https://jumpstartpro.b-cdn.net/jumpstart-modified-primary-color.png", class: "block mx-auto", alt: "Modified primary color example in Jumpstart Pro", size: "900" %>
-</p>
+  
+  <%= link_to("https://jumpstartpro.b-cdn.net/jumpstart-modified-primary-color.png", target: "_blank") do %> 
+    <%= image_tag "https://jumpstartpro.b-cdn.net/jumpstart-modified-primary-color.png", class: "block mx-auto", alt: "Modified primary color example in Jumpstart Pro", size: "900" %>
+  <% end %>
+
+  </p>
 
 <%= h2_with_anchor "TailwindUI" %>
 <p><%= link_to "TailwindUI", "https://tailwindui.com", target: :_blank %> is a set of components you can purchase from the TailwindCSS team. It's a wonderful complement to Jumpstart Pro for adding beautifully designed cards, layouts, and other components to your application.</p>

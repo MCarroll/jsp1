@@ -1,11 +1,17 @@
-class NotificationChannel < Noticed::NotificationChannel
-  # Inherits functionality from Noticed::NotificationChannel
-  # https://github.com/excid3/noticed/blob/master/lib/noticed/notification_channel.rb
-  #
-  # def mark_as_read(data) (from Noticed)
-  # * Accepts { ids: [1,2,3, ...]
+class NotificationChannel < ApplicationCable::Channel
+  def subscribed
+    stream_for current_user
+  end
 
-  def mark_as_interacted(data)
-    current_user.notifications.where(id: data["ids"]).mark_as_interacted!
+  def unsubscribed
+    stop_all_streams
+  end
+
+  def mark_as_seen(data)
+    current_user.notifications.where(id: data["ids"]).mark_as_seen
+  end
+
+  def mark_as_read(data)
+    current_user.notifications.where(id: data["ids"]).mark_as_read
   end
 end

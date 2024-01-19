@@ -12,6 +12,10 @@ if defined?(Sidekiq)
   Sidekiq.logger.level = Logger::WARN
 end
 
+if defined?(SolidQueue)
+  SolidQueue.logger.level = Logger::WARN
+end
+
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers

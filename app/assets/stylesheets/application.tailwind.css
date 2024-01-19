@@ -17,9 +17,9 @@
 @import "components/direct_uploads";
 @import "components/docs";
 @import "components/forms";
-@import "components/icons";
 @import "components/iframe";
 @import "components/nav";
+@import "components/notifications";
 @import "components/pagination";
 @import "components/strada";
 @import "components/tabs";

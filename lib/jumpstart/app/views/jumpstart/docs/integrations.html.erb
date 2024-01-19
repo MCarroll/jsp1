@@ -1,9 +1,14 @@
 <% content_for :section_title, "Integrations" %>
 
 <p class="text-xl">Jumpstart Pro has support for integrating your app with several third party services.</p>
+<p>To enable an integration you can do so in the Integrations section of the Jumpstart Pro configuration wizard UI located at <%= link_to nil, "/jumpstart", target: :_blank, class: "link underline" %>.</p>
+
+<%= link_to("https://jumpstartpro.b-cdn.net/jsp-integration-config-wizard-v1.png", target: "_blank") do %>
+  <%= image_tag "https://jumpstartpro.b-cdn.net/jsp-integration-config-wizard-v1.png", class: "block mx-auto", alt: "Screenshot of Jumpstart Pro Integrations configuration wizard", size: "800" %>
+<% end %>
 
 <%= h2_with_anchor "Error & Performance Monitoring" %>
-<p>Jumpstart can configure these services for you for reporting errors and performance in production.</p>
+<p>Jumpstart Pro can configure these services for you for reporting errors and performance in production.</p>
 
 <div>
   <%= link_to "AirBrake", "https://airbrake.io", target: :_blank %>
@@ -42,7 +47,7 @@
 </div>
 
 <%= h2_with_anchor "Marketing & Support" %>
-<p>Jumpstart can configure these services for you so you can keep reach your customers.</p>
+<p>Jumpstart Pro can configure these services for you so you can keep reach your customers.</p>
 
 <div>
   <%= link_to "ConvertKit", "https://app.convertkit.com/users/signup?plan=free-limited&referral_token=0e2cf99c-d0f7-48d4-b497-3664e7dc90c4", target: :_blank %>
@@ -70,7 +75,7 @@
   <span class="ml-3 text-sm text-gray-700 dark:text-gray-300"><%= link_to "Gem", "https://github.com/amro/gibbon", target: :_blank %></span>
 </div>
 
-<p>Jumpstart auto-configures API clients for Convertkit, Drip, and Mailchimp. You can use <code>Jumpstart::Clients</code> to access the clients.</p>
+<p>Jumpstart Pro auto-configures API clients for Convertkit, Drip, and Mailchimp. You can use <code>Jumpstart::Clients</code> to access the clients.</p>
 <p>Here are some examples of how you can subscribe your users to mailing lists:</p>
 <div class="not-prose">
   <pre class="lang-ruby"><code># Add a subscriber to ConvertKit

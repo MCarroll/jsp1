@@ -6,8 +6,12 @@
   <div class="lg:w-3/4 w-full p-4">
     <div class="lg:p-10 p-4 bg-white rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-700">
       <h1 class="h3">
-        <%= link_to t("accounts.index.title"), accounts_path, class: "hover:text-black" %>
-        <%= render_svg "icons/cheveron-right", styles: "fill-current icon-sm text-gray-600 inline-block" %>
+        <%= link_to t("accounts.index.title"), accounts_path %>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="inline-block w-5 h-5 text-gray-600">
+          <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+        </svg>
+
         <%= t(".title") %>
       </h1>
       <div class="mb-8 text-gray-700"><%= t(".description") %></div>

@@ -25,6 +25,12 @@ gem "rotp", "~> 6.2"
 gem "rqrcode", "~> 2.1"
 gem "ruby-oembed", "~> 0.16.0", require: "oembed"
 
+require_relative "lib/jumpstart/lib/jumpstart/configuration/mailable"
+require_relative "lib/jumpstart/lib/jumpstart/configuration/integratable"
+require_relative "lib/jumpstart/lib/jumpstart/configuration/payable"
+require_relative "lib/jumpstart/lib/jumpstart/yaml_serializer"
+require_relative "lib/jumpstart/lib/jumpstart/configuration"
+
 gem "acts_as_tenant", "~> 1.0" if Jumpstart.config.gems.include?("acts_as_tenant")
 gem "oj", "~> 3.8" if Jumpstart.config.gems.include?("oj")
 gem "rack-attack", "~> 6.6" if Jumpstart.config.gems.include?("rack-attack")

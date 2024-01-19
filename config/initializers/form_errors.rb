@@ -5,9 +5,10 @@ ActionView::Base.field_error_proc = proc do |html_tag, instance|
   html = ""
 
   form_fields = [
-    "textarea",
     "input",
-    "select"
+    "select",
+    "textarea",
+    "trix-editor"
   ]
 
   elements = Nokogiri::HTML::DocumentFragment.parse(html_tag).css "label, " + form_fields.join(", ")

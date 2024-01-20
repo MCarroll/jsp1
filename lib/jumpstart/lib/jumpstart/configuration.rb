@@ -2,120 +2,6 @@
 require_relative "yaml_serializer"
 
 module Jumpstart
-  # Manages email provider integrations
-  module Mailable
-    AVAILABLE_PROVIDERS = {
-      "Amazon SES" => :ses,
-      "Mailgun" => :mailgun,
-      "Mailjet" => :mailjet,
-      "Mandrill" => :mandrill,
-      "OhMySMTP" => :ohmysmtp,
-      "Postmark" => :postmark,
-      "Sendgrid" => :sendgrid,
-      "SendinBlue" => :sendinblue,
-      "SparkPost" => :sparkpost
-    }.freeze
-
-    AVAILABLE_PROVIDERS.values.map(&:to_s).each do |name|
-      define_method :"#{name}?" do
-        email_provider == name
-      end
-    end
-  end
-
-  # Manages 3rd party service integrations
-  module Integratable
-    AVAILABLE_PROVIDERS = {
-      "AirBrake" => "airbrake",
-      "AppSignal" => "appsignal",
-      "BugSnag" => "bugsnag",
-      "ConvertKit" => "convertkit",
-      "Drip" => "drip",
-      "Honeybadger" => "honeybadger",
-      "Intercom" => "intercom",
-      "MailChimp" => "mailchimp",
-      "Rollbar" => "rollbar",
-      "Scout" => "scout",
-      "Sentry" => "sentry",
-      "Skylight" => "skylight"
-    }.freeze
-
-    attr_writer :integrations
-
-    AVAILABLE_PROVIDERS.values.each do |provider|
-      define_method(:"#{provider}?") do
-        integrations.include?(provider)
-      end
-    end
-
-    def integrations
-      @integrations || []
-    end
-
-    def self.has_credentials?(integration)
-      credentials_for(integration).first.last.present? if credentials_for(integration).present?
-    end
-
-    def self.credentials_for(integration)
-      Jumpstart.credentials.dig(Rails.env, integration.to_sym) || Jumpstart.credentials.dig(integration.to_sym) || {}
-    end
-  end
-
-  module Payable
-    attr_writer :payment_processors
-    attr_writer :plans
-    attr_writer :monthly_plans
-    attr_writer :yearly_plans
-
-    def payment_processors
-      Array(@payment_processors)
-    end
-
-    def payments_enabled?
-      payment_processors.any?
-    end
-
-    def stripe?
-      payment_processors.include? "stripe"
-    end
-
-    def braintree?
-      payment_processors.include? "braintree"
-    end
-
-    def paypal?
-      payment_processors.include? "paypal"
-    end
-
-    def paddle_billing?
-      payment_processors.include? "paddle_billing"
-    end
-
-    def paddle_classic?
-      payment_processors.include? "paddle_classic"
-    end
-
-    def plans
-      Array.wrap(@plans)
-    end
-
-    def monthly_plans
-      @monthly_plans ||= filter_plans("month")
-    end
-
-    def yearly_plans
-      @yearly_plans ||= filter_plans("year")
-    end
-
-    private
-
-    def filter_plans(frequency, default = "month")
-      plans.select do |plan|
-        plan.fetch(frequency, default).present?
-      end
-    end
-  end
-
   def self.config
     @config ||= Configuration.load!
   end
@@ -125,6 +11,120 @@ module Jumpstart
   end
 
   class Configuration
+    # Manages email provider integrations
+    module Mailable
+      AVAILABLE_PROVIDERS = {
+        "Amazon SES" => :ses,
+        "Mailgun" => :mailgun,
+        "Mailjet" => :mailjet,
+        "Mandrill" => :mandrill,
+        "OhMySMTP" => :ohmysmtp,
+        "Postmark" => :postmark,
+        "Sendgrid" => :sendgrid,
+        "SendinBlue" => :sendinblue,
+        "SparkPost" => :sparkpost
+      }.freeze
+
+      AVAILABLE_PROVIDERS.values.map(&:to_s).each do |name|
+        define_method :"#{name}?" do
+          email_provider == name
+        end
+      end
+    end
+
+    # Manages 3rd party service integrations
+    module Integratable
+      AVAILABLE_PROVIDERS = {
+        "AirBrake" => "airbrake",
+        "AppSignal" => "appsignal",
+        "BugSnag" => "bugsnag",
+        "ConvertKit" => "convertkit",
+        "Drip" => "drip",
+        "Honeybadger" => "honeybadger",
+        "Intercom" => "intercom",
+        "MailChimp" => "mailchimp",
+        "Rollbar" => "rollbar",
+        "Scout" => "scout",
+        "Sentry" => "sentry",
+        "Skylight" => "skylight"
+      }.freeze
+
+      attr_writer :integrations
+
+      AVAILABLE_PROVIDERS.values.each do |provider|
+        define_method(:"#{provider}?") do
+          integrations.include?(provider)
+        end
+      end
+
+      def integrations
+        @integrations || []
+      end
+
+      def self.has_credentials?(integration)
+        credentials_for(integration).first.last.present? if credentials_for(integration).present?
+      end
+
+      def self.credentials_for(integration)
+        Jumpstart.credentials.dig(Rails.env, integration.to_sym) || Jumpstart.credentials.dig(integration.to_sym) || {}
+      end
+    end
+
+    module Payable
+      attr_writer :payment_processors
+      attr_writer :plans
+      attr_writer :monthly_plans
+      attr_writer :yearly_plans
+
+      def payment_processors
+        Array(@payment_processors)
+      end
+
+      def payments_enabled?
+        payment_processors.any?
+      end
+
+      def stripe?
+        payment_processors.include? "stripe"
+      end
+
+      def braintree?
+        payment_processors.include? "braintree"
+      end
+
+      def paypal?
+        payment_processors.include? "paypal"
+      end
+
+      def paddle_billing?
+        payment_processors.include? "paddle_billing"
+      end
+
+      def paddle_classic?
+        payment_processors.include? "paddle_classic"
+      end
+
+      def plans
+        Array.wrap(@plans)
+      end
+
+      def monthly_plans
+        @monthly_plans ||= filter_plans("month")
+      end
+
+      def yearly_plans
+        @yearly_plans ||= filter_plans("year")
+      end
+
+      private
+
+      def filter_plans(frequency, default = "month")
+        plans.select do |plan|
+          plan.fetch(frequency, default).present?
+        end
+      end
+    end
+
     include Mailable
     include Integratable
     include Payable

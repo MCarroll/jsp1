@@ -19,11 +19,7 @@ module EventExtension
   end
 
   def recipient_attributes_for(recipient)
-    {
-      recipient_id: recipient.id,
-      recipient_type: recipient.class.name,
-      account_id: params[:account]&.id || recipient.personal_account&.id
-    }
+    super.merge(account_id: account&.id || recipient.personal_account&.id)
   end
 end
 

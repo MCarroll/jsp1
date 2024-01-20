@@ -5,33 +5,26 @@
 <%= h2_with_anchor "Creating Notifications" %>
 <p>To generate a new notification, run the following:</p>
 <div class="not-prose">
-  <pre class="lang-bash"><code>rails g noticed:notification NewComment</code></pre>
+  <pre class="lang-bash"><code>rails g noticed:notifier NewComment</code></pre>
 </div>
-<p>This will generate the notification as <code>app/notifications/new_comment.rb</code>. The notification file includes comments to help customize the notification message, url, and delivery methods.</p>
+<p>This will generate <code>app/notifiers/new_comment_notifier.rb</code>. The Notifier file includes comments to help customize the message, url, and delivery methods.</p>
 
 <%= h2_with_anchor "Sending Notifications" %>
-<p>To deliver a notification to a user, run the following:</p>
+<p>To deliver a notification to users, run the following:</p>
 
-<p class="text-sm">Deliver in background (recommended)</p>
 <div class="not-prose">
-  <pre class="lang-ruby"><code>NewComment.with(comment: @comment).deliver_later(@comment.post.owner)</code></pre>
+  <pre class="lang-ruby"><code>NewCommentNotifier.with(account: @comment.account, comment: @comment).deliver_later(@comment.post.owner)</code></pre>
 </div>
 
-<p class="text-sm font-bold text-gray-700">Deliver immediately (can be slow)</p>
-<div class="not-prose">
-  <pre class="lang-ruby"><code>NewComment.with(comment: @comment).deliver(@comment.post.owner)</code></pre>
-</div>
+<p>This will write the notification to the database and perform any other deliveries that are configured for the Notifier.</p>
 
-<p>This will write the notification to the database and perform any other deliveries that are configured for the notification.</p>
-
-<%= h2_with_anchor "ApplicationNotification" %>
-<p>Jumpstart Pro ships with an <code>ApplicationNotification</code> that notifications inherit from. This parent class is responsible for handling anything that all notifications should have just like <code>ApplicationRecord</code> does for your models.</p>
+<%= h2_with_anchor "ApplicationNotifier" %>
+<p>Jumpstart Pro ships with an <code>ApplicationNotifier</code> that notifiers inherit from. This parent class is responsible for handling anything that all notifications should have just like <code>ApplicationRecord</code> does for your models.</p>
 
 <%= link_to "#delivery-methods", class: "no-underline" do %>
   <h2 id="delivery-methods">Delivery Methods</h2>
 <% end %>
-<p>Check <%= link_to "the Noticed gem's readme", "https://github.com/excid3/noticed", target: :_blank, class: "link underline" %> to see the full list of delivery methods and how to create your own.</p>
-<p>Here are a few of the supported delivery methods:</p>
+<p>Check <%= link_to "the Noticed gem's readme", "https://github.com/excid3/noticed", target: :_blank, class: "link underline" %> to see the full list of delivery methods and how to create your own. Here are a few of the supported delivery methods:</p>
 <ul>
   <li>Database</li>
   <li>Email</li>
@@ -42,46 +35,39 @@
 </ul>
 
 <%= h2_with_anchor "Navbar Notifications Menu" %>
-<p>Notifications using the <code>:database</code> delivery method will be rendered in the navbar.</p>
-<p>Use the <code>:action_cable</code> delivery method to add notifications to the navbar immediately. Generated notifications include ActionCable as an example by default.</p>
-
-<p class="text-sm">ActionCable notification format</p>
+<p>Use the <code>:action_cable</code> delivery method to broadcast notifications to the navbar immediately. Generated notifications include ActionCable as an example by default.</p>
 
 <div class="not-prose">
   <pre class="lang-ruby"><code>class NewComment &lt; ApplicationNotification
-deliver_by :action_cable, format: :to_websocket
+  deliver_by :action_cable do |config|
+    config.message = ->(notification) {
+      {
+        # Filters notification client side to the user's current account. Removing this always renders the notification.
+        account_id: notification.account_id,
 
-def to_websocket
-{
-  # Filters notification client side to the user's current account
-  # Removing this always renders the notification
-  account_id: record.account_id,
+        # Used for inserting the notification into the navbar
+        html: ApplicationController.render(partial: "notifications/notification", locals: {notification: notification}),
 
-  # Used for inserting the notification into the navbar
-  html: ApplicationController.render(partial: "notifications/notification", locals: {notification: record}),
-
-  # Used for triggering a native brower Notification API
-  # https://developer.mozilla.org/en-US/docs/Web/API/notification
-  browser: {
-    title: "",
-    options: {}
-  }
-}
-end
-end</code></pre>
+        # Used for triggering a native brower Notification API
+        # https://developer.mozilla.org/en-US/docs/Web/API/notification
+        browser: {
+          title: "",
+          options: {}
+        }
+      }
+    }
+  end</code></pre>
 </div>
 
 <p>Native browser notifications will only be shown if the user has granted permission.</p>
 
 <%= h2_with_anchor "Multitenancy" %>
-<p>Notifications have been modified to have an <code>account</code> association on them. This allows you to send notifications to a specific account for a user if you would like.</p>
+<p>Notifiers have been modified to have a <code>belongs_to :account</code> association. This allows you to send notifications to a specific account for a user if you would like.</p>
 <p>By default, <code>ApplicationNotification</code> writes the recipient's personal account ID but you can override this by passing in <code>account: recipients_account_to_notify</code> in the notification params. Just make sure the account is one of the recipient's accounts.</p>
 
 <p class="text-sm">Deliver notification to a user's account</p>
 <div class="not-prose">
-  <pre class="lang-ruby"><code>NewComment.with(account: @comment.post.account, comment: @comment).deliver_later(@comment.post.owner)</code></pre>
+  <pre class="lang-ruby"><code>NewCommentNotifier.with(account: @comment.post.account, comment: @comment).deliver(@comment.post.owner)</code></pre>
 </div>
 
-<p><strong>Warning:</strong> Do not include <code>acts_as_tenant</code> on the Notification model or you won't be able to create notifications for other users correctly.</p>
-
-<p>To learn more about sending notifications with Noticed, check out the <%= link_to "How to add Notifications to Rails with Noticed", "https://gorails.com/episodes/rails-notifications-with-noticed?autoplay=1", class: "link underline", target: :_blank %> video on GoRails.</p>
+<p><strong>Warning:</strong> Do not include <code>acts_as_tenant</code> on Noticed models or you won't be able to create notifications for other users correctly.</p>

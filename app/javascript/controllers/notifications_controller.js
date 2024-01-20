@@ -10,7 +10,7 @@ export default class extends Controller {
   }
 
   connect() {
-    this.subscription = consumer.subscriptions.create({ channel: "NotificationChannel" }, {
+    this.subscription = consumer.subscriptions.create({ channel: "Noticed::NotificationChannel" }, {
       connected: this._connected.bind(this),
       disconnected: this._disconnected.bind(this),
       received: this._received.bind(this)

@@ -1,4 +1,3 @@
-require "jumpstart/credentials_generator"
 require "jumpstart/engine"
 
 module Jumpstart

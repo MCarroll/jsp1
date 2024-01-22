@@ -31,7 +31,7 @@ The `content` of a component is the output of the main block. In this case, the 
 Components are standard Ruby objects so you can add your own attributes, methods and logic.
 
 ```ruby
-class MyComponent < ApplicationComponent
+class MyComponent < JumpstartComponent
   attr_reader :close_button
 
   # Saves a single value

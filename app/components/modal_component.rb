@@ -1,4 +1,4 @@
-class ModalComponent < ApplicationComponent
+class ModalComponent < JumpstartComponent
   renders_one :header
   renders_one :body
   renders_one :actions

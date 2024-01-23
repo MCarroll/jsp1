@@ -3,39 +3,42 @@
 # <%= class_name %>.with(post: @post).deliver_later(current_user)
 # <%= class_name %>.with(post: @post).deliver(current_user)
 
-class <%= class_name %> < ApplicationNotification
-  # Database delivery is already added in ApplicationNotification
-  deliver_by :action_cable, format: :to_websocket, channel: "NotificationChannel"
+class <%= class_name %> < ApplicationNotifier
+  # Database delivery is already added in ApplicationNotifier
+  deliver_by :action_cable do |config|
+    config.message= ->{ to_websocket }
+  end
 
-  # Add your delivery methods
+  # Add your delivery methods, for example:
   #
-  # deliver_by :email, mailer: "UserMailer"
-  # deliver_by :slack
-  # deliver_by :custom, class: "MyDeliveryMethod"
+  # deliver_by :email do |config|
+  #   config.mailer = "UserMailer"
+  #   config.method = "new_post"
+  # end
 
   # Add required params
   #
-  # param :post
+  # required_params :post
 
-  # Define helper methods to make rendering easier.
+  # Define helper methods to make rendering easier. These can be on the Notifier or the Notification inside `notification_methods`.
   #
   # `message` and `url` are used for rendering in the navbar
+  notification_methods do
+    def message
+      t("hello")
+    end
 
-  def message
-    t("hello")
-  end
+    def url
+      # You can use any URL helpers here such as:
+      # post_path(params[:post])
+      root_path
+    end
 
-  def url
-    # You can use any URL helpers here such as:
-    # post_path(params[:post])
-    root_path
-  end
-
-  # Include account_id to make sure notification only triggers if user is signed in to that account
-  def to_websocket
-    {
-      account_id: record.account_id,
-      html: ApplicationController.render(partial: "notifications/notification", locals: {notification: record})
-    }
+    def to_websocket
+      {
+        account_id: account_id,
+        html: ApplicationController.render(partial: "notifications/notification", locals: {notification: self})
+      }
+    end
   end
 end

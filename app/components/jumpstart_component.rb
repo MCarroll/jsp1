@@ -1,4 +1,4 @@
-class ApplicationComponent
+class JumpstartComponent
   # Content is the value of the block given to the component
   attr_accessor :content
 

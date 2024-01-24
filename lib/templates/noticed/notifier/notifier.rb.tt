@@ -3,7 +3,7 @@
 # <%= class_name %>.with(post: @post).deliver_later(current_user)
 # <%= class_name %>.with(post: @post).deliver(current_user)
 
-class <%= class_name %> < ApplicationNotifier
+class <%= class_name %>Notifier < ApplicationNotifier
   # Database delivery is already added in ApplicationNotifier
   deliver_by :action_cable do |config|
     config.message= ->{ to_websocket }
@@ -23,22 +23,20 @@ class <%= class_name %> < ApplicationNotifier
   # Define helper methods to make rendering easier. These can be on the Notifier or the Notification inside `notification_methods`.
   #
   # `message` and `url` are used for rendering in the navbar
-  notification_methods do
-    def message
-      t("hello")
-    end
+  def message
+    t("hello")
+  end
 
-    def url
-      # You can use any URL helpers here such as:
-      # post_path(params[:post])
-      root_path
-    end
+  def url
+    # You can use any URL helpers here such as:
+    # post_path(params[:post])
+    root_path
+  end
 
-    def to_websocket
-      {
-        account_id: account_id,
-        html: ApplicationController.render(partial: "notifications/notification", locals: {notification: self})
-      }
-    end
+  def to_websocket(notification)
+    {
+      account_id: account_id,
+      html: ApplicationController.render(partial: "notifications/notification", locals: {notification: notification})
+    }
   end
 end

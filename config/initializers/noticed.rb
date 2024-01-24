@@ -10,7 +10,7 @@ module EventExtension
   class_methods do
     # Set account association from params
     def with(params)
-      account = params.delete(:account)
+      account = params.delete(:account) || Current.account
       record = params.delete(:record)
 
       # Instantiate Noticed::Event with account:belongs_to

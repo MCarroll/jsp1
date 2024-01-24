@@ -9,7 +9,7 @@ class Account::AcceptedInviteNotifier < ApplicationNotifier
 
   def to_websocket(notification)
     {
-      account_id: notification.account_id,
+      account_id: account_id,
       html: ApplicationController.render(partial: "notifications/notification", locals: {notification: notification})
     }
   end

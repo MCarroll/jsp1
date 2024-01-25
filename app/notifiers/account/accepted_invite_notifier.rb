@@ -7,13 +7,6 @@ class Account::AcceptedInviteNotifier < ApplicationNotifier
 
   required_params :user
 
-  def to_websocket(notification)
-    {
-      account_id: account_id,
-      html: ApplicationController.render(partial: "notifications/notification", locals: {notification: notification})
-    }
-  end
-
   def message
     t "notifications.invite_accepted", user: params[:user].name
   end

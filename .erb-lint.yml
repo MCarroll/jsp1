@@ -1,10 +1,21 @@
 ---
 exclude:
   - 'vendor/bundle/**/*'
-  - 'lib/jumpstart/app/views/pagy/_nav.html.erb'
-EnableDefaultLinters: false
+  - 'lib/jumpstart/app/views/jumpstart/docs/*.html.erb'
+EnableDefaultLinters: true
 linters:
+  ClosingErbTagIndent:
+    exclude:
+      - 'app/views/kaminari/*.html.erb'
+  RequireInputAutocomplete:
+    exclude:
+      - 'app/views/fields/array_field/_form.html.erb'
   SpaceAroundErbTag:
-    enabled: true
-  ExtraNewline:
-    enabled: true
+    exclude:
+      - 'lib/jumpstart/app/views/pagy/_nav.html.erb'
+  SpaceInHtmlTag:
+    exclude:
+      - 'app/views/admin/**/*.html.erb'
+      - 'app/views/static/pricing.html.erb'
+      - 'app/views/subscriptions/edit.html.erb'
+      

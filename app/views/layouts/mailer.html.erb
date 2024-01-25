@@ -118,8 +118,7 @@
                               <em><%= t(".copyright_html", year: Date.current.year) %></em>
                               <br>
                               <strong><%= t(".mailing_address") %></strong>
-                              <br>
-                              <%= Jumpstart.config.business_name %> <%= Jumpstart.config.business_address %>
+                              <%= simple_format [Jumpstart.config.business_name, Jumpstart.config.business_address].join("\n") %>
                             </div>
                           </td>
                         </tr>

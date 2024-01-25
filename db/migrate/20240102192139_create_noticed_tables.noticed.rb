@@ -37,13 +37,13 @@ class CreateNoticedTables < ActiveRecord::Migration[6.1]
       attributes[:params] = Noticed::Coder.load(notification.params)
       attributes[:params] = {} if attributes[:params].try(:has_key?, "noticed_error") # Skip invalid records
       attributes[:notifications_attributes] = [{
-        account_id: notification.account_id, 
-        type: "#{attributes[:type]}::Notification", 
-        recipient_type: notification.recipient_type, 
-        recipient_id: notification.recipient_id, 
-        seen_at: notification.read_at, 
-        read_at: notification.interacted_at, 
-        created_at: notification.created_at, 
+        account_id: notification.account_id,
+        type: "#{attributes[:type]}::Notification",
+        recipient_type: notification.recipient_type,
+        recipient_id: notification.recipient_id,
+        seen_at: notification.read_at,
+        read_at: notification.interacted_at,
+        created_at: notification.created_at,
         updated_at: notification.updated_at
       }]
       Noticed::Event.create(attributes)

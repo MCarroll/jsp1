@@ -15,7 +15,6 @@ class Plan < ApplicationRecord
 
   scope :hidden, -> { where(hidden: true) }
   scope :visible, -> { where(hidden: [nil, false]) }
-  scope :without_free, -> { where.not(fake_processor_id: :free) }
   scope :monthly, -> { where(interval: :month) }
   scope :yearly, -> { where(interval: :year) }
   scope :sorted, -> { order(amount: :asc) }

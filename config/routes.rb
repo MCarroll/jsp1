@@ -102,7 +102,11 @@ Rails.application.routes.draw do
   namespace :account do
     resource :password
   end
-  resources :notifications, only: [:index, :show]
+  resources :notifications, only: [:index, :show] do
+    collection do
+      patch :mark_as_read
+    end
+  end
   namespace :users do
     resources :mentions, only: [:index]
   end

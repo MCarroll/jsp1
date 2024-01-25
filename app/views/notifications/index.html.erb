@@ -1,5 +1,6 @@
-<div class="container mx-auto">
-  <h1 class="h2 my-6 text-center"><%= t(".title") %></h1>
+<div class="sm:max-w-2xl mx-auto flex justify-between items-baseline">
+  <h1 class="h2 my-6"><%= t(".title") %></h1>
+  <%= button_to "Mark all as read", mark_as_read_notifications_path, method: :patch, class: "btn btn-white btn-small" %>
 </div>
 
 <div class="bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-700 rounded-lg sm:rounded-md sm:max-w-2xl sm:mx-auto">

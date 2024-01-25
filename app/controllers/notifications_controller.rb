@@ -13,6 +13,11 @@ class NotificationsController < ApplicationController
     redirect_to @notification.event.url
   end
 
+  def mark_as_read
+    current_user.notifications.where(account: current_account).mark_as_read
+    redirect_to notifications_path
+  end
+
   private
 
   def set_notification

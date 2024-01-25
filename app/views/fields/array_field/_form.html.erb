@@ -5,7 +5,7 @@
 <div class="field-unit__field" data-controller="array-field">
   <% Array.wrap(f.object.send(field.attribute)).each do |item| %>
     <div class="row">
-      <%= text_field_tag "#{f.object_name}[#{field.attribute}][]", item %>
+      <%= text_field_tag "#{f.object_name}[#{field.attribute}][]", item, autocomplete: :off %>
       <%= link_to "Remove", "#", data: { action: "array-field#remove" } %>
     </div>
   <% end %>
@@ -14,7 +14,7 @@
 
   <template data-array-field-target="template">
     <div class="row">
-      <%= text_field_tag "#{f.object_name}[#{field.attribute}][]" %>
+      <%= text_field_tag "#{f.object_name}[#{field.attribute}][]", nil, autocomplete: :off %>
       <%= link_to "Remove", "#", data: { action: "array-field#remove" } %>
     </div>
   </template>

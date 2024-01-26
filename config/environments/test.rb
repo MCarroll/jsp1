@@ -75,4 +75,7 @@ Rails.application.configure do
 
   # Encrypts fixtures with Rails encryption
   config.active_record.encryption.encrypt_fixtures = true
+
+  # Use the test queue adapter instead of async. https://github.com/rails/rails/issues/46797
+  config.active_job.queue_adapter = :test
 end

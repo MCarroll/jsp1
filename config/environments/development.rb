@@ -93,4 +93,6 @@ Rails.application.configure do
       system("bundle exec standardrb --fix #{parsable_files.shelljoin}", exception: true)
     end
   end
+
+  config.active_job.queue_adapter = Jumpstart::JobProcessor.queue_adapter(Jumpstart.config.job_processor)
 end

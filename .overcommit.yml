@@ -1,6 +1,6 @@
 # Use this file to configure the Overcommit hooks you wish to use. This will
 # extend the default configuration defined in:
-# https://github.com/sds/overcommit/blob/master/config/default.yml
+# https://github.com/sds/overcommit/blob/main/config/default.yml
 #
 # At the topmost level of this YAML file is a key representing type of hook
 # being run (e.g. pre-commit, commit-msg, etc.). Within each type you can
@@ -8,7 +8,7 @@
 # `include`), whether to only display output if it fails (via `quiet`), etc.
 #
 # For a complete list of hooks, see:
-# https://github.com/sds/overcommit/tree/master/lib/overcommit/hook
+# https://github.com/sds/overcommit/tree/main/lib/overcommit/hook
 #
 # For a complete list of options that you can use to customize hooks, see:
 # https://github.com/sds/overcommit#configuration
@@ -21,15 +21,11 @@ PreCommit:
   StandardRB:
     enabled: true
     required: true
-    command: ['bundle', 'exec', 'standardrb'] # Invoke within Bundler context
+    command: ['bundle', 'exec', 'standardrb']
   ErbLint:
     enabled: true
     required: true
-    command:
-      [
-        'erblint',
-        '--lint-all',
-      ]
+    command: ['bundle', 'exec', 'erblint', '--lint-all']
 #  RustyWind:
 #    enabled: true
 #    required: true

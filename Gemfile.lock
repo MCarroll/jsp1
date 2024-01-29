@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/prawnpdf/prawn.git
-  revision: a3054b7401f02e2478f5f4d92cd3a0eaac9fef3a
+  revision: 006917fb57b6f714f162598007e6658f506bda53
   specs:
     prawn (2.4.0)
       matrix (~> 0.4)

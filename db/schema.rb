@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_02_192139) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_29_200820) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -164,6 +164,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_02_192139) do
     t.jsonb "params"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "notifications_count"
     t.index ["account_id"], name: "index_noticed_events_on_account_id"
     t.index ["record_type", "record_id"], name: "index_noticed_events_on_record"
   end

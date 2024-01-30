@@ -38,6 +38,11 @@ class ApplicationClient
 
   attr_reader :auth, :token
 
+  def self.inherited(client)
+    response = client.const_set(:Response, Class.new(Response))
+    response.const_set(:PARSER, Response::PARSER.dup)
+  end
+
   # Initializes an API client
   #
   # To provide authentication credentials, you can supply either `auth` or `token`.
@@ -226,7 +231,7 @@ class ApplicationClient
       request.set_form(form_data, "multipart/form-data")
     end
 
-    handle_response Response.new(http.request(request))
+    handle_response self.class::Response.new(http.request(request))
   end
 
   # Handles an HTTP response
@@ -265,13 +270,19 @@ class ApplicationClient
   end
 
   class Response
-    # Provides easy access to the parsed response body as well as the response object headers and status code
+    # Provides easy access to the parsed response body as well as the response object headers and status code.
     #
-    # To add customer content type parser, register it in the PARSER hash
-    # ApplicationClient::Response::PARSER["text/html"] = ->(response) { Nokogiri::HTML(response.body) }
+    # To add customer content type parser, register it in the PARSER hash:
     #
-    # To parse JSON as a Hash instead of OpenStruct
-    # ApplicationClient::Response::JSON_OBJECT_CLASS = nil
+    #   class MyClient < ApplicationClient
+    #     Response::PARSER["text/html"] = ->(response) { Nokogiri::HTML(response.body) }
+    #   end
+    #
+    # To parse JSON as a Hash instead of OpenStruct:
+    #
+    #   class MyClient < ApplicationClient
+    #     Response::JSON_OBJECT_CLASS = nil
+    #   end
 
     JSON_OBJECT_CLASS = OpenStruct
     PARSER = {

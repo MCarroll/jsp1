@@ -8,7 +8,7 @@
   } do |f| %>
 
   <div class="my-8 text-center">
-    <%= tag.div nil, data: { paypal_target: "button" } %>
+    <%= tag.div nil, data: { braintree__paypal_target: "button" } %>
   </div>
 
   <%= f.hidden_field :plan, value: @plan.to_param %>

@@ -2,11 +2,12 @@ class ApiToken < ApplicationRecord
   DEFAULT_NAME = I18n.t("api_tokens.default")
   APP_NAME = I18n.t("api_tokens.app")
 
+  has_prefix_id :token
+  has_secure_token :token
+
   belongs_to :user
 
   scope :sorted, -> { order("last_used_at DESC NULLS LAST, created_at DESC") }
-
-  has_secure_token :token
 
   validates :name, presence: true
 

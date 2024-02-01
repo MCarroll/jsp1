@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_prefix_id :user
+
   include User::Accounts
   include User::Agreements
   include User::Authenticatable

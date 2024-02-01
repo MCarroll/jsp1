@@ -1,6 +1,4 @@
 class Plan < ApplicationRecord
-  # Generates hash IDs with a friendly prefix so users can't guess hidden plan IDs on checkout
-  # https://github.com/excid3/prefixed_ids
   has_prefix_id :plan
 
   store_accessor :details, :features, :stripe_tax

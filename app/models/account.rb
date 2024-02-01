@@ -1,4 +1,6 @@
 class Account < ApplicationRecord
+  has_prefix_id :acct
+
   include Account::Billing
   include Account::Domains
   include Account::Transfer

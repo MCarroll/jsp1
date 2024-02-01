@@ -62,14 +62,8 @@ group :development, :test do
 end
 
 group :development do
-  # Annotate models and tests with database columns
-  # gem "annotate", ">= 3.2.0"
-
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console", ">= 4.1.0"
-
-  # A fully configurable and extendable Git hook manager
-  gem "overcommit", require: false
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler", ">= 2.3.3"
@@ -77,7 +71,17 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
+  # Annotate models and tests with database columns
+  # gem "annotate", ">= 3.2.0"
+
+  # Enhanced Exception messages
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
+
+  # A fully configurable and extendable Git hook manager
+  gem "overcommit", require: false
+
+  # Adds Rails support to your editor
+  gem "ruby-lsp-rails"
 end
 
 group :test do

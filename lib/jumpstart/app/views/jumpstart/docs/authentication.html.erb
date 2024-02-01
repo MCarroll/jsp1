@@ -26,7 +26,6 @@
 <p>To create a button for OAuth, you will use the following:</p>
 <div class="not-prose">
   <pre><code>&lt;%= button_to omniauth_authorize_path(:user, :twitter), class: "btn btn-twitter m-1", data: { turbo: false, disable_with: t(".redirecting") } do %&gt;
-  &lt;%= social_icon :twitter, class: "mr-2" %&gt;
   &lt;%= t("shared.oauth.twitter") %&gt;
 &lt;% end %&gt;</code></pre>
 </div>
@@ -36,6 +35,18 @@
 
 <p>By default, OmniAuth callbacks controller will create a <code>ConnectedAccount</code> record and associate it with <code>current_user</code>.</p>
 
+<%= h2_with_anchor "Custom OAuth Providers" %>
+<p>To add custom OmniAuth OAuth providers to Jumpstart Pro, you can follow these steps:</p>
+
+<ol>
+  <li>Add the <code>omniauth-[provider]</code> to your Gemfile and run <code>bundle</code>.</li>
+  <li>Edit the Rails credentials and add your credentials under <code>omniauth:</code> for your provider.</li>
+  <li>Edit <code>config/locales/en.yml</code> and add the OAuth provider to the list.</li>
+  <li>Add the OAuth provider to <code>config/initializers/devise.rb</code> and reference the Rails credentials for your client ID, secret, and scope.
+</ol>
+
+<p>Jumpstart Pro automatically generates buttons for OmniAuth providers registered with Devise. It also registers callbacks in the Devise OmniauthCallbacksController to save the OAuth credentials and generates scopes for the ConnectedAccount model.</p>
+
 <%= h2_with_anchor "OAuth Connected Accounts" %>
 <p>Users can sign up or login with connected accounts. We automatically add links based upon which OmniAuth providers are enabled. By default, Jumpstart Pro has options for a few OmniAuth providers, but you're free to add other providers and they will be automatically added to parts of the UI.</p>
 
@@ -44,7 +55,6 @@
 <p>Here we will associate the Twitter <code>ConnectedAccount</code> with the <code>current_account</code>. Optionally, you can set the <code>redirect_to</code> to send the user to a different location afterwards.</p>
 <div class="not-prose">
   <pre><code>&lt;%= button_to omniauth_authorize_path(:user, :twitter, record: current_account.to_sgid(for: :oauth), redirect_to: account_path(current_account)), class: "btn btn-twitter m-1", data: { turbo: false, disable_with: t(".redirecting") } do %&gt;
-  &lt;%= social_icon :twitter, class: "mr-2" &gt;
   &lt;%= t("shared.oauth.twitter") %&gt;
 &lt;% end %&gt;</code></pre>
 </div>

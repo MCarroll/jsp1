@@ -1,5 +1,5 @@
 ---
 exclude:
   - 'vendor/bundle/**/*'
-  - 'lib/jumpstart/app/views/jumpstart/docs/*.html.erb'
+  - 'lib/jumpstart/**/*'
 EnableDefaultLinters: true

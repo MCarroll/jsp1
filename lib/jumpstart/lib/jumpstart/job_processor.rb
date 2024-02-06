@@ -34,14 +34,5 @@ module Jumpstart
         "bundle exec rake solid_queue:start"
       end
     end
-
-    def self.queue_adapter(processor)
-      case processor.to_s
-      when "delayed_job"
-        "delayed"
-      else
-        processor.to_s
-      end
-    end
   end
 end

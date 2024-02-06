@@ -202,7 +202,16 @@ module Jumpstart
     end
 
     def job_processor
-      (background_job_processor || "async").to_sym
+      (background_job_processor || :async).to_sym
+    end
+
+    def queue_adapter
+      case job_processor
+      when :delayed_job
+        :delayed
+      else
+        job_processor
+      end
     end
 
     def gems

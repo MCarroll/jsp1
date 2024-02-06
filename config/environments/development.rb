@@ -94,5 +94,5 @@ Rails.application.configure do
     end
   end
 
-  config.active_job.queue_adapter = Jumpstart::JobProcessor.queue_adapter(Jumpstart.config.job_processor)
+  config.active_job.queue_adapter = Jumpstart.config.queue_adapter
 end

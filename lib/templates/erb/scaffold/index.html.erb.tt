@@ -18,7 +18,7 @@
   </div>
 
   <%%= tag.div id: ("<%= plural_table_name %>" if first_page?), class: "bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-md shadow p-6 space-y-8" do %>
-    <%%= render partial: "<%= controller_file_path %>/index", collection: @<%= plural_table_name %>, as: :<%= singular_name %>, cached: true %>
+    <%%= render partial: "<%= controller_file_path %>/<%= singular_name %>", collection: @<%= plural_table_name %>, as: :<%= singular_name %>, cached: true %>
 
     <div class="hidden only:flex flex-col items-center justify-between lg:flex-row">
       <%%= image_tag "empty.svg", class: "mb-4 lg:w-1/2" %>

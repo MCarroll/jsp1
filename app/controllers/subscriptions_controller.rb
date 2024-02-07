@@ -82,8 +82,9 @@ class SubscriptionsController < ApplicationController
     redirect_back_or_to root_path, alert: "Jumpstart must be configured for payments before you can manage subscriptions."
   end
 
+  # Pricing page will only display visible plans, but hidden plans are included here to make customer support easier.
   def set_plan
-    @plan = Plan.visible.find_by_prefix_id!(params[:plan])
+    @plan = Plan.find_by_prefix_id!(params[:plan])
   rescue ActiveRecord::RecordNotFound
     redirect_to pricing_path
   end

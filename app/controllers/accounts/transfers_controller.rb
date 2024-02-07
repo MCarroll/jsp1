@@ -14,7 +14,7 @@ class Accounts::TransfersController < Accounts::BaseController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_account
-    @account = current_user.accounts.find_by!(id: params[:account_id])
+    @account = current_user.owned_accounts.find(params[:account_id])
   rescue ActiveRecord::RecordNotFound
     redirect_to accounts_path
   end

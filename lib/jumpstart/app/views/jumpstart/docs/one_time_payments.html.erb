@@ -46,7 +46,7 @@ end</code></pre>
 
    # For Paddle Billing
    current_account.set_payment_processor :paddle_billing, processor_id: params[:user_id]
-   @transatction = Pay::PaddleBilling::Charge.sync_from_transaction(params[:transaction_id])
+   @transaction = Pay::PaddleBilling::Charge.sync_from_transaction(params[:transaction_id])
   end
 end</code></pre>
 </div>

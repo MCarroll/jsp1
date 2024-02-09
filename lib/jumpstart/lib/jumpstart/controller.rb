@@ -7,7 +7,7 @@ module Jumpstart
     end
 
     def jumpstart_welcome
-      redirect_to jumpstart.root_path(welcome: true) unless File.exist?(Rails.root.join("config", "jumpstart.yml"))
+      redirect_to jumpstart.root_path(welcome: true) unless Rails.root.join("config/jumpstart.yml").exist?
     end
   end
 end

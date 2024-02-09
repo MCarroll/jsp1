@@ -5,6 +5,6 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
     user = users(:one)
     get api_v1_accounts_url, headers: {Authorization: "token #{user.api_tokens.first.token}"}
     assert_response :success
-    assert_includes response.parsed_body.map { |t| t["name"] }, user.accounts.first.name
+    assert_includes response.parsed_body.pluck("name"), user.accounts.first.name
   end
 end

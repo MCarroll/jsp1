@@ -22,13 +22,11 @@ module Admin
     end
 
     def last_month
-      month = Time.current.prev_month
-      revenue_for_range month.beginning_of_month..month.end_of_month
+      revenue_for_range Time.current.prev_month.all_month
     end
 
     def this_month
-      month = Time.current
-      revenue_for_range month.beginning_of_month..month.end_of_month
+      revenue_for_range Time.current.all_month
     end
 
     def revenue_for_range(range)

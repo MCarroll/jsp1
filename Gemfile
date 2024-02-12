@@ -26,7 +26,7 @@ gem "stimulus-rails", "~> 1.0", ">= 1.0.2"
 gem "jbuilder", github: "excid3/jbuilder", branch: "partial-paths" # "~> 2.11"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", "~> 5.0"
+gem "redis", "~> 5.1"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

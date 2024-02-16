@@ -13,4 +13,7 @@
 <%- end -%>
   </div>
 <%- end -%>
+  <%% if action_name != "show" %>
+    <%%= link_to "View this <%= human_name.downcase %>", <%= singular_name %>, class: "btn btn-white" %>
+  <%% end %>
 </div>

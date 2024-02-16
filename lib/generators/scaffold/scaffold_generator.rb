@@ -6,7 +6,7 @@ class ScaffoldGenerator < Rails::Generators::NamedBase
 
   def add_to_navigation
     append_to_file "app/views/shared/_left_nav.html.erb" do
-      "<%= nav_link_to \"#{plural_table_name.titleize}\", #{index_helper(type: :path)}, class: \"nav-link\" %>\n"
+      "<%= nav_link_to \"#{plural_table_name.titleize}\", #{index_helper(type: :path)}, class: \"nav-link\", starts_with: #{index_helper(type: :path)} %>\n"
     end
   end
 

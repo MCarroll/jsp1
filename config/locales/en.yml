@@ -26,8 +26,6 @@
 #     en:
 #       "yes": yup
 #       enabled: "ON"
-#
-# https://mikerogers.io/2016/01/10/i18n-rails-internationalisation-i18n-cheatsheet.html
 
 en:
   are_you_sure: "Are you sure?"

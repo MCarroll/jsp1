@@ -26,9 +26,6 @@ FileUtils.chdir APP_ROOT do
   system! "gem install bundler --conservative"
   system("bundle check") || system!("bundle install")
 
-  # Install foreman system wide
-  system! "gem install foreman"
-
   # Install yarn system wide
   system! "npm install -g yarn" unless command_available?("yarn")
 

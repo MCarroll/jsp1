@@ -6,14 +6,14 @@
 <p>The Jumpstart Pro config admin lets you select your preferred tool for processing background jobs.</p>
 
 <ul>
-  <li>Async - Default, no dependencies</li>
-  <li>Sidekiq - Recommended, requires Redis</li>
-  <li>Sneakers - Requires RabbitMQ</li>
-  <li>Delayed Job</li>
-  <li>Sucker Punch - doesn't require a separate process, but doesn't allow scheduling</li>
-  <li>Que - Requires PostgreSQL</li>
-  <li>GoodJob - Requires PostgreSQL</li>
-  <li>Solid Queue - no dependencies</li>
+  <li>Async - Rails default, runs jobs with an in-process thread pool. Should not be used in production.</li>
+  <li><a href="https://github.com/basecamp/solid_queue" target="_blank">Solid Queue - Stores jobs in Rails database</a></li>
+  <li><a href="https://github.com/sidekiq/sidekiq" target="_blank">Sidekiq</a> - requires Redis</li>
+  <li><a href="https://github.com/bensheldon/good_job" target="_blank">GoodJob</a> - Requires PostgreSQL</li>
+  <li><a href="https://github.com/que-rb/que" target="_blank">Que</a> - Requires PostgreSQL</li>
+  <li><a href="https://github.com/jondot/sneakers" target="_blank">Sneakers</a> - Requires RabbitMQ</li>
+  <li><a href="https://github.com/collectiveidea/delayed_job" target="_blank">Delayed Job</a></li>
+  <li><a href="https://github.com/brandonhilkert/sucker_punch" target="_blank">Sucker Punch</a> - doesn't require a separate process, but doesn't allow scheduling</li>
 </ul>
 
 <%= h2_with_anchor "Active Job" %>
@@ -21,3 +21,4 @@
 
 <%= h2_with_anchor "Sidekiq" %>
 <p>If Sidekiq is enabled, we automatically enable the Sidekiq Web UI, restrict it to only admin users and add links to it in the navigation.</p>
+<p>Sidekiq requires Redis to operate. Ensure <a href="https://redis.io/docs/install/install-redis/" target="_blank">Redis is installed</a> and properly configured in your setup before enabling Sidekiq.</p>

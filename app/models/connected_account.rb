@@ -1,5 +1,5 @@
 class ConnectedAccount < ApplicationRecord
-  include ConnectedAccount::Token
+  include Token
 
   serialize :auth, coder: JSON
 

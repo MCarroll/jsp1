@@ -1,9 +1,9 @@
 class Account < ApplicationRecord
   has_prefix_id :acct
 
-  include Account::Billing
-  include Account::Domains
-  include Account::Transfer
+  include Billing
+  include Domains
+  include Transfer
 
   belongs_to :owner, class_name: "User"
   has_many :account_invitations, dependent: :destroy

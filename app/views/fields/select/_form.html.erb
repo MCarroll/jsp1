@@ -25,7 +25,12 @@ to be displayed on a resource's edit form page.
         field.data,
       ),
       { include_blank: field.include_blank_option },
-      { data: { controller: "select" } }
+      { data: {
+        controller: "select",
+        select_url_value: field.options[:url],
+        select_label_field_value: field.options[:label_field],
+        select_value_field_value: field.options[:value_field]
+      } }
     ) %>
   <% else %>
     <%= f.select(
@@ -37,7 +42,12 @@ to be displayed on a resource's edit form page.
         field.data,
       ),
       { include_blank: field.include_blank_option },
-      { data: { controller: "select" } }
+      { data: {
+        controller: "select",
+        select_url_value: field.options[:url],
+        select_label_field_value: field.options[:label_field],
+        select_value_field_value: field.options[:value_field]
+      } }
     ) %>
   <% end %>
 </div>

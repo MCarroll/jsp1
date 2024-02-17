@@ -1,4 +1,4 @@
-module Rolified
+module AccountUser::Roles
   # Adds roles to a model along with helper methods and scopes
   #
   # To use, add a `roles:json` column to your model.

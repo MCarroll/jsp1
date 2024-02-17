@@ -3,7 +3,8 @@ class AccountUser < ApplicationRecord
   # Do NOT to use any reserved words like `user` or `account`
   ROLES = [:admin, :member]
 
-  include Rolified
+  include UpdatesSubscriptionQuantity
+  include Roles
 
   belongs_to :account, counter_cache: true
   belongs_to :user
@@ -19,8 +20,6 @@ class AccountUser < ApplicationRecord
   end
 
   def owner_must_be_admin
-    unless admin?
-      errors.add :admin, :cannot_be_removed
-    end
+    errors.add :admin, :cannot_be_removed unless admin?
   end
 end

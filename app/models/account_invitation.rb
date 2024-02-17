@@ -1,7 +1,7 @@
 class AccountInvitation < ApplicationRecord
   ROLES = AccountUser::ROLES
 
-  include Rolified
+  include AccountUser::Roles
 
   belongs_to :account
   belongs_to :invited_by, class_name: "User", optional: true

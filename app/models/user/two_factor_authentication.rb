@@ -5,7 +5,7 @@
 # * last_otp_timestep:integer
 # * otp_backup_codes:text
 
-module TwoFactorAuthentication
+module User::TwoFactorAuthentication
   extend ActiveSupport::Concern
 
   included do

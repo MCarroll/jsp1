@@ -13,6 +13,8 @@ module UpdatesSubscriptionQuantity
   # Usage:
   #
   #    class Site
+  #      include UpdatesSubscriptionQuantity
+  #
   #      belongs_to :account, counter_cache: true
   #
   #      updates_subscription_quantity :per_unit_quantity

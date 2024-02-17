@@ -29,7 +29,7 @@ class Plan < ApplicationRecord
   end
 
   def has_trial?
-    trial_period_days.to_i > 0
+    trial_period_days > 0
   end
 
   def monthly?

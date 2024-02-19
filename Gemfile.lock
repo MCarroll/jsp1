@@ -439,7 +439,7 @@ GEM
     tilt (2.3.0)
     timeout (0.4.1)
     ttfunk (1.7.0)
-    turbo-rails (2.0.2)
+    turbo-rails (2.0.3)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
@@ -522,7 +522,7 @@ DEPENDENCIES
   sprockets-rails (>= 3.4.1)
   standard
   stimulus-rails (~> 1.0, >= 1.0.2)
-  turbo-rails (~> 2.0.2)
+  turbo-rails (~> 2.0.3)
   tzinfo-data
   web-console (>= 4.1.0)
   webmock

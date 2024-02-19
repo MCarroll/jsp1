@@ -160,10 +160,10 @@ GEM
     chunky_png (1.4.0)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
-    countries (5.7.1)
+    countries (6.0.0)
       unaccent (~> 0.3)
-    country_select (8.0.3)
-      countries (~> 5.0)
+    country_select (9.0.0)
+      countries (> 5.0, < 7.0)
     crack (0.4.6)
       bigdecimal
       rexml
@@ -484,7 +484,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   brakeman
   capybara (>= 3.39)
-  country_select (~> 8.0)
+  country_select (~> 9.0)
   cssbundling-rails (~> 1.4.0)
   debug
   devise!

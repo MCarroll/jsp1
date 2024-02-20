@@ -34,7 +34,9 @@ module SetLocale
   end
 
   def locale_from_header
-    permit_locale request.env.fetch("HTTP_ACCEPT_LANGUAGE", "").scan(/^[a-z]{2}/).first
+    # Extract the full locale (including region code)
+    locale = request.env.fetch("HTTP_ACCEPT_LANGUAGE", "").scan(/^[a-z]{2}(?:-[A-Z]{2})?/).first
+    permit_locale(locale)
   end
 
   # Makes sure locale is in the available locales list

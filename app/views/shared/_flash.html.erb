@@ -1,11 +1,4 @@
-<% if current_user != true_user %>
-  <div class="flex items-center justify-center px-2 py-1 text-sm text-primary-200 bg-primary-600 font-semibold dark:text-primary-400 dark:bg-primary-700" role="alert">
-    <span class="mr-2">Logged in as <b><%= link_to "#{current_user.name} (#{current_user.email})", main_app.admin_user_path(current_user), class: "text-primary-200 underline hover:text-primary-100 dark:text-primary-400 dark:hover:text-primary-300" %></b></span>
-    <%= button_to main_app.admin_user_impersonate_path(current_user), method: :delete, form_class: "inline-block", class: "btn btn-primary btn-small dark:bg-primary-700 dark:text-primary-300" do %>
-      Logout
-    <% end %>
-  </div>
-<% end %>
+<%= render "shared/impersonation_banner" %>
 
 <div id="flash" data-turbo-temporary>
   <% if notice %>

@@ -9,7 +9,7 @@ module SortHelper
 
     link_to request.params.merge(sort: column, direction: direction), options do
       concat title
-      concat sort_icon if matching_column
+      concat sort_icon(direction) if matching_column
     end
   end
 

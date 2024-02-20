@@ -3,7 +3,7 @@
 # Jumpstart Pro dependencies
 gem "administrate", github: "excid3/administrate", branch: "jumpstart"
 gem "administrate-field-active_storage", "~> 1.0.0"
-gem "country_select", "~> 8.0"
+gem "country_select", "~> 9.0"
 gem "cssbundling-rails", "~> 1.4.0"
 gem "devise", github: "excid3/devise", branch: "sign-in-after-reset-password-proc" # "~> 4.9.0"
 gem "devise-i18n", "~> 1.10"
@@ -14,7 +14,7 @@ gem "jumpstart", path: "lib/jumpstart", group: :omit
 gem "local_time", "~> 3.0"
 gem "name_of_person", "~> 1.0"
 gem "noticed", "~> 2.0"
-gem "pagy", "~> 6.4"
+gem "pagy", "~> 7.0"
 gem "pay", "~> 7.1"
 gem "prawn", github: "prawnpdf/prawn"
 gem "prefixed_ids", "~> 1.2"

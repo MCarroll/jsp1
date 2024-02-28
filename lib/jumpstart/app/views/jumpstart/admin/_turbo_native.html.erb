@@ -6,7 +6,7 @@
 
 <div class="my-2 custom-control custom-checkbox toggle">
   <%= f.check_box :apns, value: true, checked: Jumpstart.config.apns?, class: "form-checkbox" %>
-  <%= f.label :apns, "Apple Notifications", class: "inline-block mb-0" %>
+  <%= f.label :apns, "Apple Notifications", class: "mb-0" %>
 </div>
 <p class="text-xs text-gray-600 dark:text-gray-300/75">Don't forget to follow the <%= link_to "iOS documentation in Noticed", "https://github.com/excid3/noticed/blob/master/docs/delivery_methods/ios.md", target: :_blank %> to configure your credentials.</p>
 
@@ -15,6 +15,6 @@
 
 <div class="my-2 custom-control custom-checkbox toggle">
   <%= f.check_box :fcm, value: true, checked: Jumpstart.config.fcm?, class: "form-checkbox" %>
-  <%= f.label :fcm, "Android Notifications", class: "inline-block" %>
+  <%= f.label :fcm, "Android Notifications" %>
 </div>
 <p class="text-xs text-gray-600 dark:text-gray-300/75">Don't forget to follow the <%= link_to "FCM documentation in Noticed", "https://github.com/excid3/noticed/blob/master/docs/delivery_methods/fcm.md", target: :_blank %> to configure your credentials.</p>

@@ -22,19 +22,19 @@
 
   <div class="custom-control custom-checkbox toggle">
     <%= check_box_tag "configuration[multitenancy][]", "session", Jumpstart::Multitenancy.session?, class: "form-checkbox", id: "multitenancy_session", disabled: true %>
-    <%= label_tag "multitenancy_session", "Session Cookie", class: "inline-block" %>
+    <%= label_tag "multitenancy_session", "Session Cookie" %>
     <span class="text-sm text-gray-600 dark:text-gray-300/75">(always enabled as a fallback)</span>
   </div>
 
   <div class="custom-control custom-checkbox toggle">
     <%= check_box_tag "configuration[multitenancy][]", "subdomain", Jumpstart::Multitenancy.subdomain?, class: "form-checkbox", id: "multitenancy_subdomain" %>
-    <%= label_tag "multitenancy_subdomain", "Subdomains & Custom Domains", class: "inline-block" %>
+    <%= label_tag "multitenancy_subdomain", "Subdomains & Custom Domains" %>
     <span class="text-sm text-gray-600 dark:text-gray-300/75">(such as you.example.org or mydomain.com)</span>
   </div>
 
   <div class="custom-control custom-checkbox toggle">
     <%= check_box_tag "configuration[multitenancy][]", "path", Jumpstart::Multitenancy.path?, class: "form-checkbox", id: "multitenancy_path" %>
-    <%= label_tag "multitenancy_path", "URL Path", class: "inline-block" %>
+    <%= label_tag "multitenancy_path", "URL Path" %>
     <span class="text-sm text-gray-600 dark:text-gray-300/75">(prepends <code>/:account_id/</code> as the script_name before Rails routes)</span>
   </div>
 </div>

@@ -19,7 +19,7 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <%= yield :head %>
   </head>
-  <body class="h-full font-sans antialiased font-normal leading-normal bg-white" data-controller="theme" data-theme-preference-value="<%= current_user&.theme %>">
+  <body class="h-full font-sans antialiased font-normal leading-normal bg-white dark:bg-gray-900 dark:text-gray-50" data-controller="theme" data-theme-preference-value="<%= current_user&.theme %>">
     <div class="main flex flex-col">
       <%= render partial: "shared/flash" %>
       <%= render partial: "shared/minimal_navbar" %>

@@ -44,7 +44,13 @@ async function buildAndReload() {
   const context = await esbuild.context({
     ...config,
     banner: {
-      js: ` (() => new EventSource("http://localhost:${port}").onmessage = () => location.reload())();`,
+      js: `
+        (() => { 
+          if (typeof EventSource !== 'undefined') { 
+            new EventSource("http://localhost:${port}").onmessage = () => location.reload()
+          }
+        })();
+      `,
     }
   })
 

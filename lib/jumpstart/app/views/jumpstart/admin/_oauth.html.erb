@@ -5,7 +5,7 @@
   <div class="mb-4">
     <div class="custom-control custom-checkbox toggle">
       <%= check_box_tag "configuration[omniauth_providers][]", gem_name, Jumpstart::Omniauth.enabled?(gem_name), id: gem_name, class: "form-checkbox" %>
-      <%= label_tag gem_name, details[:name], class: "font-weight-semibold inline-block" %>
+      <%= label_tag gem_name, details[:name], class: "font-weight-semibold" %>
     </div>
   </div>
 <% end %>

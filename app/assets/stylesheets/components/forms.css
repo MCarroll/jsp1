@@ -167,7 +167,7 @@ form.inline {
   }
 
   label {
-    @apply relative pl-16 pt-0.5 hover:cursor-pointer;
+    @apply relative pl-16 pt-0.5 hover:cursor-pointer inline-block;
 
     &:before {
       @apply absolute bg-gray-200 dark:bg-gray-700 top-0 left-0 rounded-3xl h-6 w-[50px] content-[""] transition-colors duration-200 ease-in;

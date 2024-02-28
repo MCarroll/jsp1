@@ -6,7 +6,7 @@
 </nav>
 
 <% if Jumpstart.config.stripe? %>
-  <div class="my-10">
+  <div class="my-10 container mx-auto">
     <h1 class="mb-4 lg:mb-8 text-center"><%= t(".title") %></h1>
     <%= render "subscriptions/forms/stripe", client_secret: @checkout_session.client_secret %>
     <%= render "subscriptions/new/testimonial" %>

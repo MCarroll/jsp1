@@ -79,9 +79,6 @@ group :development do
 
   # A fully configurable and extendable Git hook manager
   gem "overcommit", require: false
-
-  # Adds Rails support to your editor
-  gem "ruby-lsp-rails"
 end
 
 group :test do

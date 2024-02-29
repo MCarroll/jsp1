@@ -23,7 +23,7 @@ gem "pundit", "~> 2.1"
 gem "receipts", "~> 2.1"
 gem "rotp", "~> 6.2"
 gem "rqrcode", "~> 2.1"
-gem "ruby-oembed", "~> 0.16.0", require: "oembed"
+gem "ruby-oembed", "~> 0.17.0", require: "oembed"
 
 gem "acts_as_tenant", "~> 1.0" if Jumpstart.config.gems.include?("acts_as_tenant")
 gem "oj", "~> 3.8" if Jumpstart.config.gems.include?("oj")

@@ -24,7 +24,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_22_020825) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id", "email"], name: "index_account_invitations_on_account_id_and_email", unique: true
-    t.index ["account_id"], name: "index_account_invitations_on_account_id"
     t.index ["invited_by_id"], name: "index_account_invitations_on_invited_by_id"
     t.index ["token"], name: "index_account_invitations_on_token", unique: true
   end
@@ -36,8 +35,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_22_020825) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id", "user_id"], name: "index_account_users_on_account_id_and_user_id", unique: true
-    t.index ["account_id"], name: "index_account_users_on_account_id"
-    t.index ["user_id"], name: "index_account_users_on_user_id"
   end
 
   create_table "accounts", force: :cascade do |t|

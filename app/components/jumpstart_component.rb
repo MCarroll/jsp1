@@ -27,8 +27,8 @@ class JumpstartComponent
   end
 
   # Captures content to be stored later
-  def capture_for(name, value = nil, &block)
-    value ||= @view_context.capture(&block)
+  def capture_for(name, value = nil, &)
+    value ||= @view_context.capture(&)
     value = send(name) + [value] if send(name).is_a? Array
     send(:"#{name}=", value)
   end

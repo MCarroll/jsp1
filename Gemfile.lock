@@ -1,9 +1,10 @@
 GIT
   remote: https://github.com/excid3/administrate.git
-  revision: eb066da267404a945632d0f74ecc30d8d9c815de
+  revision: 54da1322b007b3a891595c6511cb11a5d00b4c1c
+  ref: 54da132
   branch: jumpstart
   specs:
-    administrate (0.19.0)
+    administrate (0.18.0)
       actionpack (>= 5.0)
       actionview (>= 5.0)
       activerecord (>= 5.0)

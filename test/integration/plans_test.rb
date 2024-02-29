@@ -29,6 +29,14 @@ class Jumpstart::PlansTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "enterprise plan shows up" do
+    get "/pricing"
+
+    assert_select "a[href=?]", "mailto:user@example.com"
+    assert_select "a", text: I18n.t("subscriptions.plan.contact_us")
+    assert_select "span", text: I18n.t("subscriptions.plan.contact_us_price")
+  end
+
   if Jumpstart.config.payments_enabled?
     test "can view subscribe page for a plan" do
       sign_in users(:one)

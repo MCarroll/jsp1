@@ -237,6 +237,8 @@ en:
     already_subscribed: "You are already subscribed."
 
     plan:
+      contact_us: "Contact Us"
+      contact_us_price: "Let's Talk"
       change_plan: "Change Plan"
       current_plan: "Current plan"
       get_started: "Get Started"

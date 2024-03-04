@@ -1,7 +1,6 @@
 GIT
   remote: https://github.com/excid3/administrate.git
-  revision: aa923813e4ea48dc9f4eb2c748875580ae4c5012
-  ref: aa92381
+  revision: a345248f4e66237816f3195893e1edf02d7be28f
   specs:
     administrate (0.20.1)
       actionpack (>= 6.0, < 8.0)

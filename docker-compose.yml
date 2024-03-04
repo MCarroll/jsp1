@@ -19,6 +19,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
     depends_on:
       - postgres
       - redis

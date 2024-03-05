@@ -25,6 +25,15 @@ account.payment_processor.subscribe</code></pre>
 <%= link_to image_tag("https://jumpstartpro.b-cdn.net/enterprise-plans.png", class: "max-w-lg"), "https://jumpstartpro.b-cdn.net/enterprise-plans.png", target: :_blank %>
 <p>To create an Enterprise Plan, fill out the <code>contact_url</code> attribute with a path like <code>/contact-us</code> or <code>mailto:support@example.org</code> link. You'll also want to set <code>amount</code> to a high value like <code>999999</code> to ensure it sorts last on the pricing page.</p>
 
+<%= h6_with_anchor "Sales Flow" %>
+<ol>
+  <li>Customer views pricing page and contacts sales team.</li>
+  <li>Your sales team negotiates a custom pricing plan and adds it to your payment processor like Stripe.</li>
+  <li>Create the enterprise plan in your app's admin area. Mark the plan as "Hidden".</li>
+  <li>Send customer a link to subscribe with this new, hidden plan.</li>
+  <li>Customer checks out with custom plan and can manage it under Billing.</p>
+</ol>
+
 <%= h4_with_anchor "Trials" %>
 <p>Plans have a <code>trial_period_days:integer</code> attribute to define a trial period. This may also be required on the Price in your payment processor.</p>
 <p>Depending on the payment processor, trials may require a payment method or can be configured to capture a payment method later.</p>

@@ -3,7 +3,6 @@ services:
   postgres:
     image: postgres:16
     environment:
-      - POSTGRES_DB=jumpstart
       - POSTGRES_PASSWORD=password
     ports:
       - "5432:5432"
@@ -19,10 +18,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
-
     depends_on:
       - postgres
       - redis
@@ -32,7 +29,9 @@ services:
       - "3000:3000"
       - "3200:3200"
     environment:
-      - DATABASE_URL=postgres://postgres:password@postgres/jumpstart
+      - PGHOST=postgres
+      - PGUSER=postgres
+      - PGPASSWORD=password
       - REDIS_URL=redis://redis:6379
       - PORT=3000
     volumes:

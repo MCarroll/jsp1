@@ -1,5 +1,3 @@
-/* Light Jumpstart theme for Pagy's default renderer */
-
 .pagination {
   @apply inline-flex flex-wrap items-center justify-start;
 
@@ -13,26 +11,30 @@
     }
   }
 
-  .disabled, .gap {
-    @apply border relative block leading-tight bg-white text-gray-500 no-underline py-2 px-3;
-    @apply dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600;
-    margin-left: -1px;
-  }
-
   .page {
-    &.active {
-      @apply z-10 border border-primary-500 bg-primary-500 text-white relative block leading-tight no-underline py-2 px-3;
-      @apply dark:bg-primary-800 dark:text-gray-200 dark:border-primary-600;
-      margin-left: -1px;
-    }
-
     a {
-      @apply border relative block leading-tight bg-white text-primary-500 no-underline py-2 px-3;
+      @apply border relative block leading-tight bg-white text-primary-500 no-underline py-2 px-3 tabular-nums;
       @apply dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600;
       margin-left: -1px;
 
       &:hover {
         @apply bg-gray-200 dark:bg-gray-700;
+      }
+    }
+
+    &.active {
+      a {
+        @apply z-10 border-primary-500 bg-primary-500 text-white;
+        @apply dark:bg-primary-800 dark:text-gray-200 dark:border-primary-600;
+        margin-left: -1px;
+      }
+    }
+
+    &.disabled, &.gap {
+      a {
+        @apply bg-white text-gray-500;
+        @apply dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600;
+        margin-left: -1px;
       }
     }
   }

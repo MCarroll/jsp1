@@ -177,17 +177,6 @@ en:
       sign_out: "Sign Out"
       log_in: "Log In"
       sign_up: "Sign Up"
-    oauth:
-      sign_in_with: "Sign in with %{provider}"
-      apple: "Apple"
-      developer: "Developer"
-      facebook: "Facebook"
-      github: "GitHub"
-      gitlab: "GitLab"
-      google_oauth2: "Google"
-      microsoft_graph: "Microsoft"
-      stripe: "Stripe"
-      twitter: "Twitter"
     right_nav:
       pricing: "Pricing"
       announcements: "What's New"
@@ -202,6 +191,18 @@ en:
   dashboard:
     show:
       title: "Dashboard"
+
+  oauth:
+    sign_in_with: "Sign in with %{provider}"
+    apple: "Apple"
+    developer: "Developer"
+    facebook: "Facebook"
+    github: "GitHub"
+    gitlab: "GitLab"
+    google_oauth2: "Google"
+    microsoft_graph: "Microsoft"
+    stripe: "Stripe"
+    twitter: "Twitter"
 
   payments:
     success: "Thanks for subscribing!"

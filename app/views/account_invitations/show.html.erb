@@ -9,6 +9,6 @@
 
   <div class="mt-5 flex gap-2 justify-center">
     <%= button_to t(".accept"), account_invitation_path(@account_invitation.token), method: :put, class: "btn btn-primary" %>
-    <%= button_to t(".decline"), account_invitation_path(@account_invitation.token), method: :delete, class: "btn btn-white", data: {turbo_confirm: t("are_you_sure")} %>
+    <%= button_to t(".decline"), account_invitation_path(@account_invitation.token), method: :delete, class: "btn btn-secondary", data: {turbo_confirm: t("are_you_sure")} %>
   </div>
 </div>

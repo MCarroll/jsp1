@@ -503,6 +503,7 @@ en:
     index:
       title: "Notifications"
       empty_placeholder: "Nothing to see here — yet."
+      mark_all_as_read: "Mark all as read"
     invite_accepted: "%{user} accepted your invitation."
     account_transferred: "%{previous_owner} made you owner of the %{account} account."
     empty: "Nothing to see here — yet."

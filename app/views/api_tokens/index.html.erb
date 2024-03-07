@@ -4,7 +4,7 @@
   </div>
 
   <div class="w-full lg:w-3/4 lg:p-4">
-    <div class="lg:p-10 p-4 bg-white rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-700 overflow-x-auto">
+    <div class="lg:p-10 p-4 bg-white rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-800 overflow-x-auto">
 
       <div class="sm:flex justify-between items-center mb-3">
         <h1 class="h3 flex-1"><%= t(".title") %></h1>
@@ -26,11 +26,11 @@
           </thead>
           <tbody>
             <% @api_tokens.each do |api_token| %>
-              <tr class="group border-t border-gray-200 hover:bg-gray-50 hover:dark:bg-gray-900/75">
+              <tr class="group border-t border-gray-200 hover:bg-gray-50 hover:dark:bg-gray-900/75 dark:border-gray-800">
                 <td class="p-3 font-medium"><%= link_to api_token.name, api_token %></td>
                 <td class="p-3"><%= api_token.last_used_at? ? local_time_ago(api_token.last_used_at) : "—" %></td>
                 <td class="hidden sm:table-cell p-3"><%= api_token.created_at.strftime("%b %e, %Y") %></td>
-                <td class="p-3 font-medium text-sm text-right"><%= link_to t(".view"), api_token %></td>
+                <td class="p-3 font-medium text-sm text-right"><%= link_to t(".view"), api_token, class: "btn btn-secondary btn-xs" %></td>
               </tr>
             <% end %>
           </tbody>

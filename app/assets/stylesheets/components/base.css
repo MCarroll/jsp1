@@ -1,5 +1,6 @@
-:root {
-  color-scheme: light dark;
+/* Tells browser to use dark mode scroll bars, etc */
+.dark {
+  color-scheme: dark;
 }
 
 body {

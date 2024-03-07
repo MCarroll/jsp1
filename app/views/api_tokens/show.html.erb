@@ -4,15 +4,15 @@
   </div>
 
   <div class="w-full lg:w-3/4 lg:p-4">
-    <div class="lg:p-10 p-4 bg-white rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+    <div class="lg:p-10 p-4 bg-white rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-800">
       <div class="sm:flex justify-between items-center mb-5">
         <div class="flex items-center">
           <h1 class="h3 mb-2"><%= @api_token.name %></h1>
         </div>
 
         <div class="flex-shrink-0">
-          <%= link_to t(".edit"), edit_api_token_path(@api_token), class: "btn btn-white" %>
-          <%= link_to t(".revoke"), @api_token, class: "btn btn-danger btn-outline", data: { turbo_method: :delete, turbo_confirm: t(".confirm") } %>
+          <%= link_to t(".edit"), edit_api_token_path(@api_token), class: "btn btn-secondary" %>
+          <%= link_to t(".revoke"), @api_token, class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: t(".confirm") } %>
         </div>
       </div>
 

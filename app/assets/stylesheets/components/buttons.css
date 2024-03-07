@@ -6,9 +6,9 @@ button[disabled]        .when-enabled { display: none; }
 
 @layer components {
   .btn {
-    @apply inline-flex text-sm font-semibold text-center px-4 py-0 rounded-md no-underline items-center justify-between shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply no-underline shadow-sm inline-flex items-center justify-between rounded-md px-3 py-2 text-sm font-semibold;
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500;
 
-    height: 40px;
     transition: ease 0.3s background, ease 0.3s transform, ease 0.2s color;
 
     &:hover,
@@ -21,22 +21,26 @@ button[disabled]        .when-enabled { display: none; }
     }
   }
 
-  .btn-small {
-    @apply px-3 text-sm;
-
-    height: 32px;
-    line-height: 32px;
+  .btn-xs {
+    @apply px-2 py-1 text-xs;
   }
 
-  .btn-large {
-    @apply text-base px-6;
+  .btn-sm,
+  .btn-small {
+    @apply px-2 py-1;
+  }
 
-    height: 48px;
-    line-height: 48px;
+  .btn-lg,
+  .btn-large {
+    @apply px-3.5 py-2.5;
+  }
+
+  .btn-xl {
+    @apply px-4 py-3;
   }
 
   .btn-primary {
-    @apply bg-primary-600 text-white focus:ring-primary-500;
+    @apply bg-primary-600 text-white focus-visible:outline-primary-500;
 
     &:hover,
     &:focus {
@@ -53,44 +57,20 @@ button[disabled]        .when-enabled { display: none; }
     }
   }
 
-  .btn-secondary {
-    @apply bg-green-600 text-white focus:ring-green-500;
-
-    &:hover,
-    &:focus {
-      @apply bg-green-500 text-white;
-    }
-
-    &.btn-outline {
-      @apply bg-transparent border border-green-500 text-green-600 shadow-none;
-
-      &:hover,
-      &:focus {
-        @apply bg-green-500 text-white;
-      }
-    }
-  }
-
+  .btn-secondary,
   .btn-tertiary {
-    @apply bg-neutral-800 text-white focus:ring-neutral-700;
-
-    &:hover,
-    &:focus {
-      @apply bg-neutral-700 text-white;
-    }
+    @apply bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 hover:text-gray-700 focus-visible:text-gray-700 focus-visible:outline-primary-500 dark:focus-visible:outline-white/20;
+    @apply dark:bg-white/10 dark:text-white dark:border-gray-700 dark:hover:text-white dark:hover:bg-white/20 dark:focus-visible:ring-gray-500;
 
     &.btn-outline {
-      @apply bg-transparent border border-neutral-500 text-neutral-800 dark:text-neutral-100 shadow-none;
-
-      &:hover,
-      &:focus {
-        @apply bg-neutral-700 text-white;
-      }
+      @apply bg-transparent border border-gray-500 text-gray-800 dark:text-gray-100 shadow-none;
+      @apply hover:bg-gray-700 hover:text-white;
+      @apply focus:bg-gray-700 focus:text-white;
     }
   }
 
   .btn-danger {
-    @apply bg-red-600 text-white focus:ring-red-500;
+    @apply bg-red-600 text-white focus-visible:outline-red-500;
 
     &:hover,
     &:focus {
@@ -107,55 +87,49 @@ button[disabled]        .when-enabled { display: none; }
     }
   }
 
+  .btn-success {
+    @apply bg-green-600 text-white focus-visible:outline-green-500;
+
+    &:hover,
+    &:focus {
+      @apply bg-green-500 text-white;
+    }
+
+    &.btn-outline {
+      @apply bg-transparent border border-green-500 text-green-600 shadow-none;
+
+      &:hover,
+      &:focus {
+        @apply bg-green-500 text-white;
+      }
+    }
+  }
+
+  .btn-light,
+  .btn-white
   .btn-gray {
-    @apply bg-gray-100 text-gray-800 hover:bg-gray-200 hover:text-gray-800 focus:ring-gray-600;
-  }
+    @apply bg-gray-100 border border-gray-300 text-gray-800 hover:bg-gray-50 hover:text-gray-800 focus-visible:text-gray-800;
+    @apply dark:text-gray-800;
 
-  .btn-light-gray {
-    @apply bg-gray-100 text-gray-800 hover:bg-gray-200 hover:text-gray-800 focus:ring-gray-600 dark:bg-gray-700 dark:text-gray-200;
-  }
+    &.btn-outline {
+      @apply bg-transparent shadow-none dark:text-gray-200;
 
-  .btn-white {
-    @apply bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:text-gray-700 focus:ring-primary-500;
-
-    &.primary {
-      @apply text-primary-600;
-    }
-
-    &.secondary {
-      @apply text-green-600;
-    }
-
-    &.tertiary {
-      @apply text-gray-600;
-    }
-
-    &.gray {
-      @apply text-gray-700;
+      &:hover,
+      &:focus {
+        @apply bg-gray-200 dark:text-gray-800;
+      }
     }
   }
 
   .btn-link {
-    @apply text-primary-500 bg-transparent shadow-none;
+    @apply text-primary-500 bg-transparent shadow-none focus-visible:outline-primary-500;
+    @apply dark:hover:text-primary-500 dark:hover:bg-gray-800;
 
     &:hover,
     &:focus {
       @apply text-primary-600;
-
       transform: none;
     }
-  }
-
-  .btn-light-blue {
-    @apply text-primary-700 bg-primary-100 focus:ring-primary-700;
-  }
-
-  .btn-light-green {
-    @apply text-green-700 bg-green-100 focus:ring-green-700;
-  }
-
-  .btn-light-red {
-    @apply text-red-700 bg-red-100 focus:ring-red-700;
   }
 
   .btn-expanded, .btn-block {

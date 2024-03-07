@@ -85,6 +85,11 @@
         <input type="checkbox" id="disabled-checkbox" class="form-checkbox" disabled>
         <label for="disabled-checkbox" class="inline-block">Disabled checkbox</label>
       </div>
+
+      <div class="flex items-center gap-x-3 switch">
+        <input type="checkbox" id="switch-checkbox" class="form-checkbox">
+        <label for="switch-checkbox" class="inline-block">Toggle switch</label>
+      </div>
     </div>
 
     <div class="form-group flex flex-col gap-1">
@@ -170,6 +175,12 @@
       <div class="lg:w-1/6 lg:pr-4"></div>
       <input type="checkbox" id="admin2" class="form-checkbox mr-2">
       <label for="admin2" class="inline-block mb-0">Member</label>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-start form-group switch">
+      <div class="lg:w-1/6 lg:pr-4"></div>
+      <input type="checkbox" id="inline-switch" class="form-checkbox mr-2">
+      <label for="inline-switch" class="inline-block mb-0">Member</label>
     </div>
   </form>
 <% end %>

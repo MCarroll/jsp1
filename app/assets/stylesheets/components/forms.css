@@ -156,7 +156,7 @@ form.inline {
     &:checked {
       +label {
         &:before {
-          @apply bg-primary-600 dark:bg-primary-400;
+          @apply bg-primary-600;
         }
 
         &:after {
@@ -174,7 +174,7 @@ form.inline {
     }
 
     &:after {
-      @apply absolute top-0.5 left-0.5 rounded-full w-5 h-5 bg-white dark:bg-gray-400 content-[""] transition-transform duration-200 ease-in;
+      @apply absolute top-0.5 left-0.5 rounded-full w-5 h-5 bg-white content-[""] transition-transform duration-200 ease-in;
     }
   }
 }

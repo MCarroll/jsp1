@@ -15,15 +15,11 @@
     <%= render "shared/payments_dependencies" %>
 
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dark.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script>
       document.addEventListener("turbo:load", function() {
-        var snippets = document.querySelectorAll('pre code')
-        snippets.forEach(function(snippet) {
-          hljs.highlightElement(snippet);
-          snippet.parentNode.classList.add('dark:border', 'dark:border-gray-400/50', 'dark:rounded');
-        })
+        document.querySelectorAll("pre code").forEach(function(snippet) { hljs.highlightElement(snippet); })
       });
     </script>
 

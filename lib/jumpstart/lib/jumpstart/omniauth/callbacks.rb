@@ -102,7 +102,7 @@ module Jumpstart
 
       def success_message!(kind:)
         return unless is_navigational_format?
-        set_flash_message(:notice, :success, kind: t("shared.oauth.#{kind}"))
+        set_flash_message(:notice, :success, kind: t("oauth.#{kind}"))
       end
 
       def connected_account

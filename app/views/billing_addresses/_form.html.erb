@@ -1,5 +1,5 @@
 <%= form_with(model: billing_address, url: billing_address_url) do |form| %>
-  <%= render "shared/error_messages", resource: form.object %>
+  <%= render "error_messages", resource: form.object %>
 
   <h5 class="mb-2"><%= t("subscriptions.billing_address.billing_address") %></h5>
 

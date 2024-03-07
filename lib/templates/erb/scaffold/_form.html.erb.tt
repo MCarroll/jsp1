@@ -1,5 +1,5 @@
 <%%= form_with(model: <%= model_resource_name %>) do |form| %>
-  <%%= render "shared/error_messages", resource: form.object %>
+  <%%= render "error_messages", resource: form.object %>
 
 <%- attributes.each do |attribute| -%>
   <div class="form-group">

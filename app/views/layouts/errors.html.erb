@@ -13,7 +13,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
     <%# Be sure to add your own custom favicons %>
-    <%= render "shared/favicons" %>
+    <%= render "favicons" %>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <%= yield :head %>
   </head>
@@ -21,6 +21,6 @@
     <div class="main flex flex-col">
       <%= yield %>
     </div>
-    <%= render "shared/footer", dark_mode_toggle: true unless turbo_native_app? %>
+    <%= render "footer", dark_mode_toggle: true unless turbo_native_app? %>
   </body>
 </html>

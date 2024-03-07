@@ -14,22 +14,22 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
     <%# Be sure to add your own custom favicons %>
-    <%= render "shared/favicons" %>
-    <%= render "shared/payments_dependencies" %>
+    <%= render "favicons" %>
+    <%= render "payments_dependencies" %>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <%= yield :head %>
   </head>
   <body class="h-full font-sans antialiased font-normal leading-normal bg-gray-50 dark:bg-gray-900 dark:text-gray-50" data-controller="theme" data-theme-preference-value="<%= current_user&.theme %>">
     <div class="main flex flex-col">
       <header>
-        <%= render partial: "shared/flash" %>
-        <%= render partial: "shared/navbar" %>
+        <%= render partial: "flash" %>
+        <%= render partial: "navbar" %>
       </header>
       <main class="px-3 lg:px-0 h-full">
         <%= yield %>
       </main>
     </div>
-    <%= render partial: "shared/footer" unless turbo_native_app? %>
+    <%= render partial: "footer" unless turbo_native_app? %>
     <ninja-keys data-controller="command-palette" hideBreadcrumbs></ninja-keys>
   </body>
 </html>

@@ -1,6 +1,6 @@
 <div class="flex flex-wrap my-4 lg:px-4">
   <div class="w-full mb-4 lg:w-1/4 lg:p-4">
-    <%= render partial: "shared/account_navbar" %>
+    <%= render partial: "account_navbar" %>
   </div>
 
   <div class="w-full lg:w-3/4 lg:p-4">
@@ -8,7 +8,7 @@
       <h1 class="h3 mb-4"><%= t('.title', resource: resource.model_name.human) %></h1>
 
       <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), method: :put, class: "mb-16", html: {data: {controller: "bridge--form", action: "turbo:submit-start->bridge--form#submitStart turbo:submit-end->bridge--form#submitEnd"}}) do |form| %>
-        <%= render "shared/error_messages", resource: resource %>
+        <%= render "error_messages", resource: resource %>
         <div class="flex flex-wrap items-start justify-between">
           <div class="w-full lg:w-1/2">
             <div class="form-group">

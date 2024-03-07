@@ -1,5 +1,5 @@
 <%= form_with(model: [@account, account_user]) do |form| %>
-  <%= render "shared/error_messages", resource: form.object %>
+  <%= render "error_messages", resource: form.object %>
 
   <h5 class="mb-2"><%= t("accounts.roles") %></h5>
   <div class="form-group">

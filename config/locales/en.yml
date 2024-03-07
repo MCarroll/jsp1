@@ -151,38 +151,7 @@ en:
       confirm: "Are you sure you want to revoke this API token?"
       auth_header: "Authenticate using Header"
 
-  dashboard:
-    show:
-      title: "Dashboard"
-
-  payments:
-    success: "Thanks for subscribing!"
-    show:
-      successful: "Payment Successful"
-      successful_description: "This payment was already successfully confirmed."
-      cancelled: "Payment Cancelled"
-      cancelled_description: "This payment was cancelled."
-      confirm: "Confirm your %{amount} payment"
-      confirm_description: "Extra confirmation is needed to process your payment. Please confirm your payment by filling out your payment details below."
-      back: "Go back"
-      confirm_button: "Confirm Payment"
-
-  static:
-    no_plans_html: "There are no pricing plans configured. %{link}."
-    pricing:
-      heading: "Pricing Plans"
-      subhead: "Simple, straightforward pricing to get your online business up and running"
-      monthly: "Monthly"
-      yearly: "Yearly"
-
-    about:
-      title: "About Us"
-    privacy:
-      title: "Privacy Policy"
-    terms:
-      title: "Terms Of Service"
-
-  shared:
+  application:
     footer:
       about: "About Us"
       privacy: "Privacy Policy"
@@ -229,6 +198,37 @@ en:
         title: "New %{model}"
       actions: "Actions"
       view: "View"
+
+  dashboard:
+    show:
+      title: "Dashboard"
+
+  payments:
+    success: "Thanks for subscribing!"
+    show:
+      successful: "Payment Successful"
+      successful_description: "This payment was already successfully confirmed."
+      cancelled: "Payment Cancelled"
+      cancelled_description: "This payment was cancelled."
+      confirm: "Confirm your %{amount} payment"
+      confirm_description: "Extra confirmation is needed to process your payment. Please confirm your payment by filling out your payment details below."
+      back: "Go back"
+      confirm_button: "Confirm Payment"
+
+  static:
+    no_plans_html: "There are no pricing plans configured. %{link}."
+    pricing:
+      heading: "Pricing Plans"
+      subhead: "Simple, straightforward pricing to get your online business up and running"
+      monthly: "Monthly"
+      yearly: "Yearly"
+
+    about:
+      title: "About Us"
+    privacy:
+      title: "Privacy Policy"
+    terms:
+      title: "Terms Of Service"
 
   subscriptions:
     created: "Thanks for subscribing!"

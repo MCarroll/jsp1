@@ -1,6 +1,6 @@
 <div class="flex flex-wrap my-4 lg:px-4">
   <div class="w-full mb-4 lg:w-1/4 lg:p-4">
-    <%= render partial: "shared/account_navbar" %>
+    <%= render partial: "account_navbar" %>
   </div>
 
   <div class="w-full lg:w-3/4 lg:p-4">
@@ -21,7 +21,7 @@
       <p class="my-4 text-gray-700 dark:text-gray-200"><%= t(".description") %></p>
 
       <%= form_with(model: @account_invitation, url: account_account_invitations_path(@account)) do |form| %>
-        <%= render "shared/error_messages", resource: form.object %>
+        <%= render "error_messages", resource: form.object %>
 
         <div class="form-group">
           <%= form.label :name %>

@@ -13,6 +13,11 @@ module Jumpstart
 
     config.to_prepare do
       Administrate::ApplicationController.helper Jumpstart::AdministrateHelpers
+
+      if Rails.env.development?
+        ::ApplicationController.include(Jumpstart::Welcome)
+        ::ApplicationController.include(Jumpstart::BundleAssets)
+      end
     end
 
     initializer "turbo.native.navigation.helper" do
@@ -30,15 +35,6 @@ module Jumpstart
 
       if Jumpstart::Multitenancy.path? || Rails.env.test?
         app.config.middleware.use Jumpstart::AccountMiddleware
-      end
-    end
-
-    initializer "jumpstart.welcome" do
-      next unless Rails.env.development?
-
-      ActiveSupport.on_load(:action_controller) do
-        ::ApplicationController.include(Jumpstart::Welcome)
-        ::ApplicationController.include(Jumpstart::BundleAssets)
       end
     end
   end

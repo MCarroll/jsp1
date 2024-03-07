@@ -6,5 +6,5 @@
   paddle__billing_email_value: current_account.email,
   paddle__billing_items_value: [price_id: @plan.paddle_billing_id].to_json,
   paddle__billing_success_url_value: subscriptions_path,
-  paddle__billing_custom_data: {account: current_account.id}.to_json
+  paddle__billing_custom_data_value: {account: current_account.id}.to_json
 } %>

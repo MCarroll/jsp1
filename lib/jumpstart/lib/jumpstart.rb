@@ -2,16 +2,15 @@ require "jumpstart/engine"
 
 module Jumpstart
   autoload :AccountMiddleware, "jumpstart/account_middleware"
+  autoload :AdministrateHelpers, "jumpstart/administrate_helpers"
   autoload :Clients, "jumpstart/clients"
   autoload :Configuration, "jumpstart/configuration"
-  autoload :Controller, "jumpstart/controller"
   autoload :JobProcessor, "jumpstart/job_processor"
   autoload :Mailer, "jumpstart/mailer"
   autoload :Mentions, "jumpstart/mentions"
   autoload :Multitenancy, "jumpstart/multitenancy"
   autoload :Omniauth, "jumpstart/omniauth"
   autoload :SubscriptionExtensions, "jumpstart/subscription_extensions"
-  autoload :AdministrateHelpers, "jumpstart/administrate_helpers"
 
   def self.restart
     run_command "rails restart"

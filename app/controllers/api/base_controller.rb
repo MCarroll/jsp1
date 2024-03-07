@@ -1,7 +1,21 @@
-class Api::BaseController < ApplicationController
-  skip_before_action :verify_authenticity_token
-  skip_before_action :require_accepted_latest_agreements!
+class Api::BaseController < ActionController::API
+  include AbstractController::Translation
+  include ActionController::Caching
+  include Turbo::Native::Navigation
+
+  include Accounts::SubscriptionStatus
+  include ActiveStorage::SetCurrent
+  include Authentication
+  include Authorization
+  include CurrentHelper
+  include Pagy::Backend
+  include SetCurrentRequestDetails
+  include SetLocale
+  include Sortable
+
   prepend_before_action :authenticate_api_token!
+
+  helper :all
 
   private
 

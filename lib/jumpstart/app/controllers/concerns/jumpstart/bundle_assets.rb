@@ -1,4 +1,4 @@
-module BundleAssets
+module Jumpstart::BundleAssets
   # Automatically compiles assets if yarn build commands aren't running
 
   extend ActiveSupport::Concern

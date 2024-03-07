@@ -1,4 +1,6 @@
 class ErrorsController < ApplicationController
+  # Copy this file to your app directory to customize
+
   def not_found
     render status: 404
   end

@@ -32,5 +32,14 @@ module Jumpstart
         app.config.middleware.use Jumpstart::AccountMiddleware
       end
     end
+
+    initializer "jumpstart.welcome" do
+      next unless Rails.env.development?
+
+      ActiveSupport.on_load(:action_controller) do
+        ::ApplicationController.include(Jumpstart::Welcome)
+        ::ApplicationController.include(Jumpstart::BundleAssets)
+      end
+    end
   end
 end

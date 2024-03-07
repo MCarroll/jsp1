@@ -26,7 +26,7 @@
 <p>To create a button for OAuth, you will use the following:</p>
 <div class="not-prose">
   <pre><code>&lt;%= button_to omniauth_authorize_path(:user, :twitter), class: "btn btn-twitter m-1", data: { turbo: false, disable_with: t(".redirecting") } do %&gt;
-  &lt;%= t("shared.oauth.twitter") %&gt;
+  &lt;%= t("oauth.twitter") %&gt;
 &lt;% end %&gt;</code></pre>
 </div>
 
@@ -55,7 +55,7 @@
 <p>Here we will associate the Twitter <code>ConnectedAccount</code> with the <code>current_account</code>. Optionally, you can set the <code>redirect_to</code> to send the user to a different location afterwards.</p>
 <div class="not-prose">
   <pre><code>&lt;%= button_to omniauth_authorize_path(:user, :twitter, record: current_account.to_sgid(for: :oauth), redirect_to: account_path(current_account)), class: "btn btn-twitter m-1", data: { turbo: false, disable_with: t(".redirecting") } do %&gt;
-  &lt;%= t("shared.oauth.twitter") %&gt;
+  &lt;%= t("oauth.twitter") %&gt;
 &lt;% end %&gt;</code></pre>
 </div>
 

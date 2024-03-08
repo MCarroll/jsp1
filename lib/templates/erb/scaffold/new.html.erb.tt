@@ -1,11 +1,11 @@
-<%%= content_for :title, t("shared.scaffold.new.title", model: "<%= singular_table_name.titleize %>") %>
+<%%= content_for :title, t("scaffold.new.title", model: "<%= singular_table_name.titleize %>") %>
 
 <div class="container px-4 mx-auto my-8">
   <div class="flex items-center justify-between mb-4">
     <h1 class="h3">
       <%%= link_to "<%= plural_table_name.titleize %>", <%= index_helper %>_path, class: "text-black dark:text-white" %>
       <span class="text-gray-400 font-light mx-2">\</span>
-      <%%= t("shared.scaffold.new.title", model: "<%= singular_table_name.titleize %>") %>
+      <%%= t("scaffold.new.title", model: "<%= singular_table_name.titleize %>") %>
     </h1>
   </div>
 

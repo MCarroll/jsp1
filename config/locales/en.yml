@@ -180,13 +180,6 @@ en:
     right_nav:
       pricing: "Pricing"
       announcements: "What's New"
-    scaffold:
-      edit:
-        title: "Edit %{model}"
-      new:
-        title: "New %{model}"
-      actions: "Actions"
-      view: "View"
 
   dashboard:
     show:
@@ -215,6 +208,14 @@ en:
       confirm_description: "Extra confirmation is needed to process your payment. Please confirm your payment by filling out your payment details below."
       back: "Go back"
       confirm_button: "Confirm Payment"
+
+  scaffold:
+    edit:
+      title: "Edit %{model}"
+    new:
+      title: "New %{model}"
+    actions: "Actions"
+    view: "View"
 
   static:
     no_plans_html: "There are no pricing plans configured. %{link}."

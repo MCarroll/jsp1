@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <%%= link_to t("shared.scaffold.new.title", model: "<%= singular_table_name.titleize %>"), new_<%= singular_route_name %>_path, class: "btn btn-white" %>
+    <%%= link_to t("scaffold.new.title", model: "<%= singular_table_name.titleize %>"), new_<%= singular_route_name %>_path, class: "btn btn-secondary" %>
   </div>
 
   <%%= tag.div id: ("<%= plural_table_name %>" if first_page?), class: "bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-md shadow p-6 space-y-8" do %>
@@ -22,7 +22,7 @@
 
     <div class="hidden only:block text-center">
       <p class="mb-4 h3">Create your first <%= singular_table_name.titleize %></p>
-      <%%= link_to t("shared.scaffold.new.title", model: "<%= singular_table_name.titleize %>"), new_<%= singular_route_name %>_path, class: "btn btn-primary" %>
+      <%%= link_to t("scaffold.new.title", model: "<%= singular_table_name.titleize %>"), new_<%= singular_route_name %>_path, class: "btn btn-primary" %>
     </div>
   <%% end %>
 

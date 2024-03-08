@@ -44,7 +44,7 @@ button[disabled]        .when-enabled { display: none; }
   .btn-primary {
     @apply bg-primary-600 text-white;
     @apply hover:bg-primary-500 hover:text-white;
-    @apply focus-visible:text-white focus-visible:outline-primary-500;
+    @apply focus:text-white focus-visible:text-white focus-visible:outline-primary-500;
 
     &.btn-outline {
       @apply bg-transparent border border-primary-500 text-primary-500 shadow-none;
@@ -56,7 +56,7 @@ button[disabled]        .when-enabled { display: none; }
   .btn-tertiary {
     @apply bg-white border border-gray-300 text-gray-800;
     @apply hover:bg-gray-100 hover:text-gray-700;
-    @apply focus-visible:text-gray-700 focus-visible:outline-primary-500 dark:focus-visible:outline-white/20;
+    @apply focus:text-gray-700 focus-visible:text-gray-700 focus-visible:text-gray-700 focus-visible:outline-primary-500 dark:focus-visible:outline-white/20;
     @apply dark:bg-gray-800 dark:text-white dark:border-gray-700 dark:hover:text-white dark:hover:bg-gray-700 dark:focus-visible:ring-gray-700;
 
     &.btn-outline {
@@ -67,7 +67,7 @@ button[disabled]        .when-enabled { display: none; }
   .btn-danger {
     @apply bg-red-600 text-white focus-visible:outline-red-500;
     @apply hover:bg-red-500 hover:text-white;
-    @apply focus-visible:text-white;
+    @apply focus:text-white focus-visible:text-white;
 
     &.btn-outline {
       @apply bg-transparent border border-red-500 text-red-500 shadow-none;
@@ -78,7 +78,7 @@ button[disabled]        .when-enabled { display: none; }
   .btn-success {
     @apply bg-green-600 text-white focus-visible:outline-green-500;
     @apply hover:bg-green-500 hover:text-white;
-    @apply focus-visible:text-white;
+    @apply focus:text-white focus-visible:text-white;
 
     &.btn-outline {
       @apply bg-transparent border border-green-500 text-green-600 shadow-none;
@@ -91,7 +91,7 @@ button[disabled]        .when-enabled { display: none; }
   .btn-gray {
     @apply bg-white border border-gray-300 text-gray-800;
     @apply hover:bg-gray-50 hover:text-gray-800;
-    @apply focus-visible:text-gray-800 dark:focus-visible:outline-gray-300;
+    @apply focus:text-gray-800 focus-visible:text-gray-800 dark:focus-visible:outline-gray-300;
 
     &.btn-outline {
       @apply bg-transparent shadow-none dark:text-gray-200;
@@ -102,7 +102,7 @@ button[disabled]        .when-enabled { display: none; }
   .btn-dark {
     @apply bg-gray-800 border border-gray-700 text-white;
     @apply hover:bg-gray-700 hover:text-white;
-    @apply focus-visible:text-white focus-visible:outline-gray-500 dark:focus-visible:outline-gray-700;
+    @apply focus:text-white focus-visible:text-white focus-visible:outline-gray-500 dark:focus-visible:outline-gray-700;
 
     &.btn-outline {
       @apply bg-transparent text-gray-800 dark:text-gray-100 shadow-none;

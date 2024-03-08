@@ -41,7 +41,7 @@
         <div><%= link_to t(".two_factor.disable"), user_two_factor_path, class: "btn btn-danger btn-outline", data: { turbo_method: :delete, turbo_confirm: t("are_you_sure") } %></div>
 
       <% else %>
-        <%= link_to t(".two_factor.enable"), backup_codes_user_two_factor_path, class: "btn btn-tertiary" %>
+        <%= link_to t(".two_factor.enable"), backup_codes_user_two_factor_path, class: "btn btn-secondary" %>
       <% end %>
     </div>
   </div>

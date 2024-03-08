@@ -30,11 +30,11 @@
         <% @monthly_plans.each do |plan| %>
           <%= render layout: "subscriptions/plan", locals: { plan: plan } do %>
             <% if @subscription.plan == plan %>
-              <div class="btn btn-light-gray btn-block"><%= t(".current_plan") %></div>
+              <div class="btn btn-secondary btn-block"><%= t(".current_plan") %></div>
             <% else %>
               <%= form_with url: subscription_url, method: :patch do |f| %>
                 <%= f.hidden_field :plan, value: plan.to_param %>
-                <%= f.button t(".change_plan"), class: "btn btn-tertiary btn-block", data: { disable_with: t(".processing"), turbo_confirm: "Are you sure?" } %>
+                <%= f.button t(".change_plan"), class: "btn btn-secondary btn-block", data: { disable_with: t(".processing"), turbo_confirm: "Are you sure?" } %>
               <% end %>
             <% end %>
           <% end %>
@@ -45,11 +45,11 @@
         <% @yearly_plans.each do |plan| %>
           <%= render layout: "subscriptions/plan", locals: { plan: plan } do %>
             <% if @subscription.plan == plan %>
-              <div class="btn btn-light-gray btn-block"><%= t(".current_plan") %></div>
+              <div class="btn btn-secondary btn-block"><%= t(".current_plan") %></div>
             <% else %>
               <%= form_with url: subscription_url, method: :patch do |f| %>
                 <%= f.hidden_field :plan, value: plan.to_param %>
-                <%= f.button t(".change_plan"), class: "btn btn-tertiary btn-block", data: { disable_with: t(".processing"), turbo_confirm: "Are you sure?" } %>
+                <%= f.button t(".change_plan"), class: "btn btn-secondary btn-block", data: { disable_with: t(".processing"), turbo_confirm: "Are you sure?" } %>
               <% end %>
             <% end %>
           <% end %>

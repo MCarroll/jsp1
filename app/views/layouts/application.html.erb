@@ -22,8 +22,9 @@
   <body class="h-full font-sans antialiased font-normal leading-normal bg-gray-50 dark:bg-gray-900 dark:text-gray-50" data-controller="theme" data-theme-preference-value="<%= current_user&.theme %>">
     <div class="main flex flex-col">
       <header>
-        <%= render partial: "flash" %>
-        <%= render partial: "navbar" %>
+        <%= render "impersonation_banner" %>
+        <%= render "flash" %>
+        <%= render "navbar" %>
       </header>
       <main class="px-3 lg:px-0 h-full">
         <%= yield %>

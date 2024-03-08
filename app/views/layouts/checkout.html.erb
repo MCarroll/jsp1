@@ -21,6 +21,7 @@
   </head>
   <body class="h-full font-sans antialiased font-normal leading-normal bg-white dark:bg-gray-900 dark:text-gray-50" data-controller="theme" data-theme-preference-value="<%= current_user&.theme %>">
     <div class="main flex flex-col">
+      <%= render "impersonation_banner" %>
       <%= render "flash" %>
       <%= yield %>
     </div>

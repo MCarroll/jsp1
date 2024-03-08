@@ -122,7 +122,7 @@ button[disabled]        .when-enabled { display: none; }
     @apply bg-gray-800 border border-gray-700 text-white hover:bg-gray-700 hover:text-white focus-visible:text-white focus-visible:outline-gray-500 dark:focus-visible:outline-gray-700;
 
     &.btn-outline {
-      @apply bg-transparent border border-gray-700 text-gray-100 shadow-none;
+      @apply bg-transparent text-gray-800 shadow-none;
       @apply hover:bg-gray-700 hover:text-white;
       @apply focus:bg-gray-700 focus:text-white;
     }
@@ -139,7 +139,8 @@ button[disabled]        .when-enabled { display: none; }
     }
   }
 
-  .btn-expanded, .btn-block {
+  .btn-expanded,
+  .btn-block {
     @apply flex justify-center w-full;
   }
 }

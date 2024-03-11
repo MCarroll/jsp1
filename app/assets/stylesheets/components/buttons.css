@@ -87,7 +87,7 @@ button[disabled]        .when-enabled { display: none; }
   }
 
   .btn-light,
-  .btn-white
+  .btn-white,
   .btn-gray {
     @apply bg-white border border-gray-300 text-gray-800;
     @apply hover:bg-gray-50 hover:text-gray-800;

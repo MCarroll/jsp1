@@ -1082,9 +1082,9 @@ supports-preserve-symlinks-flag@^1.0.0:
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
 tailwindcss-stimulus-components@^4.0.2:
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/tailwindcss-stimulus-components/-/tailwindcss-stimulus-components-4.0.4.tgz#1df5f2a488aa89365561bb33357095cd59ed831a"
-  integrity sha512-xNlMs1WufKiTMQtVklwHfrR/iuPVaFA0Mk5uefRnHztmr7w4g6BzKAWHyfte60pjhcQbmlbshHMOZiq/dkXnhw==
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/tailwindcss-stimulus-components/-/tailwindcss-stimulus-components-4.0.5.tgz#0e0a82677bfed1a6642465cf3561799c5a9d9a6e"
+  integrity sha512-Otd2EyuvHdf4jb4jYj/xkfC7Q+WvvB1LsAFO/cg7gog3sYIYQeP7yOT3kYIBm5ndjeI60pgJo3WCj72Aag8RvQ==
 
 tailwindcss@^3.4.1:
   version "3.4.1"

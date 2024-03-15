@@ -64,13 +64,11 @@ export default class extends Controller {
   }
 
   showUnreadBadge() {
-    if (this.hasBadgeTarget == false) { return }
-    this.badgeTarget.classList.remove("hidden")
+    this.badgeTarget?.classList?.remove("hidden")
   }
 
   hideUnreadBadge() {
-    if (this.hasBadgeTarget == false) { return }
-    this.badgeTarget.classList.add("hidden")
+    this.badgeTarget?.classList?.add("hidden")
   }
 
   markAllAsSeen() {

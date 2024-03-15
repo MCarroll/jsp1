@@ -123,7 +123,7 @@ GEM
     ast (2.4.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
-    better_html (2.0.2)
+    better_html (2.1.0)
       actionview (>= 6.0)
       activesupport (>= 6.0)
       ast (~> 2.0)

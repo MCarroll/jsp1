@@ -22,22 +22,21 @@ function insertConfirmModal(message, element, button) {
   let id = `confirm-modal-${new Date().getTime()}`
 
   let content = `
-    <div id="${id}" class="z-50 bg-black/80 animated fadeIn fixed top-0 left-0 w-full h-full table backdrop-blur-sm">
-      <div class="table-cell align-middle">
-
-        <div class="bg-white mx-auto rounded shadow p-8 max-w-md dark:bg-gray-800">
-          <h5>${message}</h5>
-          <p class="mt-4 text-sm text-gray-700">${description}</p>
+    <dialog id="${id}" class="backdrop:bg-black/80 backdrop:backdrop-blur-sm">
+      <form method="dialog">
+        <div class="bg-white mx-auto rounded shadow p-6 max-w-md dark:bg-gray-900">
+          <h5 class="text-lg">${message}</h5>
+          <p class="mt-2 text-sm text-gray-700 dark:text-gray-200">${description}</p>
 
           ${confirmInput}
 
-          <div class="flex justify-end items-center flex-wrap gap-2 mt-6">
-            <button data-behavior="cancel" class="btn btn-white">Cancel</button>
-            <button data-behavior="commit" class="btn btn-danger focus:outline-none">Confirm</button>
+          <div class="flex justify-end items-center flex-wrap gap-2 mt-4">
+            <button value="cancel" class="btn btn-secondary">Cancel</button>
+            <button value="confirm" class="btn btn-danger">Confirm</button>
           </div>
         </div>
-      </div>
-    </div>
+      </form>
+    </dialog>
   `
 
   document.body.insertAdjacentHTML('beforeend', content)
@@ -60,15 +59,11 @@ function insertConfirmModal(message, element, button) {
 
 Turbo.setConfirmMethod((message, element, button) => {
   let dialog = insertConfirmModal(message, element, button)
+  dialog.showModal()
 
   return new Promise((resolve, reject) => {
-    dialog.querySelector("[data-behavior='cancel']").addEventListener("click", (event) => {
-      dialog.remove()
-      resolve(false)
-    }, { once: true })
-    dialog.querySelector("[data-behavior='commit']").addEventListener("click", (event) => {
-      dialog.remove()
-      resolve(true)
+    dialog.addEventListener("close", () => {
+      resolve(dialog.returnValue == "confirm")
     }, { once: true })
   })
 })

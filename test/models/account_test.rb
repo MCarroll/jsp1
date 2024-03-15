@@ -1,6 +1,8 @@
 require "test_helper"
 
 class AccountTest < ActiveSupport::TestCase
+  include ActiveJob::TestHelper
+
   test "validates uniqueness of domain" do
     account = accounts(:company).dup
     assert_not account.valid?
@@ -118,6 +120,15 @@ class AccountTest < ActiveSupport::TestCase
     owner = account.owner
     assert_not account.transfer_ownership(users(:invited).id)
     assert_equal owner, account.reload.owner
+  end
+
+  test "transfer ownership enqueues stripe sync" do
+    account = accounts(:company)
+    new_owner = users(:two)
+    payment_processor = account.set_payment_processor :fake_processor, allow_fake: true
+    assert_enqueued_with job: Pay::CustomerSyncJob, args: [payment_processor.id] do
+      account.transfer_ownership(new_owner.id)
+    end
   end
 
   test "billing_email shouldn't be included in receipts if empty" do

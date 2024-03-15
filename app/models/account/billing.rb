@@ -6,6 +6,10 @@ module Account::Billing
     has_one :shipping_address, -> { where(address_type: :shipping) }, class_name: "Address", as: :addressable
 
     pay_customer stripe_attributes: :stripe_attributes
+
+    define_method :pay_should_sync_customer? do
+      saved_change_to_owner_id? || saved_change_to_billing_email?
+    end
   end
 
   def find_or_build_billing_address

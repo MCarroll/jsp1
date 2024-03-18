@@ -5,10 +5,12 @@ class Account::AcceptedInviteNotifier < ApplicationNotifier
     config.message = :to_websocket
   end
 
-  required_params :user
+  def user
+    record || params[:user]
+  end
 
   def message
-    t "notifications.invite_accepted", user: params[:user].name
+    t "notifications.invite_accepted", user: user.name
   end
 
   def url

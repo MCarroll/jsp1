@@ -36,6 +36,6 @@ class AccountInvitationTest < ActiveSupport::TestCase
     end
     event = Noticed::Event.last
     assert_equal @account, event.account
-    assert_equal users(:invited), event.params[:user]
+    assert_equal users(:invited), event.user
   end
 end

@@ -24,7 +24,7 @@ module Account::Transfer
     end
 
     # Notify the new owner of the change
-    Account::OwnershipNotifier.with(account: self, previous_owner: previous_owner).deliver(user)
+    Account::OwnershipNotifier.with(account: self, record: previous_owner).deliver(user)
   rescue
     false
   end

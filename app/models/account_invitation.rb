@@ -27,7 +27,7 @@ class AccountInvitation < ApplicationRecord
       end
 
       [account.owner, invited_by].uniq.each do |recipient|
-        Account::AcceptedInviteNotifier.with(account: account, user: user).deliver(recipient)
+        Account::AcceptedInviteNotifier.with(account: account, record: user).deliver(recipient)
       end
 
       account_user

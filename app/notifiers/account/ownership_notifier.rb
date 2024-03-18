@@ -5,10 +5,12 @@ class Account::OwnershipNotifier < ApplicationNotifier
     config.message = :to_websocket
   end
 
-  required_params :previous_owner
+  def previous_owner
+    record || params[:previous_owner]
+  end
 
   def message
-    t "notifications.account_transferred", previous_owner: params[:previous_owner].name, account: account.name
+    t "notifications.account_transferred", previous_owner: previous_owner.name, account: account.name
   end
 
   def url

@@ -47,7 +47,7 @@ function insertConfirmModal(message, element, button) {
 
   // Disable commit button until the value matches confirmText
   if (confirmText) {
-    let commitButton = modal.querySelector("[data-behavior='commit']")
+    let commitButton = modal.querySelector("[value='confirm']")
     commitButton.disabled = true
     modal.querySelector("input[data-behavior='confirm-text']").addEventListener("input", (event) => {
       commitButton.disabled = (event.target.value != confirmText)

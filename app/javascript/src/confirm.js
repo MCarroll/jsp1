@@ -22,7 +22,7 @@ function insertConfirmModal(message, element, button) {
   let id = `confirm-modal-${new Date().getTime()}`
 
   let content = `
-    <dialog id="${id}" class="modal bg-transparent backdrop:backdrop-blur-sm">
+    <dialog id="${id}" class="modal rounded-lg backdrop:backdrop-blur-sm backdrop:bg-black/50">
       <form method="dialog">
         <div class="bg-white mx-auto rounded shadow p-6 max-w-md dark:bg-gray-900">
           <h5 class="text-lg">${message}</h5>

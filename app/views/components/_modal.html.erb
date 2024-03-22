@@ -1,7 +1,7 @@
 <div data-controller="modal">
   <%= component.content %>
 
-  <%= tag.dialog class: component.container_class, data: {modal_target: "dialog"} do %>
+  <%= tag.dialog class: component.container_class, data: {modal_target: "dialog", action: "click->modal#backdropClose"} do %>
     <%= tag.div class: component.card_class do %>
       <% if component.close_button? %>
         <button type="button" data-action="modal#close:prevent" class="hover:cursor-pointer absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">

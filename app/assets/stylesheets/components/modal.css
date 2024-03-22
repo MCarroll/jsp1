@@ -3,15 +3,6 @@ body:has(dialog[open]) {
   overflow: hidden;
 }
 
-/* Firefox has a bug with backdrop, so we can use a box-shadow instead */
-dialog {
-  box-shadow: 0 0 0 100vw rgb(0 0 0 / 0.7);
-}
-
-dialog::backdrop {
-  background: none;
-}
-
 /* Modal animations */
 dialog.modal[open] {
   animation: fadeIn 200ms forwards;

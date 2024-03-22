@@ -1,0 +1,56 @@
+/* Prevent scrolling while dialog is open */
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
+/* Firefox has a bug with backdrop, so we can use a box-shadow instead */
+dialog {
+  box-shadow: 0 0 0 100vw rgb(0 0 0 / 0.7);
+}
+
+dialog::backdrop {
+  background: none;
+}
+
+/* Modal animations */
+dialog.modal[open] {
+  animation: fadeIn 200ms forwards;
+}
+
+dialog.modal[closing] {
+  animation: fadeOut 200ms forwards;
+}
+
+/* Slideover animations */
+dialog.slideover[open] {
+  animation: slide-in-from-right 200ms forwards ease-in-out;
+}
+
+dialog.slideover[closing] {
+  pointer-events: none;
+  animation: slide-out-to-right 200ms forwards ease-in-out;
+}
+
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-out-to-left {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slide-out-to-right {
+  to {
+    transform: translateX(100%);
+  }
+}

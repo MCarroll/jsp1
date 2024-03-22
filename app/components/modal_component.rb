@@ -12,13 +12,13 @@ class ModalComponent < JumpstartComponent
 
     case @size
     when :sm
-      "max-w-sm max-h-screen w-full backdrop:backdrop-blur-sm backdrop:bg-black/80"
+      "modal max-w-sm max-h-screen w-full bg-transparent backdrop:backdrop-blur-sm"
     when :lg
-      "max-w-lg max-h-screen w-full backdrop:backdrop-blur-sm backdrop:bg-black/80"
+      "modal max-w-lg max-h-screen w-full bg-transparent backdrop:backdrop-blur-sm"
     when :fullscreen
-      "m-0 h-full w-full max-h-full max-w-full backdrop:backdrop-blur-sm backdrop:bg-black/80"
+      "modal m-0 h-full w-full max-h-full max-w-full bg-transparent backdrop:backdrop-blur-sm"
     else # :md
-      "max-w-md max-h-screen w-full backdrop:backdrop-blur-sm backdrop:bg-black/80"
+      "modal max-w-md max-h-screen w-full bg-transparent backdrop:backdrop-blur-sm"
     end
   end
 
@@ -29,7 +29,7 @@ class ModalComponent < JumpstartComponent
     when :fullscreen
       "p-6 w-full h-full bg-white dark:bg-gray-900"
     else
-      "p-6 bg-white rounded shadow-lg dark:bg-gray-900 dark:text-gray-200"
+      "p-6 rounded-lg bg-white dark:bg-gray-900 dark:text-gray-200"
     end
   end
 

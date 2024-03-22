@@ -18,6 +18,7 @@
 @import "components/docs";
 @import "components/forms";
 @import "components/iframe";
+@import "components/modal";
 @import "components/nav";
 @import "components/notifications";
 @import "components/pagination";

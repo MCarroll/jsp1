@@ -10,8 +10,7 @@
     <%= tag.button class: "inline-block select-none",
       aria: { label: "Notifications" },
       data: {
-        dropdown_target: "button",
-        action: "click->notifications#open touch->notifications#open"
+        action: "click->notifications#open click->dropdown#toggle click@window->dropdown#hide"
       } do %>
       <span class="appearance-none flex items-center relative text-gray-500 hover:text-gray-800 dark:text-slate-200 dark:hover:text-slate-300">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" class="w-5 h-5">

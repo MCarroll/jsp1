@@ -6,7 +6,7 @@ class Account::OwnershipNotifier < ApplicationNotifier
   end
 
   def previous_owner
-    record || params[:previous_owner]
+    record || params[:previous_owner] || User.new(name: "Someone")
   end
 
   def message

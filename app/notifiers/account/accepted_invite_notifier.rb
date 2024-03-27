@@ -6,7 +6,7 @@ class Account::AcceptedInviteNotifier < ApplicationNotifier
   end
 
   def user
-    record || params[:user]
+    record || params[:user] || User.new(name: "Someone")
   end
 
   def message

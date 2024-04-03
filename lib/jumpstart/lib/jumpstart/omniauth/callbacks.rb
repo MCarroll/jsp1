@@ -49,9 +49,9 @@ module Jumpstart
           success_message!(kind: auth.provider)
           redirect_to after_connect_redirect_path
         else
+          sign_in_and_redirect connected_account.owner, event: :authentication
           run_connected_callback(connected_account)
           success_message!(kind: auth.provider)
-          sign_in_and_redirect connected_account.owner, event: :authentication
         end
       end
 
@@ -64,12 +64,10 @@ module Jumpstart
         user.password = ::Devise.friendly_token[0, 20] if user.respond_to?(:password=)
         user.skip_confirmation!
         user.connected_accounts.new(connected_account_params)
-
         user.save!
 
-        run_connected_callback(user.connected_accounts.last)
-
         sign_in_and_redirect(user, event: :authentication)
+        run_connected_callback(user.connected_accounts.last)
         success_message!(kind: auth.provider)
       end
 

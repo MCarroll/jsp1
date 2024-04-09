@@ -45,7 +45,7 @@ module UpdatesSubscriptionQuantity
 
   def update_subscription_quantity
     subscription = account&.payment_processor&.subscription
-    return unless subscription&.active? && subscription.plan.charge_per_unit?
+    return unless subscription&.active? && subscription.plan&.charge_per_unit?
 
     new_quantity = case _quantity_callback
     when Symbol

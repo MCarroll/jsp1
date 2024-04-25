@@ -3,6 +3,7 @@ namespace :admin do
     require "sidekiq/web"
     mount Sidekiq::Web => "/sidekiq"
   end
+  mount MissionControl::Jobs::Engine, at: "/jobs" if defined?(::MissionControl::Jobs::Engine)
   mount Flipper::UI.app(Flipper) => "/flipper" if defined?(::Flipper::UI)
 
   resources :announcements

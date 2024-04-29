@@ -74,9 +74,6 @@ group :development do
   # Annotate models and tests with database columns
   # gem "annotate", ">= 3.2.0"
 
-  # Enhanced Exception messages
-  gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
-
   # A fully configurable and extendable Git hook manager
   gem "overcommit", require: false
 end

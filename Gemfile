@@ -74,9 +74,6 @@ group :development do
   # Annotate models and tests with database columns
   # gem "annotate", ">= 3.2.0"
 
-  # Enhanced Exception messages
-  gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
-
   # A fully configurable and extendable Git hook manager
   gem "overcommit", require: false
 end
@@ -84,7 +81,7 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara", ">= 3.39"
-  gem "selenium-webdriver", ">= 4.11.0"
+  gem "selenium-webdriver", ">= 4.20.1"
   gem "webmock"
 end
 

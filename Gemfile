@@ -1,8 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# Bundler 2.4.19 introduced `file: ".ruby-version"` option, but Heroku does not support the latest Bundler yet.
-ruby File.read(".ruby-version").strip
+ruby file: ".ruby-version"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 7.1.3"

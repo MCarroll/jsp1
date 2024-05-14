@@ -1,11 +1,11 @@
 # Options here can still be overridden by cmd line args.
 # Sidekiq will run this file through ERB when reading it so you can even put in dynamic logic, like a host-specific queue.
 ---
-:verbose: false
-:concurrency: 10
+# :verbose: false
+# :concurrency: 5
 
 # Set timeout to 8 on Heroku, longer if you manage your own systems.
-:timeout: 30
+# :timeout: 25
 
 # With weighted priority, queue will be checked first (weight / total) of the time.
 # Weights should be between 1-10. For random queue ordering, set all weights to 1.
@@ -20,7 +20,7 @@
   - ['low', 1]
 
 # You can override concurrency based on environment
-production:
-  :concurrency: 25
-staging:
-  :concurrency: 15
+# production:
+#   :concurrency: 5
+# staging:
+#   :concurrency: 5

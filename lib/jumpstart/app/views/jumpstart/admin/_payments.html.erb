@@ -1,7 +1,7 @@
 <h4>Payment Processors</h4>
 <p class="mb-4 text-sm text-gray-700 dark-text-gray-300">Enable one payment processor at a time. See the <%= link_to "Billing & Payments docs", jumpstart.billing_docs_path, target: :_blank %> for more details.</p>
 
-<div class="mb-4 flex items-center flex items-center toggle">
+<div class="mb-4 flex items-center toggle">
   <%= check_box_tag "configuration[payment_processors][]", :stripe, @config.stripe?, class: "form-checkbox", id: :stripe %>
   <label for="stripe" class="mb-0">
     Stripe

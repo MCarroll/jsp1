@@ -51,24 +51,16 @@ module AccountsHelper
   #   * options[:label]
   #   * Ruby block
   def switch_account_button(account, **options, &block)
-    if block
-      # if Jumpstart::Multitenancy.domain? && account.domain?
-      #   link_to options.fetch(:label, account.name), account.domain, options, &block
-      if Jumpstart::Multitenancy.subdomain? && account.subdomain?
-        link_to root_url(subdomain: account.subdomain), options, &block
-      elsif Jumpstart::Multitenancy.path?
-        link_to root_url(script_name: "/#{account.id}"), options, &block
-      else
-        button_to switch_account_path(account), options.merge(method: :patch), &block
-      end
-    # elsif Jumpstart::Multitenancy.domain? && account.domain?
-    #   link_to options.fetch(:label, account.name), account.domain, options
-    elsif Jumpstart::Multitenancy.subdomain? && account.subdomain?
-      link_to options.fetch(:label, account.name), root_url(subdomain: account.subdomain), options
+    label = block ? nil : options.fetch(:label, account.name)
+
+    # if Jumpstart::Multitenancy.domain? && account.domain?
+    #   link_to *[name, account.domain].compact, options, &block
+    if Jumpstart::Multitenancy.subdomain? && account.subdomain?
+      link_to(*[label, root_url(subdomain: account.subdomain)].compact, options, &block)
     elsif Jumpstart::Multitenancy.path?
-      link_to options.fetch(:label, account.name), root_url(script_name: "/#{account.id}"), options
+      link_to(*[label, root_url(script_name: "/#{account.id}")].compact, options, &block)
     else
-      button_to options.fetch(:label, account.name), switch_account_path(account), options.merge(method: :patch)
+      button_to(*[label, switch_account_path(account, return_to: options[:return_to])].compact, options.merge(method: :patch), &block)
     end
   end
 end

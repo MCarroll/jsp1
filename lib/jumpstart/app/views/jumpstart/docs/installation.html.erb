@@ -69,20 +69,15 @@ overmind restart web
 overmind kill</code></pre>
 </div>
 
-<%= h3_with_anchor "Docker & Docker Compose", id: :docker %>
-<p>If you'd like to use Docker, we provide a <code>Dockerfile</code> and <code>docker-compose.yml</code> example configuration you can use as a starting point.</p>
+<%= h3_with_anchor "Devcontainers & Docker", id: :docker %>
+<p>If you'd like to use Docker, Rails provides a <code>devcontainer</code> that uses Docker Compose to set up dependencies for consistent development across any OS. To use the devcontainer, you will need to open the directory in VS Code and select "Reopen in Container" when prompted. Once inside the Devcontainer, you can run Rails as normal using <code>bin/dev</code> and ports will be forwarded from localhost on the OS to the devcontainer.</p>
+<%= image_tag "https://jumpstartpro.b-cdn.net/devcontainer.png" %>
+<p>To run Rails, run in VS Code's terminal:</p>
 <div class="not-prose">
-  <pre><code>docker-compose up</code></pre>
+  <pre><code>bin/dev</code></pre>
 </div>
 <p>Then open <%= link_to "http://localhost:3000", "http://localhost:3000", target: :_blank %></p>
-<p>To run the Rails console, run:</p>
-<div class="not-prose">
-  <pre><code>docker-compose exec web bin/rails console</code></pre>
-</div>
 
 <%= h3_with_anchor "Developing on Windows", id: :windows %>
-<p>If you'd like to run Jumpstart Pro on Windows, we recommend using WSL2. You can find instructions here: <%= link_to "https://gorails.com/setup/windows", "https://gorails.com/setup/windows", target: :_blank %></p>
-<p>Alternatively, if you'd like to use Docker on Windows, you'll need to make sure you clone the repository and preserve the Linux line endings.</p>
-<div class="not-prose">
-  <pre><code>git clone git@github.com:username/myrepo.git --config core.autocrlf=input</code></pre>
-</div>
+<p>If you'd like to run Jumpstart Pro Rails on Windows, we recommend using WSL2. You can find instructions here: <%= link_to "https://gorails.com/setup/windows", "https://gorails.com/setup/windows", target: :_blank %></p>
+<p>The <%= link_to "Devcontainer", "#docker" %> is also a great option for development on Windows.</p>

@@ -70,9 +70,10 @@ overmind kill</code></pre>
 </div>
 
 <%= h3_with_anchor "Devcontainers & Docker", id: :docker %>
-<p>If you'd like to use Docker, Rails provides a <code>devcontainer</code> that uses Docker Compose to set up dependencies for consistent development across any OS. To use the devcontainer, you will need to open the directory in VS Code and select "Reopen in Container" when prompted. Once inside the Devcontainer, you can run Rails as normal using <code>bin/dev</code> and ports will be forwarded from localhost on the OS to the devcontainer.</p>
-<%= image_tag "https://jumpstartpro.b-cdn.net/devcontainer.png" %>
-<p>To run Rails, run in VS Code's terminal:</p>
+<p>If you'd like to use Docker, Rails provides a <code>devcontainer</code> that uses Docker Compose to set up dependencies for consistent development across any OS.</p>
+<p>To use the devcontainer, you will need to open the directory in VS Code <code>code .</code> and select "Reopen in Container" when prompted.</p>
+<%= link_to image_tag("https://jumpstartpro.b-cdn.net/devcontainer.png", class: "h-32"), "https://jumpstartpro.b-cdn.net/devcontainer.png", target: :_blank %>
+<p> Once inside the Devcontainer, you can run Rails as normal using <code>bin/dev</code> in VS Code's terminal. Ports will be forwarded from OS localhost to the devcontainer.</p>
 <div class="not-prose">
   <pre><code>bin/dev</code></pre>
 </div>

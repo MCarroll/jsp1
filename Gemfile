@@ -53,7 +53,7 @@ group :development, :test do
   gem "standard", require: false
   gem "erb_lint", require: false
 
-  gem "letter_opener_web", "~> 2.0"
+  gem "letter_opener_web", "~> 3.0"
 
   # Optional debugging tools
   # gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

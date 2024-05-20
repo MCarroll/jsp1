@@ -5,7 +5,7 @@ module AccountsHelper
 
     if account.personal? && account.owner_id == current_user&.id
       image_tag(
-        avatar_url_for(account.users.first, options),
+        avatar_url_for(current_user, options),
         class: classes,
         alt: account.name
       )

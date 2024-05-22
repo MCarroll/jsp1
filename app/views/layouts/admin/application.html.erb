@@ -42,6 +42,7 @@ By default, it renders:
     <div style="display: none; width: 0; height: 0; overflow: hidden; position: absolute">
       <%= render "icons" %>
     </div>
-    <%= render "javascript" %>
+    <%# Don't render Administrate's JS since we've got a Turbo compatible version with esbuild. %>
+    <%#= render "javascript" %>
   </body>
 </html>

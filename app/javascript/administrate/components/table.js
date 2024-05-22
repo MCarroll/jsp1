@@ -22,12 +22,7 @@ function bindTableLinks() {
       const dataUrl = target.getAttribute("data-url")
       const selection = window.getSelection().toString()
       if (selection.length === 0 && dataUrl) {
-        const delegate = target.querySelector(`[href="${dataUrl}"]`)
-        if (delegate) {
-          delegate.click()
-        } else {
-          window.location = dataUrl
-        }
+        Turbo.visit(dataUrl)
       }
     }
   }

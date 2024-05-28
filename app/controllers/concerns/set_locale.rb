@@ -36,12 +36,12 @@ module SetLocale
   # Extract the full locale (including region code)
   # Handles `pt-BR` by falling back to `pt`
   def locale_from_header
-    locale = request.env.fetch("HTTP_ACCEPT_LANGUAGE", "").scan(/^[a-z]{2}(?:-[a-zA-Z]{2})?$/).first
+    locale = request.env.fetch("HTTP_ACCEPT_LANGUAGE", "").scan(/^[a-z]{2}(?:-[a-zA-Z]{2})?$/).first.to_s
     permit_locale(locale) || permit_locale(locale.split("-").first)
   end
 
   # Makes sure locale is in the available locales list
   def permit_locale(locale)
-    locale&.strip.presence_in(I18n.config.available_locales_set)
+    locale.to_s.strip.presence_in(I18n.config.available_locales_set)
   end
 end

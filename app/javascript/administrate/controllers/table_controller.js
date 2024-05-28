@@ -8,7 +8,8 @@ export default class extends Controller {
         event.keyCode == keycodes.space ||
         event.keyCode == keycodes.enter) {
 
-      if (event.target.href) {
+      // If the click is on an anchor or a tag inside an anchor, let the browser do it's normal thing
+      if (event.target.closest("[href]")) {
         return
       }
 

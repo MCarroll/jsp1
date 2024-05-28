@@ -35,7 +35,7 @@ class Pay::SubscriptionDashboard < Administrate::BaseDashboard
     :name,
     :status,
     :active?,
-    :cancelled?
+    :cancelled?,
     :quantity,
     :created_at
   ].freeze

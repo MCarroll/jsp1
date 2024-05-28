@@ -2,8 +2,8 @@
   data: {
     controller: "notifications",
     notifications_account_id_value: current_account.id,
-    notifications_account_unread_value: @account_unread,
-    notifications_total_unread_value: @total_unread,
+    notifications_account_unread_value: @notification_counts[current_account.id],
+    notifications_total_unread_value: @notification_counts.values.sum,
   } do %>
   <div class="relative" data-controller="dropdown">
     <%# Marks all notifications as read when menu opens by default. Remove the notifications Stimulus actions to disable this. %>

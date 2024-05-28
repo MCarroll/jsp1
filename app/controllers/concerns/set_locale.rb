@@ -34,12 +34,22 @@ module SetLocale
   end
 
   def locale_from_header
-    permit_locale request.env.fetch("HTTP_ACCEPT_LANGUAGE", "").scan(/^[a-z]{2}/).first
+    # Extract the full locale (including region code)
+    locale = request.env.fetch("HTTP_ACCEPT_LANGUAGE", "").scan(/^[a-z]{2}(?:-[A-Z]{2})?$/).first
+    permit_locale(locale)
   end
 
   # Makes sure locale is in the available locales list
   def permit_locale(locale)
     stripped_locale = locale&.strip
-    I18n.config.available_locales_set.include?(stripped_locale) ? stripped_locale : nil
+  
+    if I18n.config.available_locales_set.include?(stripped_locale)
+      stripped_locale
+    else
+      # Fallback to the 2 letter language code if the requested locale unavailable
+      language_code = stripped_locale.to_s.split('-').first
+      # Check if the two-letter language code is in the available locales
+      I18n.config.available_locales_set.include?(language_code) ? language_code : nil
+    end
   end
 end

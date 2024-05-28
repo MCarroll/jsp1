@@ -36,6 +36,8 @@ class Pay::SubscriptionDashboard < Administrate::BaseDashboard
     :status,
     :active?,
     :cancelled?
+    :quantity,
+    :created_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES

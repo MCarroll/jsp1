@@ -36,7 +36,7 @@ module SetLocale
   # Extract the full locale (including region code)
   # Handles `pt-BR` by falling back to `pt`
   def locale_from_header
-    locale = request.env.fetch("HTTP_ACCEPT_LANGUAGE", "").scan(/^[a-z]{2}(?:-[a-zA-Z]{2})?$/).first
+    locale = request.env.fetch("HTTP_ACCEPT_LANGUAGE", "").scan(/^[a-z]{2}(?:-[a-zA-Z]{2})?/).first
     permit_locale(locale) || permit_locale(locale&.split("-")&.first)
   end
 

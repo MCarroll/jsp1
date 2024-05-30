@@ -62,7 +62,12 @@ heroku run rails db:migrate</code></pre>
 </div>
 
 <%= h2_with_anchor "Docker" %>
-<p>We provide a sample Dockerfile and docker-compose.yml for you in case you'd like to deploy your application using Docker.</p>
+<p>Rails provides an example Dockerfile for production deployments which is included in Jumpstart Pro.</p>
+
+<%= h2_with_anchor "Kamal" %>
+<p>We also provide <code>config/deploy.yml</code> for you if you'd like to deploy your application using <%= link_to "Kamal", "https://kamal-deploy.org/", target: :_blank %>. Replace IP addresses in the deploy.yml with that of your application.</p>
+<p>Kamal uses <%= link_to "dotenv", "https://github.com/bkeepers/dotenv", target: :_blank %> to automatically load environment variables set in the .env.erb file in the application root. You can modify this file to add or customize environment variables.</p>
+</div>
 
 <%= h2_with_anchor "Production Admin Users" %>
 <p>To create an admin user in production, you can either generate one using <code>db/seeds.rb</code> or run the following code in the rails console in production.</p>

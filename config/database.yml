@@ -87,4 +87,4 @@ production:
   <<: *default
   database: jumpstart_production
   username: jumpstart
-  password: <%= ENV['JUMPSTART_DATABASE_PASSWORD'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>

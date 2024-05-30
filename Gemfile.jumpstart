@@ -10,9 +10,10 @@ gem "devise-i18n", "~> 1.10"
 gem "inline_svg", "~> 1.6"
 gem "invisible_captcha", "~> 2.0"
 gem "jsbundling-rails", "~> 1.3.0"
-gem "jumpstart", path: "lib/jumpstart", group: :omit
+gem "jumpstart", path: "lib/jumpstart"
 gem "local_time", "~> 3.0"
 gem "name_of_person", "~> 1.0"
+gem "nokogiri", ">= 1.12.5" # Security update
 gem "noticed", "~> 2.2"
 gem "pagy", "~> 8.0"
 gem "pay", "~> 7.1"
@@ -23,6 +24,23 @@ gem "receipts", "~> 2.1"
 gem "rotp", "~> 6.2"
 gem "rqrcode", "~> 2.1"
 gem "ruby-oembed", "~> 0.17.0", require: "oembed"
+
+group :development, :test do
+  # Lint code for consistent style
+  gem "standard", require: false
+  gem "erb_lint", require: false
+  gem "letter_opener_web", "~> 3.0"
+end
+
+group :development do
+  # A fully configurable and extendable Git hook manager
+  gem "overcommit", require: false
+end
+
+group :test do
+  # Test HTTP requests [https://github.com/bblimke/webmock]
+  gem "webmock"
+end
 
 gem "acts_as_tenant", "~> 1.0" if Jumpstart.config.gems.include?("acts_as_tenant")
 gem "oj", "~> 3.8" if Jumpstart.config.gems.include?("oj")

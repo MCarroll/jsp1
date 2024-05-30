@@ -11,8 +11,10 @@ class AccountTest < ActiveSupport::TestCase
 
   test "can have multiple accounts with nil domain" do
     user = users(:one)
-    Account.create!(owner: user, name: "test")
-    Account.create!(owner: user, name: "test2")
+    assert_nothing_raised do
+      Account.create!(owner: user, name: "test")
+      Account.create!(owner: user, name: "test2")
+    end
   end
 
   test "validates uniqueness of subdomain" do
@@ -23,9 +25,10 @@ class AccountTest < ActiveSupport::TestCase
 
   test "can have multiple accounts with nil subdomain" do
     user = users(:one)
-
-    Account.create!(owner: user, name: "test")
-    Account.create!(owner: user, name: "test2")
+    assert_nothing_raised do
+      Account.create!(owner: user, name: "test")
+      Account.create!(owner: user, name: "test2")
+    end
   end
 
   test "validates against reserved domains" do

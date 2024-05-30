@@ -1,7 +1,7 @@
 class ApplicationRecord < ActiveRecord::Base
-  include ActionView::RecordIdentifier
-
   primary_abstract_class
+
+  include ActionView::RecordIdentifier
 
   # Orders results by column and direction
   def self.sort_by_params(column, direction)

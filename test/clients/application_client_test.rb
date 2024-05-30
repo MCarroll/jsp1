@@ -7,61 +7,79 @@ class ApplicationClientTest < ActiveSupport::TestCase
 
   test "authorization header" do
     stub_request(:get, "https://example.org/").with(headers: {"Authorization" => "Bearer test"})
-    @client.send(:get, "/")
+    assert_nothing_raised do
+      @client.send(:get, "/")
+    end
   end
 
   test "get" do
     stub_request(:get, "https://example.org/test")
-    @client.send(:get, "/test")
+    assert_nothing_raised do
+      @client.send(:get, "/test")
+    end
   end
 
   test "get with query params" do
     stub_request(:get, "https://example.org/test").with(query: {"foo" => "bar"})
-    @client.send(:get, "/test", query: {foo: "bar"})
+    assert_nothing_raised do
+      @client.send(:get, "/test", query: {foo: "bar"})
+    end
   end
 
   test "get with query params as a string" do
     stub_request(:get, "https://example.org/test").with(query: {"foo" => "bar"})
-    @client.send(:get, "/test", query: "foo=bar")
+    assert_nothing_raised do
+      @client.send(:get, "/test", query: "foo=bar")
+    end
   end
 
   test "override BASE_URI by passing in full url" do
     stub_request(:get, "https://other.org/test")
-    @client.send(:get, "https://other.org/test")
+    assert_nothing_raised do
+      @client.send(:get, "https://other.org/test")
+    end
   end
 
   test "post" do
     stub_request(:post, "https://example.org/test").with(body: {"foo" => {"bar" => "baz"}}.to_json)
-    @client.send(:post, "/test", body: {foo: {bar: "baz"}})
+    assert_nothing_raised do
+      @client.send(:post, "/test", body: {foo: {bar: "baz"}})
+    end
   end
 
   test "post with string body" do
     stub_request(:post, "https://example.org/test").with(body: "foo")
-    @client.send(:post, "/test", body: "foo")
+    assert_nothing_raised do
+      @client.send(:post, "/test", body: "foo")
+    end
   end
 
   test "post with custom content-type" do
     headers = {"Content-Type" => "application/x-www-form-urlencoded"}
     stub_request(:post, "https://example.org/test").with(body: {"foo" => "bar"}.to_json, headers: headers)
-    @client.send(:post, "/test", body: {foo: "bar"}, headers: headers)
+    assert_nothing_raised do
+      @client.send(:post, "/test", body: {foo: "bar"}, headers: headers)
+    end
   end
 
   test "multipart form data with file_fixture" do
     file = file_fixture("avatar.jpg")
-
     form_data = {
       "field1" => "value1",
       "file" => File.open(file)
     }
 
     stub_request(:post, "https://example.org/upload").to_return(status: 200)
-
-    @client.send(:post, "/upload", form_data: form_data)
+    assert_nothing_raised do
+      @client.send(:post, "/upload", form_data: form_data)
+    end
   end
 
   test "patch" do
     stub_request(:patch, "https://example.org/test").with(body: {"foo" => "bar"}.to_json)
-    @client.send(:patch, "/test", body: {foo: "bar"})
+    assert_nothing_raised do
+      @client.send(:patch, "/test", body: {foo: "bar"})
+    end
   end
 
   test "multipart form data with file_fixture and patch" do
@@ -74,12 +92,16 @@ class ApplicationClientTest < ActiveSupport::TestCase
 
     stub_request(:patch, "https://example.org/update").to_return(status: 200)
 
-    @client.send(:patch, "/update", form_data: form_data)
+    assert_nothing_raised do
+      @client.send(:patch, "/update", form_data: form_data)
+    end
   end
 
   test "put" do
     stub_request(:put, "https://example.org/test").with(body: {"foo" => "bar"}.to_json)
-    @client.send(:put, "/test", body: {foo: "bar"})
+    assert_nothing_raised do
+      @client.send(:put, "/test", body: {foo: "bar"})
+    end
   end
 
   test "multipart form data with file_fixture and put" do
@@ -92,12 +114,16 @@ class ApplicationClientTest < ActiveSupport::TestCase
 
     stub_request(:put, "https://example.org/update").to_return(status: 200)
 
-    @client.send(:put, "/update", form_data: form_data)
+    assert_nothing_raised do
+      @client.send(:put, "/update", form_data: form_data)
+    end
   end
 
   test "delete" do
     stub_request(:delete, "https://example.org/test")
-    @client.send(:delete, "/test")
+    assert_nothing_raised do
+      @client.send(:delete, "/test")
+    end
   end
 
   test "response object parses json" do
@@ -200,23 +226,31 @@ class ApplicationClientTest < ActiveSupport::TestCase
     test "with_pagination and url" do
       stub_request(:get, "https://test.example.org/pages?per_page=100").to_return(headers: {"Link" => "<https://test.example.org/pages?page=2>; rel=\"next\""})
       stub_request(:get, "https://test.example.org/pages?per_page=100&page=2")
-      TestApiClient.new(token: "test").all_pages
+      assert_nothing_raised do
+        TestApiClient.new(token: "test").all_pages
+      end
     end
 
     test "with_pagination with query hash" do
       stub_request(:get, "https://test.example.org/projects?per_page=100").to_return(body: {pagination: {next_page: 2}}.to_json, headers: {content_type: "application/json"})
       stub_request(:get, "https://test.example.org/projects?per_page=100&page=2").to_return(body: {pagination: {prev_page: 1}}.to_json, headers: {content_type: "application/json"})
-      TestApiClient.new(token: "test").all_projects
+      assert_nothing_raised do
+        TestApiClient.new(token: "test").all_projects
+      end
     end
 
     test "get" do
       stub_request(:get, "https://test.example.org/")
-      TestApiClient.new(token: "test").root
+      assert_nothing_raised do
+        TestApiClient.new(token: "test").root
+      end
     end
 
     test "content type" do
       stub_request(:get, "https://test.example.org/").with(headers: {"Accept" => "application/xml"})
-      TestApiClient.new(token: "test").root
+      assert_nothing_raised do
+        TestApiClient.new(token: "test").root
+      end
     end
 
     test "other error" do

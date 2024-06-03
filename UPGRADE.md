@@ -2,6 +2,10 @@
 
 This file includes notes on major changes that might affect your application and require changes from you to update.
 
+### June 3, 2024
+
+`Jumpstart::Client` has been removed. We recommend switching to a Jumpstart Pro [API Client](https://github.com/jumpstart-pro/api-clients) or you can integrate with the gem(s) directly.
+
 ### December 6, 2023
 
 NotificationTokens for Android now use "fcm" (Firebase Cloud Messaging) as the platform. If you're using this feature, you'll want to update all notification tokens in the database.

@@ -38,11 +38,8 @@ module Jumpstart
         "AirBrake" => "airbrake",
         "AppSignal" => "appsignal",
         "BugSnag" => "bugsnag",
-        "ConvertKit" => "convertkit",
-        "Drip" => "drip",
         "Honeybadger" => "honeybadger",
         "Intercom" => "intercom",
-        "MailChimp" => "mailchimp",
         "Rollbar" => "rollbar",
         "Scout" => "scout",
         "Sentry" => "sentry",
@@ -241,24 +238,12 @@ module Jumpstart
         copy_template("config/initializers/bugsnag.rb")
       end
 
-      if convertkit?
-        copy_template("config/initializers/convertkit.rb")
-      end
-
-      if drip?
-        copy_template("config/initializers/drip.rb")
-      end
-
       if honeybadger?
         copy_template("config/honeybadger.yml")
       end
 
       if intercom?
         copy_template("config/initializers/intercom.rb")
-      end
-
-      if mailchimp?
-        copy_template("config/initializers/mailchimp.rb")
       end
 
       if rollbar?

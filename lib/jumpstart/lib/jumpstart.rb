@@ -3,7 +3,6 @@ require "jumpstart/engine"
 module Jumpstart
   autoload :AccountMiddleware, "jumpstart/account_middleware"
   autoload :AdministrateHelpers, "jumpstart/administrate_helpers"
-  autoload :Clients, "jumpstart/clients"
   autoload :Configuration, "jumpstart/configuration"
   autoload :JobProcessor, "jumpstart/job_processor"
   autoload :Mailer, "jumpstart/mailer"

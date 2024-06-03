@@ -60,11 +60,8 @@ gem "omniauth-microsoft_graph" if omniauth_providers.include?("microsoft_graph")
 gem "airbrake" if Jumpstart.config.airbrake?
 gem "appsignal" if Jumpstart.config.appsignal?
 gem "bugsnag" if Jumpstart.config.bugsnag?
-gem "convertkit-ruby", github: "excid3/convertkit-ruby", require: "convertkit" if Jumpstart.config.convertkit?
-gem "drip-ruby", require: "drip" if Jumpstart.config.drip?
 gem "honeybadger" if Jumpstart.config.honeybadger?
 gem "intercom-rails" if Jumpstart.config.intercom?
-gem "gibbon" if Jumpstart.config.mailchimp?
 gem "rollbar" if Jumpstart.config.rollbar?
 gem "scout_apm" if Jumpstart.config.scout?
 gem "sentry-rails" if Jumpstart.config.sentry?

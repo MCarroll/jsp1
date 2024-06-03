@@ -12,6 +12,13 @@ class ApplicationClientTest < ActiveSupport::TestCase
     end
   end
 
+  test "basic auth" do
+    stub_request(:get, "https://example.org/")
+    client = ApplicationClient.new(basic_auth: {username: "user", password: "pass"})
+    client.send(:get, "/")
+    assert_requested(:get, "https://example.org/", headers: {"Authorization" => "Basic #{Base64.strict_encode64("user:pass")}"})
+  end
+
   test "get" do
     stub_request(:get, "https://example.org/test")
     assert_nothing_raised do
@@ -195,6 +202,22 @@ class ApplicationClientTest < ActiveSupport::TestCase
     stub_request(:get, "https://example.org/pages")
     response = @client.send(:get, "/pages")
     assert_empty(response.link_header)
+  end
+
+  class BasicAuthTest < ActiveSupport::TestCase
+    class BasicAuthClient < ApplicationClient
+      BASE_URI = "https://example.org"
+
+      def basic_auth
+        {username: "user", password: "pass"}
+      end
+    end
+
+    test "basic auth" do
+      stub_request(:get, "https://example.org/")
+      BasicAuthClient.new.send :get, "/"
+      assert_requested(:get, "https://example.org/", headers: {"Authorization" => "Basic #{Base64.strict_encode64("user:pass")}"})
+    end
   end
 
   class CustomClientTest < ActiveSupport::TestCase

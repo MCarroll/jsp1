@@ -36,7 +36,7 @@ class ApplicationClient
   BASE_URI = "https://example.org"
   NET_HTTP_ERRORS = [Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError, Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError]
 
-  attr_reader :auth, :token
+  attr_reader :auth, :basic_auth, :token
 
   def self.inherited(client)
     response = client.const_set(:Response, Class.new(Response))
@@ -51,8 +51,8 @@ class ApplicationClient
   #   `token` should be a String authentication token or API key
   #
   # Override this method if the API requires additional parameters
-  def initialize(auth: nil, token: nil)
-    @auth, @token = auth, token
+  def initialize(auth: nil, basic_auth: nil, token: nil)
+    @auth, @basic_auth, @token = auth, basic_auth, token
   end
 
   # Override to customize default headers
@@ -224,6 +224,7 @@ class ApplicationClient
     all_headers.delete("Content-Type") if klass == Net::HTTP::Get
 
     request = klass.new(uri.request_uri, all_headers)
+    request.basic_auth(basic_auth[:username], basic_auth[:password]) if basic_auth.present?
 
     if body.present?
       request.body = build_body(body)

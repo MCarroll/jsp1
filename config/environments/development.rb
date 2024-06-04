@@ -80,7 +80,7 @@ Rails.application.configure do
   # Uncomment the line below to enable strict loading across all models. More granular control can be applied at the model or association level.
   # config.active_record.strict_loading_by_default = true
 
-  # Set the default URL for ActionMailer in development.
+  # Deliver emails to Letter Opener for development
   config.action_mailer.delivery_method = :letter_opener_web
 
   # Allow accessing localhost on any domain. Important for testing multi-tenant apps.

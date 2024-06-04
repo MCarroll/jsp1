@@ -53,7 +53,7 @@
         <!-- Main menu -->
         <div class="hidden lg:inline-flex z-10 items-center leading-none no-underline align-middle rounded text-gray-700 hover:text-gray-800 dark:text-gray-50 dark:hover:text-gray-200">
           <div class="relative" data-controller="dropdown">
-            <button data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" class="inline-block select-none p-2 rounded hover:bg-gray-50" aria-label="Profile Menu">
+            <button data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" class="inline-block select-none p-2 rounded hover:bg-gray-50 dark:hover:bg-gray-800" aria-label="Profile Menu">
               <span class="flex items-center gap-1 text-gray-700 dark:text-gray-100 appearance-none">
                 <%= account_avatar current_account, class: "flex-shrink-0 rounded-full h-6 w-6" %>
                 <span class="max-w-32 truncate leading-tight"><%= current_account.name %></span>

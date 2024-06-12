@@ -2,7 +2,7 @@ module SetCurrentRequestDetails
   extend ActiveSupport::Concern
 
   included do |base|
-    if base < ActionController::Base
+    if base < ActionController::Metal
       set_current_tenant_through_filter if defined? ActsAsTenant
       before_action :set_request_details
     end

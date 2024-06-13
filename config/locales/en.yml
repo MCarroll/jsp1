@@ -39,6 +39,7 @@ en:
   processing: "Processing..."
   something_went_wrong: "Something went wrong"
   unauthorized: "You are not authorized to perform this action."
+  reveal: "Reveal"
 
   account_invitations_mailer:
     invite:

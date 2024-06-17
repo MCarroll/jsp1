@@ -23,6 +23,8 @@ class ApplicationClient
   # See `handle_response` to add more error types as needed
   class Error < StandardError; end
 
+  class MovedPermanently < Error; end
+
   class Forbidden < Error; end
 
   class Unauthorized < Error; end
@@ -244,6 +246,8 @@ class ApplicationClient
     case response.code
     when "200", "201", "202", "203", "204"
       response
+    when "301"
+      raise MovedPermanently, response.body
     when "401"
       raise Unauthorized, response.body
     when "403"

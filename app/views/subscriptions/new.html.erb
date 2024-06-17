@@ -105,7 +105,7 @@
         <% if @plan.has_trial? %>
           <p class="mt-4 text-center text-sm text-gray-500 dark:text-gray-300">After your trial ends, you will be charged <%= pay_amount_to_currency(@plan) %> per <%= @plan.interval %> starting <%= l @plan.trial_period_days.days.from_now.to_date, format: :long %>. You can always cancel before then.</p>
         <% else %>
-          <p class="mt-4 text-center text-sm text-gray-500 dark:text-gray-300">By confirming your subscription, you allow <%= Jumpstart.config.application_name %> to charge your payment method for this payment and future payments in accorandce with our terms.</p>
+          <p class="mt-4 text-center text-sm text-gray-500 dark:text-gray-300">By confirming your subscription, you allow <%= Jumpstart.config.application_name %> to charge your payment method for this payment and future payments in accordance with our terms.</p>
         <% end %>
       </div>
 

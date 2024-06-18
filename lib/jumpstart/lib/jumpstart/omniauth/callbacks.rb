@@ -100,6 +100,7 @@ module Jumpstart
 
       def success_message!(kind:)
         return unless is_navigational_format?
+        return if flash.notice.present?
         set_flash_message(:notice, :success, kind: t("oauth.#{kind}"))
       end
 

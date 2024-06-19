@@ -45,6 +45,7 @@ end
 gem "acts_as_tenant", "~> 1.0" if Jumpstart.config.gems.include?("acts_as_tenant")
 gem "oj", "~> 3.8" if Jumpstart.config.gems.include?("oj")
 gem "rack-attack", "~> 6.6" if Jumpstart.config.gems.include?("rack-attack")
+gem "refer", "~> 0.2.0" if Jumpstart.config.gems.include?("refer")
 gem "whenever", "~> 1.0", require: false if Jumpstart.config.gems.include?("whenever")
 
 omniauth_providers = Jumpstart.config.omniauth_providers

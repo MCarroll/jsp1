@@ -15,6 +15,17 @@
 
   <div class="relative items-start">
     <div class="flex h-6 items-center toggle">
+      <%= check_box_tag "configuration[gems][]", "refer", Jumpstart.config.gems.include?("refer"), id: "refer", class: "form-checkbox" %>
+      <label for="refer" class="font-medium text-gray-900">Refer</label>
+    </div>
+    <div class="pl-1 ml-14 text-sm leading-6">
+      <p class="text-gray-500"><%= link_to "Refer", "https://github.com/excid3/refer", target: :_blank %> Referral codes for Ruby on Rails applications.</p>
+      <p class="text-gray-500">See the Users docs to learn how to use Refer.</p>
+    </div>
+  </div>
+
+  <div class="relative items-start">
+    <div class="flex h-6 items-center toggle">
       <%= check_box_tag "configuration[gems][]", "oj", Jumpstart.config.gems.include?("oj"), id: "oj", class: "form-checkbox" %>
       <label for="oj" class="font-medium text-gray-900">Oj</label>
     </div>

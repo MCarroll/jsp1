@@ -5,6 +5,7 @@ module Authentication
     before_action :configure_permitted_parameters, if: :devise_controller?
 
     impersonates :user
+    set_referral_cookie if defined?(::Refer)
   end
 
   protected

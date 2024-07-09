@@ -82,7 +82,7 @@ if Jumpstart.config.background_job_processor == "solid_queue"
 end
 
 # Payment processors
-gem "stripe", "~> 11.0" if Jumpstart.config.stripe?
+gem "stripe", "~> 12.0" if Jumpstart.config.stripe?
 gem "paddle", "~> 2.1" if Jumpstart.config.paddle_billing? || Jumpstart.config.paddle_classic?
 gem "braintree", "~> 4.20" if Jumpstart.config.braintree? || Jumpstart.config.paypal?
 

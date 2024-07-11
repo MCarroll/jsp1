@@ -14,8 +14,8 @@ module ConnectedAccount::Oauth
   end
 
   class_methods do
-    def for_auth(auth)
-      where(provider: auth.provider, uid: auth.uid).first
+    def for_auth(auth, **query)
+      where(query.with_defaults(provider: auth.provider, uid: auth.uid)).first
     end
   end
 

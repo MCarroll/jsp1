@@ -9,7 +9,7 @@ module Jumpstart
             # Handle authentication to another model
             record = GlobalID::Locator.locate_signed(signed_id, for: "oauth")
 
-            ConnectedAccount.where(owner: record).first_or_initialize.update(connected_account_params)
+            ConnectedAccount.for_auth(auth, owner: record).first_or_initialize.update(connected_account_params)
             run_connected_callback(connected_account)
             redirect_to(omniauth_params.fetch("redirect_to", record) || root_path)
           elsif connected_account.present?

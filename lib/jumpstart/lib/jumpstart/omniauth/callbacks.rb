@@ -105,7 +105,7 @@ module Jumpstart
       end
 
       def connected_account
-        @connected_account ||= ConnectedAccount.for_auth(auth)
+        @connected_account ||= ConnectedAccount.for_auth(auth).first
       end
 
       def after_connect_redirect_path

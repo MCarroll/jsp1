@@ -11,12 +11,8 @@ module ConnectedAccount::Oauth
     Devise.omniauth_configs.each do |provider, _|
       scope provider, -> { where(provider: provider) }
     end
-  end
 
-  class_methods do
-    def for_auth(auth, **query)
-      where(query.with_defaults(provider: auth.provider, uid: auth.uid)).first
-    end
+    scope :for_auth, ->(auth, **query) { where(query.with_defaults(provider: auth.provider, uid: auth.uid)) }
   end
 
   def provider_name

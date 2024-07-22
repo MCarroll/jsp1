@@ -19,8 +19,6 @@ class SubscriptionsController < ApplicationController
     redirect_to edit_subscription_path(@subscription)
   end
 
-  # Stripe subscriptions are handled entirely client side
-  # We need to create a subscription to render the PaymentElement
   def new
     set_checkout_session if Jumpstart.config.stripe?
   rescue Pay::Error => e

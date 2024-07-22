@@ -42,7 +42,11 @@ class Jumpstart::PlansTest < ActionDispatch::IntegrationTest
       sign_in users(:one)
       plan = plans(:personal)
 
+      stub_request(:post, "https://api.stripe.com/v1/customers").to_return(body: {id: "cus_1234", object: "customer"}.to_json)
+      stub_request(:post, "https://api.stripe.com/v1/checkout/sessions").to_return(body: {id: "cs_test_1234", object: "checkout.session", client_secret: "example"}.to_json)
+
       get new_subscription_path(plan: plan)
+      assert_nil flash.alert
       assert_response :success
     end
 
@@ -50,9 +54,13 @@ class Jumpstart::PlansTest < ActionDispatch::IntegrationTest
       account = accounts(:company)
       plan = plans(:personal)
 
+      stub_request(:post, "https://api.stripe.com/v1/customers").to_return(body: {id: "cus_1234", object: "customer"}.to_json)
+      stub_request(:post, "https://api.stripe.com/v1/checkout/sessions").to_return(body: {id: "cs_test_1234", object: "checkout.session", client_secret: "example"}.to_json)
+
       sign_in account.owner
       switch_account(account)
       get new_subscription_path(plan: plan)
+      assert_nil flash.alert
       assert_response :success
     end
   end

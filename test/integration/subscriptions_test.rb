@@ -18,8 +18,12 @@ class Jumpstart::SubscriptionsTest < ActionDispatch::IntegrationTest
     end
 
     test "can subscribe account" do
+      stub_request(:post, "https://api.stripe.com/v1/customers").to_return(body: {id: "cus_1234", object: "customer"}.to_json)
+      stub_request(:post, "https://api.stripe.com/v1/checkout/sessions").to_return(body: {id: "cs_test_1234", object: "checkout.session", client_secret: "example"}.to_json)
+
       Jumpstart.config.stub(:payments_enabled?, true) do
         get new_subscription_path(plan: @plan)
+        assert_nil flash.alert
         assert_response :success
       end
     end

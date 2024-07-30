@@ -30,4 +30,6 @@ resources :notifications, only: [:index, :show] do
   end
 end
 
+resources :referrals, module: :users if defined? Refer
+
 post :sudo, to: "users/sudo#create"

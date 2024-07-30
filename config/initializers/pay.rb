@@ -38,6 +38,12 @@ module ChargeExtensions
 
   included do
     has_prefix_id :ch
+    after_create :complete_referral, if: -> { defined?(Refer) }
+  end
+
+  # Mark the account owner's referral complete on the first successful payment
+  def complete_referral
+    customer.owner.owner.referral&.complete!
   end
 end
 

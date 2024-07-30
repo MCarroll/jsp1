@@ -9,4 +9,7 @@
   <% end %>
   <%= nav_link_to t(".accounts"), accounts_path, class: "block no-underline p-3 px-6", active_class: active_class, inactive_class: inactive_class, starts_with: "/accounts" %>
   <%= nav_link_to t(".api_tokens"), api_tokens_path, class: "block no-underline p-3 px-6 rounded-b", active_class: active_class, inactive_class: inactive_class, starts_with: "/api_tokens" %>
+  <% if defined? Refer %>
+    <%= nav_link_to t(".referrals"), referrals_path, class: "block no-underline p-3 px-6", active_class: active_class, inactive_class: inactive_class, starts_with: "/referrals" %>
+  <% end %>
 </div>

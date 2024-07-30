@@ -24,7 +24,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def sign_up(resource_name, resource)
-    sign_in(resource_name, resource)
+    super
+
+    refer(resource) if defined? Refer
 
     # If user registered through an invitation, automatically accept it after signing in
     if @account_invitation

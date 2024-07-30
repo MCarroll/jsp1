@@ -1,0 +1,44 @@
+<div class="flex flex-wrap my-4 lg:px-4">
+  <div class="w-full mb-4 lg:w-1/4 lg:p-4">
+    <%= render partial: "account_navbar" %>
+  </div>
+
+  <div class="w-full lg:w-3/4 lg:p-4">
+    <div class="p-4 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-lg lg:p-10">
+
+      <div class="sm:flex items-center justify-between mb-3">
+        <h1 class="flex-1 h3"><%= t(".title") %></h1>
+      </div>
+
+      <p><%= t(".instructions") %></p>
+      <div class="mt-2 flex items-center gap-1">
+        <%= text_field_tag nil, root_url(Refer.param_name => @referral_code.code), readonly: true, class: "form-control w-96", autocomplete: :off %>
+        <%= button_tag "Copy", class: "btn btn-secondary", data: {controller: :clipboard, clipboard_text: root_url(Refer.param_name => @referral_code.code) } %>
+      </div>
+
+      <div class="mt-8 lg:max-w-4xl">
+        <h4><%= t(".stats") %></h4>
+
+        <table class="w-full">
+          <tbody class="divide-y divide-gray-100">
+            <tr>
+              <td class="font-bold"><%= t(".clicks") %></td>
+              <td><%= t(".clicks_description") %></td>
+              <td class="py-2 text-right tabular-nums"><%= @referral_code.visits_count %></td>
+            </tr>
+            <tr>
+              <td class="font-bold"><%= t(".referrals") %></td>
+              <td><%= t(".referrals_description") %></td>
+              <td class="py-2 text-right tabular-nums"><%= @referral_code.referrals.count %></td>
+            </tr>
+            <tr>
+              <td class="font-bold"><%= t(".completed") %></td>
+              <td><%= t(".completed_description") %></td>
+              <td class="py-2 text-right tabular-nums"><%= @referral_code.referrals.completed.count %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

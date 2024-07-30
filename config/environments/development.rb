@@ -81,7 +81,7 @@ Rails.application.configure do
   # config.active_record.strict_loading_by_default = true
 
   # Deliver emails to Letter Opener for development
-  config.action_mailer.delivery_method = :letter_opener_web
+  config.action_mailer.delivery_method = :mailbin
 
   # Allow accessing localhost on any domain. Important for testing multi-tenant apps.
   config.hosts = nil

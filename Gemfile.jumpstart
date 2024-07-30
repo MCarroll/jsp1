@@ -29,7 +29,7 @@ group :development, :test do
   # Lint code for consistent style
   gem "standard", require: false
   gem "erb_lint", require: false
-  gem "letter_opener_web", "~> 3.0"
+  gem "mailbin"
 end
 
 group :development do

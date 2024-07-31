@@ -4,7 +4,7 @@
 gem "administrate", github: "excid3/administrate"
 gem "administrate-field-active_storage", "~> 1.0.0"
 gem "country_select", "~> 9.0"
-gem "cssbundling-rails", "~> 1.4.0"
+gem "cssbundling-rails", "~> 1.4.1"
 gem "devise", github: "excid3/devise", branch: "sign-in-after-reset-password-proc" # "~> 4.9.0"
 gem "devise-i18n", "~> 1.10"
 gem "inline_svg", "~> 1.6"

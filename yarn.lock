@@ -247,10 +247,10 @@
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-7.2.0-beta3.tgz#c4c16ecfd5e1e7784357ef464a7029eaa664c5e7"
   integrity sha512-dBA4xB9DGSMVMgUMOYaHIDJ1WY3fqXKqb8aDahiQwY7w5pygAH7sboJMsIk3BjzLMFsSQQ0goDBiWLNdQfW2qg==
 
-"@rails/actiontext@^7.2.0-beta2":
-  version "7.2.0-beta3"
-  resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-7.2.0-beta3.tgz#89db267c6ca241de605aa40bbe3557ae0c7482d3"
-  integrity sha512-8qqFI6ai9F7wdbF0AfUNIXTSQM8OXSA+wZqA8xgQjv8cYguCKaocM5VPl6aAOjeKCcnV5rYriCJiJPmp7INZwA==
+"@rails/actiontext@^7.2.100":
+  version "7.2.100"
+  resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-7.2.100.tgz#e235c8150d252490902f8b33026bc0a030cce8e4"
+  integrity sha512-46oDEZdkxpbM/7+3GwSHTRyIkH3LRZRC9OE35rMIt0FcRbjXW+2Q7RL1YYjoy7megqnoCUDZglFISJQxJ/HBZg==
   dependencies:
     "@rails/activestorage" ">= 7.2.0-alpha"
 

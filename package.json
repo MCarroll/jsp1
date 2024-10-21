@@ -5,7 +5,7 @@
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/strada": "^1.0.0-beta1",
     "@hotwired/turbo-rails": "^8.0.3",
-    "@rails/actioncable": "^7.2.0-beta2",
+    "@rails/actioncable": "^7.2.101",
     "@rails/actiontext": "^7.2.0-beta2",
     "@rails/activestorage": "^7.2.0-beta2",
     "@rails/request.js": "^0.0.9",
